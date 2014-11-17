@@ -155,16 +155,20 @@ void MammothGame::init() {
 	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
 	meshManager = MeshManager::getInstance();
-	meshManager->load("cubee", "models/cube.ply");
+	meshManager->load("cube", "models/cube.ply");
+	meshManager->load("cube6", "models/cube6Face.ply");
+	meshManager->load("sphere", "models/sphere.ply");
 
 	textureManager->load("circle", "textures/circle.png");
 	textureManager->load("jd", "textures/jd.png");
 	textureManager->load("tron", "textures/tron.png");
 	textureManager->load("die", "textures/die.png");
+	textureManager->load("purpleBall", "textures/purpleBall.png");
 	Texture *circleTexture = textureManager->get("circle");
 	Texture *jdTexture = textureManager->get("jd");
 	Texture *tronTexture = textureManager->get("tron");
 	Texture *dieTexture = textureManager->get("die");
+	Texture *purpleBallTexture = textureManager->get("purpleBall");
 
 
 	randomRotation = glm::vec3(0);
@@ -178,9 +182,9 @@ void MammothGame::init() {
 	triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, shaderManager->getShader("texture"), tronTexture);
 	square1 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), jdTexture);
 	square2 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), jdTexture);
-	cube1 = new GameObject(GameObject::PRIMITIVE_CUBE, shaderManager->getShader("texture"), tronTexture);
-	cube2 = new GameObject(GameObject::PRIMITIVE_CUBE, shaderManager->getShader("textureCopy"), dieTexture);
-	sphere = new GameObject(GameObject::PRIMITIVE_SPHERE, shaderManager->getShader("texture"), tronTexture);
+	cube1 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
+	cube2 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
+	sphere = new GameObject(meshManager->get("sphere"), GL_TRIANGLES, shaderManager->getShader("texture"), purpleBallTexture);
 	ground = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), jdTexture);
 	triangle1->position = glm::vec3(0.0f, -0.2f, 0.7f);
 	triangle1->scale = glm::vec3(8);
