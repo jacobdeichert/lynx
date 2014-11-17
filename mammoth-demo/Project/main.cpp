@@ -1,6 +1,6 @@
-#include "MammothGame.h"
+#include "Game.h"
 
 int main() {
-	MammothGame *g = new MammothGame();
+	Game *g = new Game();
 	//std::cin.ignore();
 }

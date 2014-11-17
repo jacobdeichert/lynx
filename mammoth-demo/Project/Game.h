@@ -1,11 +1,12 @@
 #pragma once
-#include <Game.h>
+#include <MammothGame.h>
 #include <ShaderManager.h>
 #include <TextureManager.h>
 #include <Scene.h>
 #include <gtc/random.hpp>
+using namespace Mammoth;
 
-class MammothGame : public Game {
+class Game : public MammothGame {
 public:
 	TextureManager *textureManager = TextureManager::getInstance();
 	ShaderManager *shaderManager = ShaderManager::getInstance();
@@ -33,7 +34,7 @@ public:
 	virtual void update();
 
 
-	MammothGame();
-	~MammothGame();
+	Game();
+	virtual ~Game();
 };
 

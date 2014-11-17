@@ -1,7 +1,7 @@
-#include "MammothGame.h"
+#include "Game.h"
 
 
-MammothGame::MammothGame() {
+Game::Game() {
 	createWindow();
 	init();
 	start();
@@ -9,11 +9,11 @@ MammothGame::MammothGame() {
 
 
 
-MammothGame::~MammothGame() {}
+Game::~Game() {}
 
 
 
-void MammothGame::init() {
+void Game::init() {
 	FreeImage_Initialise(true);
 	scene = new Scene();
 	//shaderManager->loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
@@ -89,7 +89,7 @@ void MammothGame::init() {
 
 
 
-void MammothGame::printVersionInfo() {
+void Game::printVersionInfo() {
 	printf("============================================================\n");
 	printf("Renderer: %s\n", glGetString(GL_RENDERER));
 	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
@@ -99,7 +99,7 @@ void MammothGame::printVersionInfo() {
 
 
 
-void MammothGame::render() {
+void Game::render() {
 	if (!isPaused) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -111,7 +111,7 @@ void MammothGame::render() {
 
 
 
-void MammothGame::update() {
+void Game::update() {
 	updateInput();
 	if (!isPaused) {
 		// Parametric Equation (spiral)
@@ -123,7 +123,7 @@ void MammothGame::update() {
 
 
 
-void MammothGame::updateInput() {
+void Game::updateInput() {
 	float rotateDir = 0;
 
 
