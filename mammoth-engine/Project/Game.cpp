@@ -23,7 +23,7 @@ Game::~Game() {
 
 
 void Game::createWindow() {
-	printf("game start");
+	printf("game start \n");
 
 	if (!glfwInit()) {
 		printf("Failed to initialize GLFW\n");
