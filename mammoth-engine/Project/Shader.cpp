@@ -70,7 +70,6 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 		glEnableVertexAttribArray(attributeNormal);
 		glEnableVertexAttribArray(attributeUV);
 		glEnableVertexAttribArray(attributeColor);
-
 	}
 }
 

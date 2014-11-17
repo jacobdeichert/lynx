@@ -38,7 +38,6 @@ void MammothGame::init() {
 	Texture *purpleBallTexture = textureManager->get("purpleBall");
 
 
-	randomRotation = glm::vec3(0);
 
 
 
@@ -116,9 +115,6 @@ void MammothGame::update() {
 	updateInput();
 	if (!isPaused) {
 		scene->update();
-		cube2->rotation.x += randomRotation.x;
-		cube2->rotation.y += randomRotation.y;
-		cube2->rotation.z += randomRotation.z;
 	}
 }
 
@@ -193,13 +189,6 @@ void MammothGame::updateInput() {
 		sphere->rotation.z += rotateDir;
 	}
 
-
-
-	if (glfwGetKey(window, GLFW_KEY_R)) {
-		randomRotation.x = glm::linearRand(1.0f, 10.0f);
-		randomRotation.y = glm::linearRand(1.0f, 10.0f);
-		randomRotation.z = glm::linearRand(1.0f, 10.0f);
-	}
 
 
 	if (glfwGetKey(window, GLFW_KEY_P) && !isPKeyDown) {

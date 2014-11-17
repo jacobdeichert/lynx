@@ -22,9 +22,6 @@ private:
 	static const std::vector<GLuint> QUAD_ELEMENTS;
 };
 
-
-
-//
 //const GLfloat PrimitiveObject::PRIMITIVE_VERTICES[NUM_VERTICES_TOTAL][3] = {
 //	// perfect equilateral triangle 
 //	{ -0.0693f, -0.04f, 0 },

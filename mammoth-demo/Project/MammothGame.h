@@ -19,7 +19,6 @@ public:
 	GameObject *cube2;
 	GameObject* sphere;
 	GameObject *ground;
-	glm::vec3 randomRotation;
 	bool isPaused = false;
 	bool isPKeyDown = false;
 
