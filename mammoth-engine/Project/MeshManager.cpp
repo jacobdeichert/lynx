@@ -1,6 +1,5 @@
 #include "MeshManager.h"
 
-
 const std::vector<GLfloat> MeshManager::TRIANGLE_VERTICES {
 	// guessed the normals for this
 	-0.0693f, -0.04f,0,		0, 1, 0,	1, 0,		1, 0, 0,
@@ -27,20 +26,20 @@ const std::vector<GLuint> MeshManager::QUAD_ELEMENTS {
 
 MeshManager* MeshManager::instance = nullptr;
 
+
 MeshManager::MeshManager() {
 	create("PRIMITIVE_TRIANGLE", TRIANGLE_VERTICES, TRIANGLE_ELEMENTS);
 	create("PRIMITIVE_QUAD", QUAD_VERTICES, QUAD_ELEMENTS);
 }
 
+
 MeshManager::~MeshManager() {}
+
 
 MeshManager* MeshManager::getInstance() {
 	if (instance == nullptr) instance = new MeshManager();
 	return instance;
 }
-
-
-
 
 
 void MeshManager::load(std::string meshNameID, std::string filepath) {
@@ -110,14 +109,12 @@ void MeshManager::load(std::string meshNameID, std::string filepath) {
 }
 
 
-
 void MeshManager::create(std::string meshNameID, std::vector<GLfloat> vertices, std::vector<GLuint> elements) {
 	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshNameID) == loadedMeshes.end()) {
 		loadedMeshes[meshNameID] = new Mesh(vertices, elements);
 	}
 }
-
 
 
 Mesh* MeshManager::get(std::string meshNameID) {

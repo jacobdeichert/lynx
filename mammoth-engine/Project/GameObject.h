@@ -22,9 +22,12 @@ public:
 
 	GameObject();
 
+
 	GameObject(PrimitiveType _primitiveType, Shader *_shader, Texture *_texture);
 
+
 	GameObject(Mesh *_mesh, GLenum _drawMode, Shader *_shader, Texture *_texture);
+
 
 	virtual ~GameObject();
 
@@ -32,8 +35,8 @@ public:
 	void addChild(GameObject *_gameObject);
 
 
-
 	virtual glm::vec3 forward();
+
 
 	virtual glm::vec3 right();
 };
