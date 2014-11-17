@@ -1,4 +1,5 @@
-#include "Game.h"
+#include "MammothGame.h"
+using namespace Mammoth;
 
 /*============================================================================================
 - tutorial, left off here http://www.opengl-tutorial.org/beginners-tutorials/tutorial-2-the-first-triangle/
@@ -15,14 +16,14 @@
 
 
 
-Game::Game() {}
+MammothGame::MammothGame() {}
 
-Game::~Game() {
+MammothGame::~MammothGame() {
 	glfwTerminate();
 }
 
 
-void Game::createWindow() {
+void MammothGame::createWindow() {
 	printf("game start \n");
 
 	if (!glfwInit()) {
@@ -70,13 +71,13 @@ void Game::createWindow() {
 }
 
 
-void Game::quit() {
+void MammothGame::quit() {
 	printf("game quit");
 	glfwTerminate();
 }
 
 
-void Game::start() {
+void MammothGame::start() {
 	// THE LOOP
 	// TODO: get an fps timer going and properly
 	// do a loop

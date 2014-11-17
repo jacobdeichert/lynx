@@ -1,5 +1,5 @@
 #include "ShaderManager.h"
-
+using namespace Mammoth;
 
 
 ShaderManager* ShaderManager::instance = nullptr;

@@ -3,18 +3,18 @@
 #include <GL\glew.h>
 
 
+namespace Mammoth {
+	class Mesh {
+	public:
+		GLuint numElements;
+		GLuint vao;
+		GLuint vbo;
+		GLuint ebo;
+		GLuint activeShaderID;
 
 
-class Mesh {
-public:
-	GLuint numElements;
-	GLuint vao;
-	GLuint vbo;
-	GLuint ebo;
-	GLuint activeShaderID;
-
-
-	Mesh(std::vector<GLfloat> vertices, std::vector<GLuint> elements);
-	~Mesh();
-};
+		Mesh(std::vector<GLfloat> vertices, std::vector<GLuint> elements);
+		~Mesh();
+	};
+}
 

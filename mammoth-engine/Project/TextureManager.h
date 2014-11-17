@@ -8,15 +8,16 @@
 #include "Texture.h"
 
 
-class TextureManager {
-public:
-	~TextureManager();
-	static TextureManager* getInstance();
-	void load(std::string textureNameID, std::string filePath);
-	Texture* get(std::string textureNameID);
-private:
-	std::map<std::string, Texture*> loadedTextures;
-	static TextureManager* instance;
-	TextureManager();
-};
-
+namespace Mammoth {
+	class TextureManager {
+	public:
+		~TextureManager();
+		static TextureManager* getInstance();
+		void load(std::string textureNameID, std::string filePath);
+		Texture* get(std::string textureNameID);
+	private:
+		std::map<std::string, Texture*> loadedTextures;
+		static TextureManager* instance;
+		TextureManager();
+	};
+}

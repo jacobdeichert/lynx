@@ -1,7 +1,7 @@
 #pragma once
 #include "FileIO.h"
 
-namespace GameEngine {
+namespace Mammoth {
 	/**
 	* The LogManager allows the application to write messages to a specified log
 	* file. It can be configured to print messages greater than or equal to a specific
@@ -34,11 +34,11 @@ namespace GameEngine {
 		* @param level The level of severity that will define which messages are sent to the log file
 		*/
 		void reset(std::string filePath, SeverityLevel level);
-		
+
 
 		/**
 		* Write to the log file with a given severity level. The default severity level
-		* is LOG_MANAGER_INFO if none is specified. 
+		* is LOG_MANAGER_INFO if none is specified.
 		* @param message The message to be written to the log file
 		* @param level The level of severity for this message
 		*/
@@ -95,5 +95,4 @@ namespace GameEngine {
 		LogManager();
 		~LogManager();
 	};
-
 }

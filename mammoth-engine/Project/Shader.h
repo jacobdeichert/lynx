@@ -5,52 +5,54 @@
 #include <gtc/type_ptr.hpp>
 #include "Mesh.h"
 
-class Shader {
-public:
-	Shader(std::string _name, std::string _vertexFile, std::string _fragmentFile, GLuint _programID);
-	~Shader();
-	void activate(Mesh *_mesh, bool isCurrentShader);
 
-	/**
-	 * TODO: make this update all uniforms that will be
-	 * stored in an array in the future.
-	 * 
-	 * For now, it just takes in the MVP.
-	 */
-	void updateUniforms(glm::mat4 _mvp);
+namespace Mammoth {
+	class Shader {
+	public:
+		Shader(std::string _name, std::string _vertexFile, std::string _fragmentFile, GLuint _programID);
+		~Shader();
+		void activate(Mesh *_mesh, bool isCurrentShader);
 
-	/**
-	 * Location of attributes in the shader.
-	 * 0: in_position
-	 * 1: in_normal
-	 * 2: in_uv
-	 * 3: in_color
-	 *
-	 * TODO: make an array of attributes that the user will set
-	 * when they create a shader.
-	 */
-	GLuint attributePosition;
-	GLuint attributeNormal;
-	GLuint attributeUV;
-	GLuint attributeColor;
-private:
-	std::string vertexFile;
-	std::string fragmentFile;
-	GLuint programID;
+		/**
+		 * TODO: make this update all uniforms that will be
+		 * stored in an array in the future.
+		 *
+		 * For now, it just takes in the MVP.
+		 */
+		void updateUniforms(glm::mat4 _mvp);
 
-	/**
-	* Location of uniforms in shader.
-	* uniformMVP: The uni_mvp (model, view, projection) matrix in the shader.
-	* uniformTexture: The uni_texture in the shader.
-	*
-	* TODO: make an array of uniforms that the user will set
-	* when they create a shader.
-	*/
-	GLint uniformTexture;
-	GLint uniformMVP;
-	std::string name;
-};
+		/**
+		 * Location of attributes in the shader.
+		 * 0: in_position
+		 * 1: in_normal
+		 * 2: in_uv
+		 * 3: in_color
+		 *
+		 * TODO: make an array of attributes that the user will set
+		 * when they create a shader.
+		 */
+		GLuint attributePosition;
+		GLuint attributeNormal;
+		GLuint attributeUV;
+		GLuint attributeColor;
+	private:
+		std::string vertexFile;
+		std::string fragmentFile;
+		GLuint programID;
 
+		/**
+		* Location of uniforms in shader.
+		* uniformMVP: The uni_mvp (model, view, projection) matrix in the shader.
+		* uniformTexture: The uni_texture in the shader.
+		*
+		* TODO: make an array of uniforms that the user will set
+		* when they create a shader.
+		*/
+		GLint uniformTexture;
+		GLint uniformMVP;
+		std::string name;
+	};
+}
 
 //==============================================================================
 // ALI STUFF

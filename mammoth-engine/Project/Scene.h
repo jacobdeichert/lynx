@@ -6,22 +6,24 @@
 #include "Camera.h"
 #include "ShaderManager.h"
 
-class Scene {
-public:
-	ShaderManager *shaderManager = ShaderManager::getInstance();
-	Camera *mainCam;
 
-	Scene();
-	~Scene();
+namespace Mammoth {
+	class Scene {
+	public:
+		ShaderManager *shaderManager = ShaderManager::getInstance();
+		Camera *mainCam;
 
-	void add(GameObject *_gameObject);
+		Scene();
+		~Scene();
 
-	void render();
+		void add(GameObject *_gameObject);
 
-	void update();
-private:
-	std::vector<GameObject*> sceneObjects;
+		void render();
 
-	void renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp);
-}; 
+		void update();
+	private:
+		std::vector<GameObject*> sceneObjects;
 
+		void renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp);
+	};
+}

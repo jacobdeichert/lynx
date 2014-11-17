@@ -1,5 +1,5 @@
 #include "FileIO.h"
-
+using namespace Mammoth;
 
 
 FileIO::FileIO() {

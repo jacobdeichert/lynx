@@ -1,4 +1,5 @@
 #include "Scene.h"
+using namespace Mammoth;
 
 
 Scene::Scene() {

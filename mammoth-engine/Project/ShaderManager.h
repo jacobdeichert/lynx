@@ -7,28 +7,30 @@
 #include <glm.hpp>
 #include "GameObject.h"
 
-class ShaderManager {
-public:
-	static ShaderManager* getInstance();
+
+namespace Mammoth {
+	class ShaderManager {
+	public:
+		static ShaderManager* getInstance();
 
 
-	void loadShader(std::string shaderNameID, std::string vertexShaderFile, std::string fragmentShaderFile);
+		void loadShader(std::string shaderNameID, std::string vertexShaderFile, std::string fragmentShaderFile);
 
 
-	Shader* getShader(std::string shaderNameID);
+		Shader* getShader(std::string shaderNameID);
 
 
-	~ShaderManager();
+		~ShaderManager();
 
 
-	void render(GameObject *_gameObject, glm::mat4 _mvp);
+		void render(GameObject *_gameObject, glm::mat4 _mvp);
 
 
-private:
-	Shader* currentShader = nullptr;
-	static ShaderManager* instance;
-	std::map<std::string, Shader*> loadedShaders;
+	private:
+		Shader* currentShader = nullptr;
+		static ShaderManager* instance;
+		std::map<std::string, Shader*> loadedShaders;
 
-	ShaderManager();
-};
-
+		ShaderManager();
+	};
+}

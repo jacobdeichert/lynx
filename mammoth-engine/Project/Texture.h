@@ -3,12 +3,13 @@
 #include <GL/glew.h>
 #include <string>
 
-class Texture {
-public:
-	GLuint textureID;
-	Texture(std::string _name, GLuint _textureID);
-	~Texture();
-private:
-	std::string name;
-};
-
+namespace Mammoth {
+	class Texture {
+	public:
+		GLuint textureID;
+		Texture(std::string _name, GLuint _textureID);
+		~Texture();
+	private:
+		std::string name;
+	};
+}

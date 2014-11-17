@@ -13,7 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FileIO.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="MammothGame.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -36,7 +36,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="FileIO.h" />
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="MammothGame.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Texture.h" />

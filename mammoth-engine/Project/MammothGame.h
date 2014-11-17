@@ -9,23 +9,26 @@
 // TODO: get rid of printf statements and log to my logmanager instead.
 #include <iostream>
 
-class Game {
-public:
-	GLFWwindow *window;
+namespace Mammoth {
 
-	Game();
-	~Game();
+	class MammothGame {
+	public:
+		GLFWwindow *window;
+
+		MammothGame();
+		virtual ~MammothGame();
 
 
-	void start();
+		void start();
 
-	void quit();
+		void quit();
 
-	void createWindow();
+		void createWindow();
 
-	virtual void render() = 0;
+		virtual void render() = 0;
 
-	virtual void update() = 0;
-private:
-};
+		virtual void update() = 0;
+	private:
+	};
 
+}

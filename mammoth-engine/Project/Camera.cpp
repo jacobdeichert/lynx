@@ -1,4 +1,5 @@
 #include "Camera.h"
+using namespace Mammoth;
 
 
 Camera::Camera() {
