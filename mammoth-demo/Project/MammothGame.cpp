@@ -154,6 +154,8 @@ void MammothGame::init() {
 	shaderManager->loadShader("textureCopy", "shaders/TextureVertexShaderCopy.glsl", "shaders/TextureFragmentShaderCopy.glsl");
 	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
+	meshManager = MeshManager::getInstance();
+	meshManager->load("cubee", "models/cube.ply");
 
 	textureManager->load("circle", "textures/circle.png");
 	textureManager->load("jd", "textures/jd.png");

@@ -9,6 +9,7 @@ class MammothGame : public Game {
 public:
 	TextureManager *textureManager = TextureManager::getInstance();
 	ShaderManager *shaderManager = ShaderManager::getInstance();
+	MeshManager *meshManager;
 	Scene *scene;
 	bool isSpaceKeyDown = false;
 	GameObject *triangle1;
