@@ -126,7 +126,45 @@ MeshManager* MeshManager::getInstance() {
 void MeshManager::load(std::string meshNameID, std::string filepath) {
 	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshNameID) == loadedMeshes.end()) {
-		// TODO: load a mesh file
+		bool isEndOfHeader = false;
+		int elementVertex = 0;
+		int elementFace = 0;
+		std::string line;
+		int lineCount = 0;
+
+		FileIO *f = new FileIO();
+		f->openFileIn(filepath);
+
+		while (f->readLine()) {
+			lineCount++;
+			line = f->getLine();
+
+
+			// Check if we are done reading header info.
+			if (line == "end_header\n") {
+				isEndOfHeader = true;
+			}
+
+			// Read the header information if we haven't reached the end of it yet.
+			if (!isEndOfHeader) {
+				if (line.substr(0, 14) == "element vertex") {
+					// element vertex ###...
+					elementVertex = std::stoi(line.substr(15));
+					printf("element vertex: %u\n", elementVertex);
+				}
+				else if (line.substr(0, 12) == "element face") {
+					// element face ###...
+					elementFace = std::stoi(line.substr(13));
+					printf("element face: %u\n", elementFace);
+				}
+			}
+			else {
+
+			}
+			
+		}
+
+		f->closeFileIn();
 	}
 }
 
