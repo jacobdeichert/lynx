@@ -17,14 +17,6 @@ GameObject::GameObject(PrimitiveType _primitiveType, Shader *_shader, Texture *_
 		mesh = MeshManager::getInstance()->get("PRIMITIVE_QUAD");
 		drawMode = GL_TRIANGLE_FAN;
 	}
-	else if (_primitiveType == PRIMITIVE_CUBE) {
-		mesh = MeshManager::getInstance()->get("PRIMITIVE_CUBE");
-		drawMode = GL_TRIANGLES;
-	}
-	else if (_primitiveType == PRIMITIVE_SPHERE) {
-		mesh = MeshManager::getInstance()->get("PRIMITIVE_SPHERE");
-		drawMode = GL_TRIANGLES;
-	}
 }
 
 GameObject::GameObject(Mesh *_mesh, GLenum _drawMode, Shader *_shader, Texture *_texture) {

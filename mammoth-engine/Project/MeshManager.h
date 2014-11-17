@@ -16,14 +16,10 @@ private:
 	std::map<std::string, Mesh*> loadedMeshes;
 	MeshManager();
 
-	static const std::vector<GLfloat> CUBE_VERTICES;
-	static const std::vector<GLuint> CUBE_ELEMENTS;
 	static const std::vector<GLfloat> TRIANGLE_VERTICES;
 	static const std::vector<GLuint> TRIANGLE_ELEMENTS;
 	static const std::vector<GLfloat> QUAD_VERTICES;
 	static const std::vector<GLuint> QUAD_ELEMENTS;
-	static const std::vector<GLfloat> SPHERE_VERTICES;
-	static const std::vector<GLuint> SPHERE_ELEMENTS;
 };
 
 

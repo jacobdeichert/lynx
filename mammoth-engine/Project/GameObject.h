@@ -5,7 +5,7 @@
 
 class GameObject {
 public:
-	static const enum PrimitiveType { PRIMITIVE_NONE, PRIMITIVE_TRIANGLE, PRIMITIVE_QUAD, PRIMITIVE_CUBE, PRIMITIVE_SPHERE };
+	static const enum PrimitiveType { PRIMITIVE_NONE, PRIMITIVE_TRIANGLE, PRIMITIVE_QUAD };
 	Mesh *mesh = nullptr;
 	Shader *shader = nullptr;
 	Texture *texture = nullptr;
