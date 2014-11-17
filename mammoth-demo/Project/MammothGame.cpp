@@ -114,6 +114,9 @@ void MammothGame::render() {
 void MammothGame::update() {
 	updateInput();
 	if (!isPaused) {
+		// Parametric Equation (spiral)
+		//sphere->position.x = glfwGetTime() * cos(glfwGetTime());
+		//sphere->position.y = glfwGetTime() * sin(glfwGetTime());
 		scene->update();
 	}
 }
