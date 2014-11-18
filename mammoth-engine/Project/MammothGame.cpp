@@ -52,13 +52,25 @@ void MammothGame::createWindow() {
 		glfwTerminate();
 	}
 
+
+
 	glfwMakeContextCurrent(window);
 
+	/*
+		GLEW has a problem with core contexts. It calls
+		glGetString(GL_EXTENSIONS), which causes GL_INVALID_ENUM
+		on GL3.2 core context as soon as glewInit() is called.
+		It also doesn't fetch the function pointers. The solution
+		is for GLEW to use glGetStringi instead. The current version
+		of GLEW is 1.10.0 but they still haven't correct it.
+	*/
 	// Needed in core profile
 	glewExperimental = GL_TRUE;
-
-	if (glewInit() != GLEW_OK) {
-		printf("Failed to initialize GLEW\n");
+	GLenum err = glewInit();
+	if (err != GLEW_OK)
+	{
+		//Problem: glewInit failed, something is seriously wrong.
+		printf("glewInit failed.");
 	}
 
 	// Ensure we can capture the escape key being pressed below
