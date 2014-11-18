@@ -113,10 +113,7 @@ void Game::printVersionInfo() {
 void Game::render() {
 	if (!isPaused) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 		scene->render();
-
-		glFlush();
 	}
 }
 
