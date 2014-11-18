@@ -63,12 +63,12 @@ void MammothGame::createWindow() {
 		It also doesn't fetch the function pointers. The solution
 		is for GLEW to use glGetStringi instead. The current version
 		of GLEW is 1.10.0 but they still haven't correct it.
+		The glError() is #1280.
 	*/
 	// Needed in core profile
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
-	if (err != GLEW_OK)
-	{
+	if (err != GLEW_OK) {
 		//Problem: glewInit failed, something is seriously wrong.
 		printf("glewInit failed.");
 	}

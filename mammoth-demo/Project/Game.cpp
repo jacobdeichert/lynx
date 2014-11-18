@@ -4,6 +4,11 @@
 Game::Game() {
 	createWindow();
 	init();
+	// Check OpenGL error.
+	/*GLenum err;
+	while ((err = glGetError()) != GL_NO_ERROR) {
+		std::cout << "OpenGL error: " << err << std::endl;
+	}*/
 	start();
 }
 
