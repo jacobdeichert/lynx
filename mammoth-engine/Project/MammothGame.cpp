@@ -18,6 +18,7 @@ using namespace Mammoth;
 
 MammothGame::MammothGame() {}
 
+
 MammothGame::~MammothGame() {
 	glfwTerminate();
 }
