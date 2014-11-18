@@ -23,8 +23,8 @@ void Game::init() {
 	FreeImage_Initialise(true);
 	scene = new Scene();
 	//shaderManager->loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
-	shaderManager->loadShader("texture", "shaders/TextureVertexShader.glsl", "shaders/TextureFragmentShader.glsl");
-	shaderManager->loadShader("textureCopy", "shaders/TextureVertexShaderCopy.glsl", "shaders/TextureFragmentShaderCopy.glsl");
+	shaderManager->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
+	shaderManager->loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
 	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
 	meshManager = MeshManager::getInstance();
