@@ -14,6 +14,7 @@ Game::~Game() {}
 
 
 void Game::init() {
+	printVersionInfo();
 	FreeImage_Initialise(true);
 	scene = new Scene();
 	//shaderManager->loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
@@ -25,6 +26,7 @@ void Game::init() {
 	meshManager->load("cube", "models/cube.ply");
 	meshManager->load("cube6", "models/cube6Face.ply");
 	meshManager->load("sphere", "models/sphere.ply");
+	meshManager->load("monkey", "models/monkey.ply");
 
 	textureManager->load("circle", "textures/circle.png");
 	textureManager->load("jd", "textures/jd.png");
@@ -51,6 +53,7 @@ void Game::init() {
 	cube1 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
 	cube2 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
 	sphere = new GameObject(meshManager->get("sphere"), GL_TRIANGLES, shaderManager->getShader("texture"), purpleBallTexture);
+	monkey = new GameObject(meshManager->get("monkey"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
 	ground = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), jdTexture);
 	triangle1->position = glm::vec3(0.0f, -0.2f, 0.7f);
 	triangle1->scale = glm::vec3(8);
@@ -65,6 +68,8 @@ void Game::init() {
 	cube2->position = glm::vec3(0, 2.0f, -1.0f);
 	cube2->scale = glm::vec3(0.4f);
 	sphere->position = glm::vec3(5.5f, -0.4f, -1.3f);
+	monkey->position = glm::vec3(0, 20.0f, 0);
+	monkey->rotation = glm::vec3(-90.0f, 0, 0);
 
 	ground->position = glm::vec3(0, -10.0f, 0);
 	ground->rotation = glm::vec3(-90, 0, 0);
@@ -83,6 +88,7 @@ void Game::init() {
 	scene->add(square2);
 	scene->add(cube2);
 	scene->add(sphere);
+	scene->add(monkey);
 	scene->add(ground);
 	scene->add(scene->mainCam);
 }

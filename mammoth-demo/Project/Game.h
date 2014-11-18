@@ -18,7 +18,8 @@ public:
 	GameObject *square2;
 	GameObject *cube1;
 	GameObject *cube2;
-	GameObject* sphere;
+	GameObject *sphere;
+	GameObject *monkey;
 	GameObject *ground;
 	bool isPaused = false;
 	bool isPKeyDown = false;
