@@ -32,17 +32,17 @@ void Game::init() {
 	meshManager->load("cube6", "models/cube6Face.ply");
 	meshManager->load("sphere", "models/sphere.ply");
 	meshManager->load("monkey", "models/monkey.ply");
+	meshManager->load("gun", "models/gun.ply");
+	meshManager->load("mag", "models/mag.ply");
 
 	textureManager->load("circle", "textures/circle.png");
 	textureManager->load("jd", "textures/jd.png");
 	textureManager->load("tron", "textures/tron.png");
 	textureManager->load("die", "textures/die.png");
 	textureManager->load("purpleBall", "textures/purpleBall.png");
-	Texture *circleTexture = textureManager->get("circle");
-	Texture *jdTexture = textureManager->get("jd");
-	Texture *tronTexture = textureManager->get("tron");
-	Texture *dieTexture = textureManager->get("die");
-	Texture *purpleBallTexture = textureManager->get("purpleBall");
+	textureManager->load("metal", "textures/metal.jpg");
+	textureManager->load("gun", "textures/gun-1.png");
+	textureManager->load("mag", "textures/mag-1.png");
 
 
 
@@ -52,18 +52,20 @@ void Game::init() {
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	// Initialize objects.
-	triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, shaderManager->getShader("texture"), tronTexture);
-	square1 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), jdTexture);
-	square2 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), jdTexture);
-	cube1 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
-	cube2 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
-	sphere = new GameObject(meshManager->get("sphere"), GL_TRIANGLES, shaderManager->getShader("texture"), purpleBallTexture);
-	monkey = new GameObject(meshManager->get("monkey"), GL_TRIANGLES, shaderManager->getShader("texture"), tronTexture);
-	ground = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), jdTexture);
+	triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, shaderManager->getShader("texture"), textureManager->get("tron"));
+	square1 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), textureManager->get("jd"));
+	square2 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), textureManager->get("jd"));
+	cube1 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("tron"));
+	cube2 = new GameObject(meshManager->get("cube6"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("die"));
+	sphere = new GameObject(meshManager->get("sphere"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("purpleBall"));
+	monkey = new GameObject(meshManager->get("monkey"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("tron"));
+	ground = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), textureManager->get("metal"));
+	gun = new GameObject(meshManager->get("gun"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("gun"));
 	triangle1->position = glm::vec3(0.0f, -0.2f, 0.7f);
 	triangle1->scale = glm::vec3(8);
 	triangle1->rotation = glm::vec3(0, 90, 0);
-	square1->position = glm::vec3(-0.9f, 0.1f, -1.6f);
+	square1->position = glm::vec3(-0.9f, 0, -1.6f);
+	square1->rotation = glm::vec3(0, 0, 0);
 	square1->scale = glm::vec3(0.4f);
 	square2->position = glm::vec3(0.8f, 0.1f, -0.01f);
 	square2->scale = glm::vec3(0.4f);
@@ -76,15 +78,23 @@ void Game::init() {
 	monkey->position = glm::vec3(0, 20.0f, 0);
 	monkey->rotation = glm::vec3(-90.0f, 0, 0);
 
-	ground->position = glm::vec3(0, -10.0f, 0);
+	ground->position = glm::vec3(0, -8.0f, 0);
 	ground->rotation = glm::vec3(-90, 0, 0);
-	ground->scale = glm::vec3(100);
+	ground->scale = glm::vec3(70);
+
+
+	gun->position = glm::vec3(0, 20, 0);
+
+	
 
 
 	//square1->addChild(cube1);
 	square2->addChild(triangle1);
 	//square1->addChild(scene->mainCam);
 	scene->mainCam->addChild(cube1);
+
+	// add mag to gun
+	gun->addChild(new GameObject(meshManager->get("mag"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("mag")));
 
 
 	// Add objects to the scene.
@@ -95,6 +105,7 @@ void Game::init() {
 	scene->add(sphere);
 	scene->add(monkey);
 	scene->add(ground);
+	scene->add(gun);
 	scene->add(scene->mainCam);
 }
 
@@ -125,6 +136,9 @@ void Game::update() {
 		// Parametric Equation (spiral)
 		//sphere->position.x = glfwGetTime() * cos(glfwGetTime());
 		//sphere->position.y = glfwGetTime() * sin(glfwGetTime());
+		// Parametric Equation (circle)
+		monkey->position.x = cos(glfwGetTime());
+		monkey->position.y = sin(glfwGetTime()) + 10.0f;
 		scene->update();
 	}
 }
@@ -212,22 +226,27 @@ void Game::updateInput() {
 	}
 
 
+	float camSpeed = 0.1f;
+	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
+		camSpeed = 1.0f;
+	}
+
 	// move the camera forward and backward
 	if (glfwGetKey(window, GLFW_KEY_W)) {
 		//scene->mainCam->position.z -= 0.1f;
-		scene->mainCam->position += scene->mainCam->forward() * 0.07f;
+		scene->mainCam->position += scene->mainCam->forward() * camSpeed;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_S)) {
 		//scene->mainCam->position.z += 0.1f;
-		scene->mainCam->position -= scene->mainCam->forward() * 0.07f;
+		scene->mainCam->position -= scene->mainCam->forward() * camSpeed;
 	}
 
 	// move the camera left and right
 	if (glfwGetKey(window, GLFW_KEY_A)) {
-		scene->mainCam->position -= scene->mainCam->right() * 0.07f;
+		scene->mainCam->position -= scene->mainCam->right() * camSpeed;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_D)) {
-		scene->mainCam->position += scene->mainCam->right() * 0.07f;
+		scene->mainCam->position += scene->mainCam->right() * camSpeed;
 	}
 
 	// move the camera up and down

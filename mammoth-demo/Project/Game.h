@@ -21,6 +21,7 @@ public:
 	GameObject *sphere;
 	GameObject *monkey;
 	GameObject *ground;
+	GameObject *gun;
 	bool isPaused = false;
 	bool isPKeyDown = false;
 
