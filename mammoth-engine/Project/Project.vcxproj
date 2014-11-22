@@ -13,7 +13,7 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="FileIO.cpp" />
-    <ClCompile Include="MammothGame.cpp" />
+    <ClCompile Include="LynxGame.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="LogManager.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -36,7 +36,7 @@
   <ItemGroup>
     <ClInclude Include="Camera.h" />
     <ClInclude Include="FileIO.h" />
-    <ClInclude Include="MammothGame.h" />
+    <ClInclude Include="LynxGame.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="LogManager.h" />
     <ClInclude Include="Texture.h" />
@@ -83,7 +83,7 @@
     <LinkIncremental>true</LinkIncremental>
     <IncludePath>C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glm;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\include;C:\Users\Jacob\stuff\vs-dev\glfw-3.0.4.bin.WIN32\include;$(IncludePath)</IncludePath>
     <LibraryPath>C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glfw-3.0.4.bin.WIN32\lib-msvc120;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
-    <TargetName>Mammoth</TargetName>
+    <TargetName>lynx</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>

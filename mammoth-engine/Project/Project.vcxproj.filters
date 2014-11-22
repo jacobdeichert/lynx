@@ -48,7 +48,7 @@
     <ClCompile Include="LogManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="MammothGame.cpp">
+    <ClCompile Include="LynxGame.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -109,7 +109,7 @@
     <ClInclude Include="LogManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="MammothGame.h">
+    <ClInclude Include="LynxGame.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
