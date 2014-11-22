@@ -6,7 +6,7 @@
 #include "Mesh.h"
 
 
-namespace Mammoth {
+namespace lynx {
 	class Shader {
 	public:
 		Shader(std::string _name, std::string _vertexFile, std::string _fragmentFile, GLuint _programID);

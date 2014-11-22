@@ -1,5 +1,5 @@
 #include "Shader.h"
-using namespace Mammoth;
+using namespace lynx;
 
 
 Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragmentFile, GLuint _programID) {

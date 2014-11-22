@@ -19,7 +19,7 @@
 
 
 
-namespace Mammoth {
+namespace lynx {
 	class FileIO {
 	private:
 		/**

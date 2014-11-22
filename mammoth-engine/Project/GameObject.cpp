@@ -1,5 +1,5 @@
 #include "GameObject.h"
-using namespace Mammoth;
+using namespace lynx;
 
 
 GameObject::GameObject() {}

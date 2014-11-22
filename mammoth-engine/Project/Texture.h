@@ -3,7 +3,7 @@
 #include <GL/glew.h>
 #include <string>
 
-namespace Mammoth {
+namespace lynx {
 	class Texture {
 	public:
 		GLuint textureID;

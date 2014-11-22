@@ -7,7 +7,7 @@
 #include "ShaderManager.h"
 
 
-namespace Mammoth {
+namespace lynx {
 	class Scene {
 	public:
 		ShaderManager *shaderManager = ShaderManager::getInstance();

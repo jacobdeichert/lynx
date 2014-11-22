@@ -1,5 +1,5 @@
 #include "Mesh.h"
-using namespace Mammoth;
+using namespace lynx;
 
 
 Mesh::Mesh(std::vector<GLfloat> vertices, std::vector<GLuint> elements) {

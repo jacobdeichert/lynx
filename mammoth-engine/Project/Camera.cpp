@@ -1,5 +1,5 @@
 #include "Camera.h"
-using namespace Mammoth;
+using namespace lynx;
 
 
 Camera::Camera() {

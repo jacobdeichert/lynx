@@ -3,7 +3,7 @@
 #include <GL\glew.h>
 
 
-namespace Mammoth {
+namespace lynx {
 	class Mesh {
 	public:
 		GLuint numElements;

@@ -1,5 +1,5 @@
 #include "Scene.h"
-using namespace Mammoth;
+using namespace lynx;
 
 
 Scene::Scene() {

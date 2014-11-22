@@ -1,5 +1,5 @@
 #include "TextureManager.h"
-using namespace Mammoth;
+using namespace lynx;
 
 TextureManager* TextureManager::instance = nullptr;
 

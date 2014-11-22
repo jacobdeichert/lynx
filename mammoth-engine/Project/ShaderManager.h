@@ -8,7 +8,7 @@
 #include "GameObject.h"
 
 
-namespace Mammoth {
+namespace lynx {
 	class ShaderManager {
 	public:
 		static ShaderManager* getInstance();

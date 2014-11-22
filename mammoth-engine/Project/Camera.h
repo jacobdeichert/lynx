@@ -3,7 +3,7 @@
 // glm::translate, glm::rotate, glm::scale
 #include <gtc/matrix_transform.hpp>
 
-namespace Mammoth {
+namespace lynx {
 	class Camera : public GameObject {
 	public:
 		/*float left;

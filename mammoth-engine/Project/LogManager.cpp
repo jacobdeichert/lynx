@@ -1,5 +1,5 @@
 #include "LogManager.h"
-using namespace Mammoth;
+using namespace lynx;
 
 LogManager* LogManager::instance = nullptr;
 const char* LogManager::SEVERITY_LEVEL_NAME[4] = { "", "ERROR", "WARN", "INFO" };

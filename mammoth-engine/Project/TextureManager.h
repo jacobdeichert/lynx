@@ -8,7 +8,7 @@
 #include "Texture.h"
 
 
-namespace Mammoth {
+namespace lynx {
 	class TextureManager {
 	public:
 		~TextureManager();

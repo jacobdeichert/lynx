@@ -1,5 +1,5 @@
 #include "MeshManager.h"
-using namespace Mammoth;
+using namespace lynx;
 
 const std::vector<GLfloat> MeshManager::TRIANGLE_VERTICES {
 	// guessed the normals for this

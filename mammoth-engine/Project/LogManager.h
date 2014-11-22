@@ -1,7 +1,7 @@
 #pragma once
 #include "FileIO.h"
 
-namespace Mammoth {
+namespace lynx {
 	/**
 	* The LogManager allows the application to write messages to a specified log
 	* file. It can be configured to print messages greater than or equal to a specific

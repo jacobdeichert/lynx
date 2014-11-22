@@ -9,14 +9,14 @@
 // TODO: get rid of printf statements and log to my logmanager instead.
 #include <iostream>
 
-namespace Mammoth {
+namespace lynx {
 
-	class MammothGame {
+	class LynxGame {
 	public:
 		GLFWwindow *window;
 
-		MammothGame();
-		virtual ~MammothGame();
+		LynxGame();
+		virtual ~LynxGame();
 
 
 		void start();

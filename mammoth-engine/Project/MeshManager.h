@@ -4,7 +4,7 @@
 #include "FileIO.h"
 
 
-namespace Mammoth {
+namespace lynx {
 	class MeshManager {
 	public:
 		~MeshManager();

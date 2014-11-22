@@ -3,7 +3,7 @@
 #include "Shader.h"
 #include "Texture.h"
 
-namespace Mammoth {
+namespace lynx {
 	class GameObject {
 	public:
 		static const enum PrimitiveType { PRIMITIVE_NONE, PRIMITIVE_TRIANGLE, PRIMITIVE_QUAD };
