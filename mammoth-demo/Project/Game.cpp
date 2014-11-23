@@ -137,8 +137,8 @@ void Game::update() {
 		//sphere->position.x = glfwGetTime() * cos(glfwGetTime());
 		//sphere->position.y = glfwGetTime() * sin(glfwGetTime());
 		// Parametric Equation (circle)
-		monkey->position.x = cos(glfwGetTime());
-		monkey->position.y = sin(glfwGetTime()) + 10.0f;
+		monkey->position.x = cos((float)glfwGetTime());
+		monkey->position.y = sin((float)glfwGetTime()) + 10.0f;
 		scene->update();
 	}
 }

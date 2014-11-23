@@ -1,12 +1,11 @@
 #pragma once
-#include <MammothGame.h>
-#include <ShaderManager.h>
+#include <LynxGame.h>
 #include <TextureManager.h>
 #include <Scene.h>
 #include <gtc/random.hpp>
-using namespace Mammoth;
+using namespace lynx;
 
-class Game : public MammothGame {
+class Game : public lynx::LynxGame {
 public:
 	TextureManager *textureManager = TextureManager::getInstance();
 	ShaderManager *shaderManager = ShaderManager::getInstance();
