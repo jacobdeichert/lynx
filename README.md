@@ -1,4 +1,4 @@
-mammoth
-=======
+lynx
+====
 
 An OpenGL game engine.
