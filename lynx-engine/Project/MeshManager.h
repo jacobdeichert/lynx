@@ -9,14 +9,13 @@ namespace lynx {
 	public:
 		~MeshManager();
 		static MeshManager* getInstance();
-		void load(std::string meshNameID, std::string filepath);
-		void create(std::string meshNameID, std::vector<GLfloat> vertices, std::vector<GLuint> elements);
-		Mesh* get(std::string meshNameID);
+		void create(std::string meshName, std::vector<GLfloat> vertices, std::vector<GLuint> elements);
+		Mesh* get(std::string meshFilePath);
 	private:
 		static MeshManager* instance;
 		std::map<std::string, Mesh*> loadedMeshes;
 		MeshManager();
-
+		void load(std::string meshFilePath);
 		static const std::vector<GLfloat> TRIANGLE_VERTICES;
 		static const std::vector<GLuint> TRIANGLE_ELEMENTS;
 		static const std::vector<GLfloat> QUAD_VERTICES;
