@@ -74,7 +74,7 @@ void Scene::renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp) {
 						colliderModel = glm::scale(colliderModel, sphereColliderVisual->scale);
 						ShaderManager::getInstance()->render(sphereColliderVisual, _vp * colliderModel);
 						break;
-					case Collider::COLLIDER_TYPE_AA_BOX:
+					case Collider::COLLIDER_TYPE_AABB:
 						boxColliderVisual->scale = ((BoxCollider*)i->collider)->scale;
 						colliderModel = glm::scale(colliderModel, boxColliderVisual->scale);
 						ShaderManager::getInstance()->render(boxColliderVisual, _vp * colliderModel);

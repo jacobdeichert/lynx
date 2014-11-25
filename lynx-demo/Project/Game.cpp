@@ -62,8 +62,9 @@ void Game::init() {
 	cube1->scale = glm::vec3(0.06f, 0.3f, 0.06f);
 	cube1->rotation = glm::vec3(90, 0, 0);
 
-	cube2->position = glm::vec3(0, 2.0f, -1.0f);
+	cube2->position = glm::vec3(5.75f, 0.4f, -0.3f);
 	cube2->scale = glm::vec3(0.4f);
+	cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->position);
 
 	cube3->position = glm::vec3(5.75f, -0.4f, -0.3f);
 	cube3->scale = glm::vec3(0.5f);
@@ -135,6 +136,8 @@ void Game::update() {
 	updateInput();
 	if (!isPaused) {
 		sphere1->collider->checkCollision(sphere2->collider);
+		cube3->collider->checkCollision(cube2->collider);
+		cube2->collider->checkCollision(sphere2->collider);
 		// Parametric Equation (spiral)
 		//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
 		//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());
@@ -153,17 +156,27 @@ void Game::updateInput() {
 	//======================================================================
 	// Keys for quick testing of things.
 	if (glfwGetKey(window, GLFW_KEY_KP_8)) {
-		sphere2->position += sphere2->forward() * 0.06f;
+		cube2->position += cube2->forward() * 0.01f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_5)) {
-		sphere2->position -= sphere2->forward() * 0.06f;
+		cube2->position -= cube2->forward() * 0.01f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_4)) {
-		sphere2->position -= sphere2->right() * 0.06f;
+		cube2->position -= cube2->right() * 0.01f;
 		//square2->scale += glm::vec3(0.1f);
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_6)) {
-		sphere2->position += sphere2->right() * 0.06f;
+		cube2->position += cube2->right() * 0.01f;
+		//square2->scale += glm::vec3(0.1f);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_KP_9)) {
+		cube2->position += glm::vec3(0, 0.01f, 0);
+		//square2->scale += glm::vec3(0.1f);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_KP_3)) {
+		cube2->position += glm::vec3(0, -0.01f, 0);
 		//square2->scale += glm::vec3(0.1f);
 	}
 
@@ -256,7 +269,7 @@ void Game::updateInput() {
 	//======================================================================
 	float camSpeed = 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
-		camSpeed = 1.0f;
+		camSpeed *= 4;
 	}
 
 	// move the camera forward and backward
@@ -279,26 +292,26 @@ void Game::updateInput() {
 
 	// move the camera up and down
 	if (glfwGetKey(window, GLFW_KEY_KP_ADD)) {
-		scene->mainCam->position.y += 0.2f;
+		scene->mainCam->position.y += camSpeed;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_KP_SUBTRACT)) {
-		scene->mainCam->position.y -= 0.2f;
+		scene->mainCam->position.y -= camSpeed;
 	}
 
 	// rotate the camera left and right
 	if (glfwGetKey(window, GLFW_KEY_LEFT)) {
-		scene->mainCam->rotation.y += 2.0f;
+		scene->mainCam->rotation.y += camSpeed * 20;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_RIGHT)) {
-		scene->mainCam->rotation.y -= 2.0f;
+		scene->mainCam->rotation.y -= camSpeed * 20;
 	}
 
 	// rotate the camera up and down
 	if (glfwGetKey(window, GLFW_KEY_UP)) {
-		scene->mainCam->rotation.x += 2.0f;
+		scene->mainCam->rotation.x += camSpeed * 30;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_DOWN)) {
-		scene->mainCam->rotation.x -= 2.0f;
+		scene->mainCam->rotation.x -= camSpeed * 30;
 	}
 }
 

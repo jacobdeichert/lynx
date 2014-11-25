@@ -9,5 +9,5 @@ Collider::Collider() {}
 
 
 Collider::~Collider() {
-	delete position;
+	delete center;
 }
