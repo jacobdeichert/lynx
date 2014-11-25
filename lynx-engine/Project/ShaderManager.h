@@ -14,13 +14,16 @@ namespace lynx {
 		static ShaderManager* getInstance();
 
 
-		void loadShader(std::string shaderNameID, std::string vertexShaderFile, std::string fragmentShaderFile);
+		void loadShader(std::string shaderNameID, std::string vertexShaderFilePath, std::string fragmentShaderFilePath);
 
 
 		Shader* getShader(std::string shaderNameID);
 
 
 		~ShaderManager();
+
+
+		std::string getShaderCode(std::string filePath);
 
 
 		void render(GameObject *_gameObject, glm::mat4 _mvp);
@@ -32,5 +35,8 @@ namespace lynx {
 		std::map<std::string, Shader*> loadedShaders;
 
 		ShaderManager();
+
+
+		void compileShader(std::string shaderNameID, std::string vertexShaderCode, std::string fragmentShaderCode);
 	};
 }
