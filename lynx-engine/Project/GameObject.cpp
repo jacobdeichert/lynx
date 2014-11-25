@@ -27,7 +27,12 @@ GameObject::GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture) {
 }
 
 
-GameObject::~GameObject() {}
+GameObject::~GameObject() {
+	delete mesh;
+	delete shader;
+	delete texture;
+	delete collider;
+}
 
 
 void GameObject::addChild(GameObject *_gameObject) {
