@@ -14,6 +14,7 @@
     <ClCompile Include="BoxCollider.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
+    <ClCompile Include="Collision.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="LynxGame.cpp" />
     <ClCompile Include="GameObject.cpp" />
@@ -40,6 +41,7 @@
     <ClInclude Include="BoxCollider.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
+    <ClInclude Include="Collision.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="LynxGame.h" />
     <ClInclude Include="GameObject.h" />

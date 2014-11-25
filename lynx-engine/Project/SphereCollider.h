@@ -7,7 +7,5 @@ namespace lynx {
 		float radius;
 		SphereCollider(float _radius, glm::vec3 *_center);
 		virtual ~SphereCollider();
-		virtual bool checkCollision(Collider *collider);
-		virtual bool checkCollision(std::vector<Collider*> colliders);
 	};
 }

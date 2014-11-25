@@ -135,9 +135,11 @@ void Game::render() {
 void Game::update() {
 	updateInput();
 	if (!isPaused) {
-		sphere1->collider->checkCollision(sphere2->collider);
-		cube3->collider->checkCollision(cube2->collider);
-		cube2->collider->checkCollision(sphere2->collider);
+		Collision c1;
+		c1.checkCollision(cube2->collider, sphere2->collider);
+		if (c1.isCollision) printf("collision cube2 > sphere2");
+		//sphere1->collider->checkCollision(sphere2->collider);
+		//cube3->collider->checkCollision(cube2->collider);
 		// Parametric Equation (spiral)
 		//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
 		//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());

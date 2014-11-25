@@ -2,7 +2,7 @@
 #include <LynxGame.h>
 #include <TextureManager.h>
 #include <Scene.h>
-#include <BoxCollider.h>
+#include <Collision.h>
 #include <gtc/random.hpp>
 using namespace lynx;
 

@@ -17,7 +17,5 @@ namespace lynx {
 		bool isRender = false;
 		Collider();
 		virtual ~Collider();
-		virtual bool checkCollision(Collider *collider) = 0;
-		virtual bool checkCollision(std::vector<Collider*> colliders) = 0;
 	};
 }
