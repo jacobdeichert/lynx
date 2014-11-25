@@ -8,9 +8,7 @@ namespace lynx {
 	public:
 		static const enum ColliderType { COLLIDER_TYPE_NONE, COLLIDER_TYPE_SPHERE, COLLIDER_TYPE_AA_BOX };
 		ColliderType colliderType;
-		glm::vec3 *position;
-		Mesh *debugMesh;
-		GLenum drawMode = GL_TRIANGLES;
+		bool isRender = false;
 		Collider();
 		virtual ~Collider();
 		virtual bool checkCollision(Collider *collider) = 0;

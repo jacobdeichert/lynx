@@ -5,17 +5,23 @@
 #include <vector>
 #include "Camera.h"
 #include "ShaderManager.h"
+#include "SphereCollider.h"
 
 
 namespace lynx {
 	class Scene {
 	public:
 		ShaderManager *shaderManager = ShaderManager::getInstance();
+
 		Camera *mainCam;
+
+		std::vector<GameObject*> sceneObjects;
+
 		glm::vec4 clearColor;
 
 		Scene(glm::vec4 _clearColor);
-		~Scene();
+
+		virtual ~Scene();
 
 		void add(GameObject *_gameObject);
 
@@ -23,7 +29,7 @@ namespace lynx {
 
 		void update();
 	private:
-		std::vector<GameObject*> sceneObjects;
+		GameObject *sphereColliderVisual = nullptr;
 
 		void renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp);
 	};

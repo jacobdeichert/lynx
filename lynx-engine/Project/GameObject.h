@@ -22,7 +22,6 @@ namespace lynx {
 		glm::vec3 scale = glm::vec3(1);
 		glm::vec3 velocity = glm::vec3(0);
 		bool isWireframeMode = false;
-		bool isRenderCollider = false;
 
 
 		GameObject();
@@ -31,7 +30,7 @@ namespace lynx {
 		GameObject(PrimitiveType _primitiveType, Shader *_shader, Texture *_texture);
 
 
-		GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture);
+		GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture = nullptr);
 
 
 		virtual ~GameObject();

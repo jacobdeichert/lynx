@@ -9,7 +9,6 @@ using namespace lynx;
 class Game : public lynx::LynxGame {
 public:
 	Scene *scene;
-	bool isSpaceKeyDown = false;
 	GameObject *triangle1;
 	GameObject *square1;
 	GameObject *square2;
@@ -22,7 +21,10 @@ public:
 	GameObject *ground;
 	GameObject *gun;
 	bool isPaused = false;
+	bool isDebugMode = false;
+	bool isSpaceKeyDown = false;
 	bool isPKeyDown = false;
+	bool isTabKeyDown = false;
 
 	void updateInput();
 

@@ -7,6 +7,9 @@ Scene::Scene(glm::vec4 _clearColor) {
 	clearColor = _clearColor;
 	// Set the clear color.
 	glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
+
+	sphereColliderVisual = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"));
+	sphereColliderVisual->isWireframeMode = true;
 }
 
 
@@ -52,6 +55,21 @@ void Scene::renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp) {
 			
 			// Render the object with the mvp (model, view, projection matrix)
 			shaderManager->render(i, _vp * i->model);
+
+
+			// Render the collider with the mvp if there is one.
+			if (i->collider != nullptr && i->collider->isRender) {
+				// Calculate position and scale for collider model. Ignore rotation.
+				glm::mat4 colliderModel = glm::translate(glm::mat4(), i->position);
+				
+				switch (i->collider->colliderType) {
+					case Collider::COLLIDER_TYPE_SPHERE:
+						sphereColliderVisual->scale = glm::vec3(((SphereCollider*)i->collider)->radius * 2);
+						colliderModel = glm::scale(colliderModel, sphereColliderVisual->scale);
+						shaderManager->render(sphereColliderVisual, _vp * colliderModel);
+						break;
+				}
+			}
 		}
 		// Render any children.
 		if (i->children.size() > 0) renderObjects(i->children, _vp);

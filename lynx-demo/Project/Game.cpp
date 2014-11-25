@@ -39,8 +39,8 @@ void Game::init() {
 	cube1 = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	cube2 = new GameObject(MeshManager::getInstance()->get("models/cube_6_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
 	cube3 = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/circle.png"));
-	sphere1 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"), TextureManager::getInstance()->get("textures/purpleBall.png"));
-	sphere2 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"), TextureManager::getInstance()->get("textures/tron.png"));
+	sphere1 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/purpleBall.png"));
+	sphere2 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	monkey = new GameObject(MeshManager::getInstance()->get("models/monkey.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	ground = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/metal.jpg"));
 	gun = new GameObject(MeshManager::getInstance()->get("models/gun.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/gun-1.png"));
@@ -69,14 +69,11 @@ void Game::init() {
 	cube3->scale = glm::vec3(0.5f);
 
 	sphere1->position = glm::vec3(5.5f, -0.4f, -1.3f);
-	sphere1->collider = new SphereCollider(0.5f, sphere1);
-	sphere1->scale = glm::vec3(((SphereCollider*)sphere1->collider)->radius * 2);
-	sphere1->isWireframeMode = true;
+	sphere1->collider = new SphereCollider(0.5f);
 
 	sphere2->position = glm::vec3(7.0f, -0.4f, -1.3f);
-	sphere2->collider = new SphereCollider(0.25f, sphere2);
+	sphere2->collider = new SphereCollider(0.25f);
 	sphere2->scale = glm::vec3(((SphereCollider*)sphere2->collider)->radius * 2);
-	sphere2->isWireframeMode = true;
 
 	monkey->position = glm::vec3(0, 20.0f, 0);
 	monkey->rotation = glm::vec3(-90.0f, 0, 0);
@@ -179,10 +176,9 @@ void Game::updateInput() {
 	newCube->scale = glm::vec3(0.03f);
 	scene->add(newCube);
 	}*/
-
-	if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
+	/*if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
 		isSpaceKeyDown = false;
-	}
+	}*/
 
 
 
@@ -223,10 +219,22 @@ void Game::updateInput() {
 	if (glfwGetKey(window, GLFW_KEY_P) && !isPKeyDown) {
 		isPaused = !isPaused;
 		isPKeyDown = true;
-		printf("hit\n");
 	}
 	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_RELEASE) {
 		isPKeyDown = false;
+	}
+
+
+	if (glfwGetKey(window, GLFW_KEY_TAB) && !isTabKeyDown) {
+		isDebugMode = !isDebugMode;
+		isTabKeyDown = true;
+		// Make colliders render.
+		for (auto &i : scene->sceneObjects) {
+			if (i->collider != nullptr) i->collider->isRender = isDebugMode;
+		}
+	}
+	if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_RELEASE) {
+		isTabKeyDown = false;
 	}
 
 
@@ -238,11 +246,11 @@ void Game::updateInput() {
 	// move the camera forward and backward
 	if (glfwGetKey(window, GLFW_KEY_W)) {
 		//scene->mainCam->position.z -= 0.1f;
-		scene->mainCam->position += scene->mainCam->forward() * camSpeed;
+		scene->mainCam->position += glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_S)) {
 		//scene->mainCam->position.z += 0.1f;
-		scene->mainCam->position -= scene->mainCam->forward() * camSpeed;
+		scene->mainCam->position -= glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
 	}
 
 	// move the camera left and right

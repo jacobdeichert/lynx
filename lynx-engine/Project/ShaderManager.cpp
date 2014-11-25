@@ -136,8 +136,8 @@ void ShaderManager::render(GameObject *_gameObject, glm::mat4 _mvp) {
 	// TODO: make a currentVAO and check if it's already bound.
 	glBindVertexArray(_gameObject->mesh->vao);
 
-	// Bind the texture.
-	glBindTexture(GL_TEXTURE_2D, _gameObject->texture->textureID);
+	// Bind the texture if there is one.
+	if (_gameObject->texture != nullptr) glBindTexture(GL_TEXTURE_2D, _gameObject->texture->textureID);
 
 	// Activate wireframe mode if it's enabled for this object.
 	if (_gameObject->isWireframeMode) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);

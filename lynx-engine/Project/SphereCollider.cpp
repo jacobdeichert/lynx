@@ -2,10 +2,8 @@
 using namespace lynx;
 
 
-SphereCollider::SphereCollider(float _radius, glm::vec3 *_position) {
+SphereCollider::SphereCollider(float _radius) {
 	radius = _radius;
-	position = _position;
-	debugMesh = MeshManager::getInstance()->get("models/sphere.ply");
 	colliderType = COLLIDER_TYPE_SPHERE;
 }
 
