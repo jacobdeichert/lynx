@@ -8,9 +8,6 @@ using namespace lynx;
 
 class Game : public lynx::LynxGame {
 public:
-	TextureManager *textureManager = TextureManager::getInstance();
-	ShaderManager *shaderManager = ShaderManager::getInstance();
-	MeshManager *meshManager;
 	Scene *scene;
 	bool isSpaceKeyDown = false;
 	GameObject *triangle1;
@@ -19,7 +16,8 @@ public:
 	GameObject *cube1;
 	GameObject *cube2;
 	GameObject *cube3;
-	GameObject *sphere;
+	GameObject *sphere1;
+	GameObject *sphere2;
 	GameObject *monkey;
 	GameObject *ground;
 	GameObject *gun;
