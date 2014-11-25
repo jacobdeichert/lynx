@@ -12,8 +12,9 @@ namespace lynx {
 	public:
 		ShaderManager *shaderManager = ShaderManager::getInstance();
 		Camera *mainCam;
+		glm::vec4 clearColor;
 
-		Scene();
+		Scene(glm::vec4 _clearColor);
 		~Scene();
 
 		void add(GameObject *_gameObject);

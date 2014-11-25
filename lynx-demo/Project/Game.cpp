@@ -21,10 +21,8 @@ Game::~Game() {}
 void Game::init() {
 	printVersionInfo();
 	FreeImage_Initialise(true);
-	scene = new Scene();
+	scene = new Scene(glm::vec4(0,0,0,1));
 
-	// Set the clear color.
-	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 
 	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
 	ShaderManager::getInstance()->loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
