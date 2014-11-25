@@ -128,9 +128,14 @@ void ShaderManager::render(GameObject *_gameObject, glm::mat4 _mvp) {
 	// Bind the texture.
 	glBindTexture(GL_TEXTURE_2D, _gameObject->texture->textureID);
 
+	// Activate wireframe mode if it's enabled for this object.
+	if (_gameObject->isWireframeMode) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+
 	// Draw the mesh using the specified draw mode.
 	glDrawElements(_gameObject->drawMode, _gameObject->mesh->numElements, GL_UNSIGNED_INT, (void*)0);
-
+	
+	// Reactivate fill mode if this game object used wireframe mode.
+	if (_gameObject->isWireframeMode) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
 	// Make sure we disable and unbind everything to prevent rendering issues later.
 	/*

@@ -21,6 +21,8 @@ namespace lynx {
 		glm::vec3 rotation = glm::vec3(0);
 		glm::vec3 scale = glm::vec3(1);
 		glm::vec3 velocity = glm::vec3(0);
+		bool isWireframeMode = false;
+		bool isRenderCollider = false;
 
 
 		GameObject();
