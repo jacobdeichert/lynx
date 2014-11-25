@@ -20,7 +20,9 @@ ShaderManager::ShaderManager() {
 	compileShader("LynxEngineDebugShader", debugVertexGLSL, debugFragmentGLSL);
 }
 
-ShaderManager::~ShaderManager() {}
+ShaderManager::~ShaderManager() {
+	delete instance;
+}
 
 ShaderManager* ShaderManager::getInstance() {
 	if (instance == nullptr) instance = new ShaderManager();

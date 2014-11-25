@@ -9,7 +9,9 @@ TextureManager::TextureManager() {}
 
 
 
-TextureManager::~TextureManager() {}
+TextureManager::~TextureManager() {
+	delete instance;
+}
 
 
 

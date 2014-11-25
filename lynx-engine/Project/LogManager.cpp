@@ -13,6 +13,7 @@ LogManager::LogManager() {
 LogManager::~LogManager() {
     // Make sure to close the current log file if it's open.
 	if (io.isOutOpen()) io.closeFileOut();
+	delete instance;
 }
 
 
