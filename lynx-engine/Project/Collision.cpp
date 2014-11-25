@@ -46,17 +46,16 @@ Collision Collision::checkCollision(Collider *collider1, Collider *collider2) {
 			return checkSphereToSphere(((SphereCollider*)collider1), ((SphereCollider*)collider2));
 		}
 	}
-	return false;
+	return Collision(false);
 }
 
 
 Collision Collision::checkAABBToAABB(BoxCollider *box1, BoxCollider *box2) {
-	if (abs(box1->center->x - box2->center->x) > (box1->scale.x + box2->scale.x) / 2) return false;
-	if (abs(box1->center->y - box2->center->y) > (box1->scale.y + box2->scale.y) / 2) return false;
-	if (abs(box1->center->z - box2->center->z) > (box1->scale.z + box2->scale.z) / 2) return false;
-	printf("cube > cube collision     %f\n", box1->center->x + box1->center->y + box1->center->z);
+	if (abs(box1->center->x - box2->center->x) > (box1->scale.x + box2->scale.x) / 2) return Collision(false);
+	if (abs(box1->center->y - box2->center->y) > (box1->scale.y + box2->scale.y) / 2) return Collision(false);
+	if (abs(box1->center->z - box2->center->z) > (box1->scale.z + box2->scale.z) / 2) return Collision(false);
 	// Otherwise there is an intersection.
-	return true;
+	return Collision(true);
 }
 
 
@@ -74,22 +73,24 @@ Collision Collision::checkAABBToSphere(BoxCollider *box, SphereCollider *sphere)
 	if (sphere->center->z < corner1.z) distSquared -= pow(sphere->center->z - corner1.z, 2);
 	else if (sphere->center->z > corner2.z) distSquared -= pow(sphere->center->z - corner2.z, 2);
 
-	if (distSquared > 0) printf("cube > sphere collision     %f\n", box->center->x + box->center->y + box->center->z);
 
 	// If it's more, then there is an intersection.
-	return distSquared > 0;
+	if (distSquared > 0) {
+		return Collision(true);
+	}
+	return Collision(false);
 }
 
 
 
-bool Collision::checkSphereToSphere(SphereCollider *sphere1, SphereCollider *sphere2) {
+Collision Collision::checkSphereToSphere(SphereCollider *sphere1, SphereCollider *sphere2) {
 	glm::vec3 d = *sphere1->center - *sphere2->center;
 	float distance = sqrt(pow(d.x, 2) + pow(d.y, 2) + pow(d.z, 2));
 
 	// If the distance is less than both radii combined, there is a collision.
 	if (distance <= sphere1->radius + sphere2->radius) {
-		return true;
+		return Collision(true);
 	}
-	return false;
+	return Collision(false);
 }
 

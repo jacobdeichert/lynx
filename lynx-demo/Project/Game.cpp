@@ -135,11 +135,12 @@ void Game::render() {
 void Game::update() {
 	updateInput();
 	if (!isPaused) {
-		Collision c1;
-		c1.checkCollision(cube2->collider, sphere2->collider);
-		if (c1.isCollision) printf("collision cube2 > sphere2");
-		//sphere1->collider->checkCollision(sphere2->collider);
-		//cube3->collider->checkCollision(cube2->collider);
+		Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
+		if (col.isCollision) printf("cube2 > sphere2        %f\n", (float)glfwGetTime());
+		col = Collision::checkCollision(sphere1->collider, sphere2->collider);
+		if (col.isCollision) printf("sphere1 > sphere2        %f\n", (float)glfwGetTime());
+		col = Collision::checkCollision(cube3->collider, cube2->collider);
+		if (col.isCollision) printf("cube3 > cube2        %f\n", (float)glfwGetTime());
 		// Parametric Equation (spiral)
 		//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
 		//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());
@@ -158,27 +159,31 @@ void Game::updateInput() {
 	//======================================================================
 	// Keys for quick testing of things.
 	if (glfwGetKey(window, GLFW_KEY_KP_8)) {
-		cube2->position += cube2->forward() * 0.01f;
+		sphere2->position += sphere2->forward() * 0.01f;
+		//cube2->position += cube2->forward() * 0.01f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_5)) {
-		cube2->position -= cube2->forward() * 0.01f;
+		sphere2->position -= sphere2->forward() * 0.01f;
+		//cube2->position -= cube2->forward() * 0.01f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_4)) {
-		cube2->position -= cube2->right() * 0.01f;
+		sphere2->position -= sphere2->right() * 0.01f;
+		//cube2->position -= cube2->right() * 0.01f;
 		//square2->scale += glm::vec3(0.1f);
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_6)) {
-		cube2->position += cube2->right() * 0.01f;
+		sphere2->position += sphere2->right() * 0.01f;
+		//cube2->position += cube2->right() * 0.01f;
 		//square2->scale += glm::vec3(0.1f);
 	}
-
 	if (glfwGetKey(window, GLFW_KEY_KP_9)) {
-		cube2->position += glm::vec3(0, 0.01f, 0);
+		sphere2->position += glm::vec3(0, 0.01f, 0);
+		//cube2->position += glm::vec3(0, 0.01f, 0);
 		//square2->scale += glm::vec3(0.1f);
 	}
-
 	if (glfwGetKey(window, GLFW_KEY_KP_3)) {
-		cube2->position += glm::vec3(0, -0.01f, 0);
+		sphere2->position -= glm::vec3(0, 0.01f, 0);
+		//cube2->position -= glm::vec3(0, 0.01f, 0);
 		//square2->scale += glm::vec3(0.1f);
 	}
 
