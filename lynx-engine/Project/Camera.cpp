@@ -13,7 +13,6 @@ Camera::Camera(int _windowWidth, int _windowHeight) {
 	windowWidth = _windowWidth;
 	windowHeight = _windowHeight;
 
-	// Look towards positive.
 	position = glm::vec3(0, 0, 2.0f); // eye
 	direction = glm::vec3(0, 0, -1); // center
 	up = glm::vec3(0, 1, 0);
