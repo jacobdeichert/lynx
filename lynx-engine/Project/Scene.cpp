@@ -10,10 +10,16 @@ Scene::Scene(glm::vec4 _clearColor) {
 
 	sphereColliderVisual = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"));
 	sphereColliderVisual->isWireframeMode = true;
+	boxColliderVisual = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"));
+	boxColliderVisual->isWireframeMode = true;
 }
 
 
-Scene::~Scene() {}
+Scene::~Scene() {
+	delete mainCam;
+	delete sphereColliderVisual;
+	delete boxColliderVisual;
+}
 
 
 void Scene::add(GameObject *_gameObject) {
@@ -54,7 +60,7 @@ void Scene::renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp) {
 			i->model = glm::scale(i->model, i->scale);
 			
 			// Render the object with the mvp (model, view, projection matrix)
-			shaderManager->render(i, _vp * i->model);
+			ShaderManager::getInstance()->render(i, _vp * i->model);
 
 
 			// Render the collider with the mvp if there is one.
@@ -66,7 +72,12 @@ void Scene::renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp) {
 					case Collider::COLLIDER_TYPE_SPHERE:
 						sphereColliderVisual->scale = glm::vec3(((SphereCollider*)i->collider)->radius * 2);
 						colliderModel = glm::scale(colliderModel, sphereColliderVisual->scale);
-						shaderManager->render(sphereColliderVisual, _vp * colliderModel);
+						ShaderManager::getInstance()->render(sphereColliderVisual, _vp * colliderModel);
+						break;
+					case Collider::COLLIDER_TYPE_AA_BOX:
+						boxColliderVisual->scale = ((BoxCollider*)i->collider)->scale;
+						colliderModel = glm::scale(colliderModel, boxColliderVisual->scale);
+						ShaderManager::getInstance()->render(boxColliderVisual, _vp * colliderModel);
 						break;
 				}
 			}

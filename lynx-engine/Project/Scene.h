@@ -5,14 +5,12 @@
 #include <vector>
 #include "Camera.h"
 #include "ShaderManager.h"
-#include "SphereCollider.h"
+#include "BoxCollider.h"
 
 
 namespace lynx {
 	class Scene {
 	public:
-		ShaderManager *shaderManager = ShaderManager::getInstance();
-
 		Camera *mainCam;
 
 		std::vector<GameObject*> sceneObjects;
@@ -30,6 +28,7 @@ namespace lynx {
 		void update();
 	private:
 		GameObject *sphereColliderVisual = nullptr;
+		GameObject *boxColliderVisual = nullptr;
 
 		void renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp);
 	};

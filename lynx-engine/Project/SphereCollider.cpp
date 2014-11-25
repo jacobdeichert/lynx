@@ -26,5 +26,5 @@ bool SphereCollider::checkCollision(Collider *collider) {
 }
 
 bool SphereCollider::checkCollision(std::vector<Collider*> colliders) {
-	return true;
+	return false;
 }

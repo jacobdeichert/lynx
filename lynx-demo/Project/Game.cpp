@@ -65,8 +65,9 @@ void Game::init() {
 	cube2->position = glm::vec3(0, 2.0f, -1.0f);
 	cube2->scale = glm::vec3(0.4f);
 
-	cube3->position = glm::vec3(5.75f, -0.4f, -0.7f);
+	cube3->position = glm::vec3(5.75f, -0.4f, -0.3f);
 	cube3->scale = glm::vec3(0.5f);
+	cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->position);
 
 	sphere1->position = glm::vec3(5.5f, -0.4f, -1.3f);
 	sphere1->collider = new SphereCollider(0.5f, &sphere1->position);
