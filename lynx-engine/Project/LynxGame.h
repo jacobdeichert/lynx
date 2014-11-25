@@ -1,8 +1,5 @@
 #pragma once
-// Include standard headers
-//#include <stdio.h>
-//#include <string>
-// Include GLEW. Always include it before gl.h and glfw.h
+// Always include glew before glfw.
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
 
