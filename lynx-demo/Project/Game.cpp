@@ -69,11 +69,11 @@ void Game::init() {
 	cube3->scale = glm::vec3(0.5f);
 
 	sphere1->position = glm::vec3(5.5f, -0.4f, -1.3f);
-	sphere1->collider = new SphereCollider(0.5f);
+	sphere1->collider = new SphereCollider(0.5f, &sphere1->position);
 
 	sphere2->position = glm::vec3(7.0f, -0.4f, -1.3f);
-	sphere2->collider = new SphereCollider(0.25f);
-	sphere2->scale = glm::vec3(((SphereCollider*)sphere2->collider)->radius * 2);
+	sphere2->collider = new SphereCollider(0.75f, &sphere2->position);
+	sphere2->scale = glm::vec3(1.0f);
 
 	monkey->position = glm::vec3(0, 20.0f, 0);
 	monkey->rotation = glm::vec3(-90.0f, 0, 0);
@@ -84,7 +84,6 @@ void Game::init() {
 
 	gun->position = glm::vec3(0, 20, 0);
 
-	
 
 
 	//square1->addChild(cube1);
@@ -134,6 +133,7 @@ void Game::render() {
 void Game::update() {
 	updateInput();
 	if (!isPaused) {
+		sphere1->collider->checkCollision(sphere2->collider);
 		// Parametric Equation (spiral)
 		//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
 		//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());
@@ -147,22 +147,22 @@ void Game::update() {
 
 
 void Game::updateInput() {
-	float rotateDir = 0;
-
-
+	//======================================================================
+	// TESTING
+	//======================================================================
 	// Keys for quick testing of things.
 	if (glfwGetKey(window, GLFW_KEY_KP_8)) {
-		square2->position += square2->forward() * 0.06f;
+		sphere2->position += sphere2->forward() * 0.06f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_5)) {
-		square2->position -= square2->forward() * 0.06f;
+		sphere2->position -= sphere2->forward() * 0.06f;
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_4)) {
-		square2->position -= square2->right() * 0.06f;
+		sphere2->position -= sphere2->right() * 0.06f;
 		//square2->scale += glm::vec3(0.1f);
 	}
 	if (glfwGetKey(window, GLFW_KEY_KP_6)) {
-		square2->position += square2->right() * 0.06f;
+		sphere2->position += sphere2->right() * 0.06f;
 		//square2->scale += glm::vec3(0.1f);
 	}
 
@@ -183,14 +183,19 @@ void Game::updateInput() {
 
 
 
+
+	//======================================================================
+	// ROTATE STUFF
+	//======================================================================
+
 	// the plus/equals key
+	float rotateDir = 0;
 	if (glfwGetKey(window, GLFW_KEY_EQUAL)) {
 		rotateDir = 3.0f;
 	} // the minus/dash/underscore key
 	else if (glfwGetKey(window, GLFW_KEY_MINUS)) {
 		rotateDir = -3.0f;
 	}
-
 
 	// rotate X
 	if (glfwGetKey(window, GLFW_KEY_X)) {
@@ -216,6 +221,9 @@ void Game::updateInput() {
 
 
 
+	//======================================================================
+	// PAUSE MODE
+	//======================================================================
 	if (glfwGetKey(window, GLFW_KEY_P) && !isPKeyDown) {
 		isPaused = !isPaused;
 		isPKeyDown = true;
@@ -225,6 +233,10 @@ void Game::updateInput() {
 	}
 
 
+
+	//======================================================================
+	// DEBUG MODE
+	//======================================================================
 	if (glfwGetKey(window, GLFW_KEY_TAB) && !isTabKeyDown) {
 		isDebugMode = !isDebugMode;
 		isTabKeyDown = true;
@@ -238,6 +250,9 @@ void Game::updateInput() {
 	}
 
 
+	//======================================================================
+	// CAMERA STUFF
+	//======================================================================
 	float camSpeed = 0.1f;
 	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
 		camSpeed = 1.0f;

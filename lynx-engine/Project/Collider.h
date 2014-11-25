@@ -8,6 +8,12 @@ namespace lynx {
 	public:
 		static const enum ColliderType { COLLIDER_TYPE_NONE, COLLIDER_TYPE_SPHERE, COLLIDER_TYPE_AA_BOX };
 		ColliderType colliderType;
+
+		/**
+		 * Pointer to the position of the parent.
+		 */
+		glm::vec3 *position;
+
 		bool isRender = false;
 		Collider();
 		virtual ~Collider();
