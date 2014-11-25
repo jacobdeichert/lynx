@@ -28,8 +28,8 @@ void Game::init() {
 	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
 	meshManager = MeshManager::getInstance();
-	meshManager->load("cube", "models/cube.ply");
-	meshManager->load("cube6", "models/cube6Face.ply");
+	meshManager->load("cube1", "models/cube_1_face.ply");
+	meshManager->load("cube6", "models/cube_6_face.ply");
 	meshManager->load("sphere", "models/sphere.ply");
 	meshManager->load("monkey", "models/monkey.ply");
 	meshManager->load("gun", "models/gun.ply");
@@ -55,12 +55,18 @@ void Game::init() {
 	triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, shaderManager->getShader("texture"), textureManager->get("tron"));
 	square1 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), textureManager->get("jd"));
 	square2 = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), textureManager->get("jd"));
-	cube1 = new GameObject(meshManager->get("cube"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("tron"));
+	cube1 = new GameObject(meshManager->get("cube1"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("tron"));
 	cube2 = new GameObject(meshManager->get("cube6"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("die"));
+	cube3 = new GameObject(meshManager->get("cube1"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("circle"));
 	sphere = new GameObject(meshManager->get("sphere"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("purpleBall"));
 	monkey = new GameObject(meshManager->get("monkey"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("tron"));
 	ground = new GameObject(GameObject::PRIMITIVE_QUAD, shaderManager->getShader("texture"), textureManager->get("metal"));
 	gun = new GameObject(meshManager->get("gun"), GL_TRIANGLES, shaderManager->getShader("texture"), textureManager->get("gun"));
+	
+	
+	sphere->collider = new SphereCollider(1.0f, &sphere->position);
+	//((SphereCollider*)sphere->collider)->position->x
+
 	triangle1->position = glm::vec3(0.0f, -0.2f, 0.7f);
 	triangle1->scale = glm::vec3(8);
 	triangle1->rotation = glm::vec3(0, 90, 0);
@@ -74,6 +80,8 @@ void Game::init() {
 	cube1->rotation = glm::vec3(90, 0, 0);
 	cube2->position = glm::vec3(0, 2.0f, -1.0f);
 	cube2->scale = glm::vec3(0.4f);
+	cube3->position = glm::vec3(5.75f, -0.4f, -0.7f);
+	cube3->scale = glm::vec3(0.5f);
 	sphere->position = glm::vec3(5.5f, -0.4f, -1.3f);
 	monkey->position = glm::vec3(0, 20.0f, 0);
 	monkey->rotation = glm::vec3(-90.0f, 0, 0);
@@ -81,7 +89,6 @@ void Game::init() {
 	ground->position = glm::vec3(0, -8.0f, 0);
 	ground->rotation = glm::vec3(-90, 0, 0);
 	ground->scale = glm::vec3(70);
-
 
 	gun->position = glm::vec3(0, 20, 0);
 
@@ -102,6 +109,7 @@ void Game::init() {
 	scene->add(square1);
 	scene->add(square2);
 	scene->add(cube2);
+	scene->add(cube3);
 	scene->add(sphere);
 	scene->add(monkey);
 	scene->add(ground);

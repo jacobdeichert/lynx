@@ -2,6 +2,7 @@
 #include <LynxGame.h>
 #include <TextureManager.h>
 #include <Scene.h>
+#include <SphereCollider.h>
 #include <gtc/random.hpp>
 using namespace lynx;
 
@@ -17,6 +18,7 @@ public:
 	GameObject *square2;
 	GameObject *cube1;
 	GameObject *cube2;
+	GameObject *cube3;
 	GameObject *sphere;
 	GameObject *monkey;
 	GameObject *ground;

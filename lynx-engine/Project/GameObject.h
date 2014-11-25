@@ -2,6 +2,7 @@
 #include "MeshManager.h"
 #include "Shader.h"
 #include "Texture.h"
+#include "Collider.h"
 
 namespace lynx {
 	class GameObject {
@@ -10,6 +11,7 @@ namespace lynx {
 		Mesh *mesh = nullptr;
 		Shader *shader = nullptr;
 		Texture *texture = nullptr;
+		Collider *collider = nullptr;
 		GLenum drawMode = NULL;
 		GameObject *parent = nullptr;
 		std::vector<GameObject*> children;
