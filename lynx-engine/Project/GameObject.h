@@ -31,7 +31,7 @@ namespace lynx {
 		GameObject(PrimitiveType _primitiveType, Shader *_shader, Texture *_texture);
 
 
-		GameObject(Mesh *_mesh, GLenum _drawMode, Shader *_shader, Texture *_texture);
+		GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture);
 
 
 		virtual ~GameObject();

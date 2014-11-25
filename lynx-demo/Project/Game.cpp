@@ -36,14 +36,14 @@ void Game::init() {
 	triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	square1 = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/jd.png"));
 	square2 = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/jd.png"));
-	cube1 = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
-	cube2 = new GameObject(MeshManager::getInstance()->get("models/cube_6_face.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
-	cube3 = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/circle.png"));
-	sphere1 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("LynxEngineDebugShader"), TextureManager::getInstance()->get("textures/purpleBall.png"));
-	sphere2 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("LynxEngineDebugShader"), TextureManager::getInstance()->get("textures/tron.png"));
-	monkey = new GameObject(MeshManager::getInstance()->get("models/monkey.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
+	cube1 = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
+	cube2 = new GameObject(MeshManager::getInstance()->get("models/cube_6_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
+	cube3 = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/circle.png"));
+	sphere1 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"), TextureManager::getInstance()->get("textures/purpleBall.png"));
+	sphere2 = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"), TextureManager::getInstance()->get("textures/tron.png"));
+	monkey = new GameObject(MeshManager::getInstance()->get("models/monkey.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	ground = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/metal.jpg"));
-	gun = new GameObject(MeshManager::getInstance()->get("models/gun.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/gun-1.png"));
+	gun = new GameObject(MeshManager::getInstance()->get("models/gun.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/gun-1.png"));
 	
 	
 
@@ -96,7 +96,7 @@ void Game::init() {
 	scene->mainCam->addChild(cube1);
 
 	// add mag to gun
-	gun->addChild(new GameObject(MeshManager::getInstance()->get("models/mag.ply"), GL_TRIANGLES, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/mag-1.png")));
+	gun->addChild(new GameObject(MeshManager::getInstance()->get("models/mag.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/mag-1.png")));
 
 
 	// Add objects to the scene.

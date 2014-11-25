@@ -19,11 +19,11 @@ GameObject::GameObject(PrimitiveType _primitiveType, Shader *_shader, Texture *_
 	}
 }
 
-GameObject::GameObject(Mesh *_mesh, GLenum _drawMode, Shader *_shader, Texture *_texture) {
+GameObject::GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture) {
 	mesh = _mesh;
-	drawMode = _drawMode;
 	shader = _shader;
 	texture = _texture;
+	drawMode = GL_TRIANGLES;
 }
 
 
