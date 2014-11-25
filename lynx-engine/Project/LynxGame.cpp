@@ -20,7 +20,7 @@ LynxGame::LynxGame() {}
 
 
 LynxGame::~LynxGame() {
-	glfwTerminate();
+	quit();
 }
 
 
