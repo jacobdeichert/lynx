@@ -34,7 +34,9 @@ MeshManager::MeshManager() {
 }
 
 
-MeshManager::~MeshManager() {}
+MeshManager::~MeshManager() {
+	delete instance;
+}
 
 
 MeshManager* MeshManager::getInstance() {
@@ -107,6 +109,7 @@ void MeshManager::load(std::string meshFilePath) {
 
 	// Create and save the mesh.
 	loadedMeshes[meshFilePath] = new Mesh(vertices, elements);
+	printf("loaded: %s\n", meshFilePath.c_str());
 	//}
 }
 
@@ -115,11 +118,13 @@ void MeshManager::create(std::string meshName, std::vector<GLfloat> vertices, st
 	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshName) == loadedMeshes.end()) {
 		loadedMeshes[meshName] = new Mesh(vertices, elements);
+		printf("loaded: %s\n", meshName.c_str());
 	}
 }
 
 
 Mesh* MeshManager::get(std::string meshFilePath) {
+	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshFilePath) == loadedMeshes.end()) {
 		load(meshFilePath);
 	}
