@@ -13,11 +13,11 @@ namespace lynx {
 	public:
 		~TextureManager();
 		static TextureManager* getInstance();
-		void load(std::string textureNameID, std::string filePath);
-		Texture* get(std::string textureNameID);
+		Texture* get(std::string _textureFilePath);
 	private:
 		std::map<std::string, Texture*> loadedTextures;
 		static TextureManager* instance;
 		TextureManager();
+		void load(std::string _textureFilePath);
 	};
 }

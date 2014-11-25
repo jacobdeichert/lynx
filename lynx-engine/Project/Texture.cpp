@@ -1,8 +1,8 @@
 #include "Texture.h"
 using namespace lynx;
 
-Texture::Texture(std::string _name, GLuint _textureID) {
-	name = _name;
+Texture::Texture(std::string _filePath, GLuint _textureID) {
+	filePath = _filePath;
 	textureID = _textureID;
 }
 

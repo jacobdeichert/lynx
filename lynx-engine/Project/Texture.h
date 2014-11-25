@@ -7,9 +7,9 @@ namespace lynx {
 	class Texture {
 	public:
 		GLuint textureID;
-		Texture(std::string _name, GLuint _textureID);
+		Texture(std::string _filePath, GLuint _textureID);
 		~Texture();
 	private:
-		std::string name;
+		std::string filePath;
 	};
 }
