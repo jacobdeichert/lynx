@@ -21,7 +21,7 @@ Game::~Game() {}
 void Game::init() {
 	printVersionInfo();
 	FreeImage_Initialise(true);
-	scene = new Scene(glm::vec4(0,0,0,1));
+	scene = new Scene(glm::vec4(0,0,0,1), windowWidth, windowHeight);
 
 
 	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
@@ -315,10 +315,10 @@ void Game::updateInput() {
 
 	// rotate the camera up and down
 	if (glfwGetKey(window, GLFW_KEY_UP)) {
-		scene->mainCam->rotation.x += camSpeed * 30;
+		scene->mainCam->rotation.x += camSpeed * 10;
 	}
 	else if (glfwGetKey(window, GLFW_KEY_DOWN)) {
-		scene->mainCam->rotation.x -= camSpeed * 30;
+		scene->mainCam->rotation.x -= camSpeed * 10;
 	}
 }
 

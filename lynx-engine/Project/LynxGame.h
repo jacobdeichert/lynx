@@ -11,6 +11,8 @@ namespace lynx {
 	class LynxGame {
 	public:
 		GLFWwindow *window;
+		int windowWidth;
+		int windowHeight;
 
 		LynxGame();
 

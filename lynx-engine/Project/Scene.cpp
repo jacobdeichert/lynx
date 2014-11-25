@@ -2,8 +2,8 @@
 using namespace lynx;
 
 
-Scene::Scene(glm::vec4 _clearColor) {
-	mainCam = new Camera();
+Scene::Scene(glm::vec4 _clearColor, int _windowWidth, int _windowHeight) {
+	mainCam = new Camera(_windowWidth, _windowHeight);
 	clearColor = _clearColor;
 	// Set the clear color.
 	glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);

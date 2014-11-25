@@ -43,6 +43,8 @@ void LynxGame::createWindow(int width, int height, std::string windowName, bool 
 
 
 	// Open a window or fullscreen and create its OpenGL context.
+	windowWidth = width;
+	windowHeight = height;
 	if (isFullscreen) {
 		window = glfwCreateWindow(width, height, windowName.c_str(), glfwGetPrimaryMonitor(), nullptr); // Fullscreen
 	}

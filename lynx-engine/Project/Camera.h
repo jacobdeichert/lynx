@@ -10,6 +10,8 @@ namespace lynx {
 		float right;
 		float bottom;
 		float top;*/
+		int windowWidth;
+		int windowHeight;
 		float near;
 		float far;
 		float fov;
@@ -19,6 +21,9 @@ namespace lynx {
 		glm::mat4 projection;
 
 		Camera();
+
+
+		Camera(int _windowWidth, int _windowHeight);
 
 
 		virtual ~Camera();

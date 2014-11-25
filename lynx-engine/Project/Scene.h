@@ -17,7 +17,7 @@ namespace lynx {
 
 		glm::vec4 clearColor;
 
-		Scene(glm::vec4 _clearColor);
+		Scene(glm::vec4 _clearColor, int _windowWidth, int _windowHeight);
 
 		virtual ~Scene();
 
