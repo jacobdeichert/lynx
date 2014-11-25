@@ -2,7 +2,7 @@
 
 
 Game::Game() {
-	createWindow();
+	createWindow(1280, 720);
 	init();
 	// Check OpenGL error.
 	/*GLenum err;

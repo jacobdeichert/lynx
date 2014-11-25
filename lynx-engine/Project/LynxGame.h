@@ -16,14 +16,14 @@ namespace lynx {
 		GLFWwindow *window;
 
 		LynxGame();
-		virtual ~LynxGame();
 
+		virtual ~LynxGame();
 
 		void start();
 
 		void quit();
 
-		void createWindow();
+		void createWindow(int width, int height, bool isFullscreen = false);
 
 		virtual void render() = 0;
 

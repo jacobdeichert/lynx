@@ -24,7 +24,7 @@ LynxGame::~LynxGame() {
 }
 
 
-void LynxGame::createWindow() {
+void LynxGame::createWindow(int width, int height, bool isFullscreen) {
 	printf("game start \n");
 
 	if (!glfwInit()) {
@@ -37,16 +37,18 @@ void LynxGame::createWindow() {
 	// We want OpenGL 4.3
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
-
-	// To make MacOS happy; should not be needed
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); 
-
-	//We don't want the old OpenGL
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
+	// To make MacOS happy; should not be needed
+	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 
-	// Open a window and create its OpenGL context.
-	window = glfwCreateWindow(1280, 720, "OpenGL/GLFW", nullptr, nullptr); // Windowed
-	//window = glfwCreateWindow(1920, 1080, "OpenGL/GLFW", glfwGetPrimaryMonitor(), nullptr); // Fullscreen
+
+	// Open a window or fullscreen and create its OpenGL context.
+	if (isFullscreen) {
+		window = glfwCreateWindow(width, height, "OpenGL/GLFW", glfwGetPrimaryMonitor(), nullptr); // Fullscreen
+	}
+	else {
+		window = glfwCreateWindow(width, height, "OpenGL/GLFW", nullptr, nullptr); // Windowed
+	}
 
 	if (window == NULL) {
 		printf("Failed to open GLFW window\n");
