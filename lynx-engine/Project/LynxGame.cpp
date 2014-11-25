@@ -24,7 +24,7 @@ LynxGame::~LynxGame() {
 }
 
 
-void LynxGame::createWindow(int width, int height, bool isFullscreen) {
+void LynxGame::createWindow(int width, int height, std::string windowName, bool isFullscreen) {
 	printf("game start \n");
 
 	if (!glfwInit()) {
@@ -44,10 +44,10 @@ void LynxGame::createWindow(int width, int height, bool isFullscreen) {
 
 	// Open a window or fullscreen and create its OpenGL context.
 	if (isFullscreen) {
-		window = glfwCreateWindow(width, height, "OpenGL/GLFW", glfwGetPrimaryMonitor(), nullptr); // Fullscreen
+		window = glfwCreateWindow(width, height, windowName.c_str(), glfwGetPrimaryMonitor(), nullptr); // Fullscreen
 	}
 	else {
-		window = glfwCreateWindow(width, height, "OpenGL/GLFW", nullptr, nullptr); // Windowed
+		window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr); // Windowed
 	}
 
 	if (window == NULL) {

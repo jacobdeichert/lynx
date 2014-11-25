@@ -23,7 +23,7 @@ namespace lynx {
 
 		void quit();
 
-		void createWindow(int width, int height, bool isFullscreen = false);
+		void createWindow(int width, int height, std::string windowName, bool isFullscreen = false);
 
 		virtual void render() = 0;
 
