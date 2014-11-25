@@ -2,9 +2,10 @@
 using namespace lynx;
 
 
-SphereCollider::SphereCollider(float _radius, GameObject *_parent) {
+SphereCollider::SphereCollider(float _radius, glm::vec3 *_position) {
 	radius = _radius;
-	parent = _parent;
+	position = _position;
+	debugMesh = MeshManager::getInstance()->get("models/sphere.ply");
 	colliderType = COLLIDER_TYPE_SPHERE;
 }
 

@@ -8,4 +8,7 @@ Collider::Collider() {}
 
 
 
-Collider::~Collider() {}
+Collider::~Collider() {
+	delete position;
+	delete debugMesh;
+}
