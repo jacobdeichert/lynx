@@ -21,7 +21,7 @@ Game::~Game() {}
 void Game::init() {
 	printVersionInfo();
 	FreeImage_Initialise(true);
-	scene = new Scene(glm::vec4(0,0,0,1), windowWidth, windowHeight);
+	scene = new Scene(glm::vec4(0, 0, 0, 1), window.getSize().x, window.getSize().y);
 
 
 	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
@@ -30,7 +30,6 @@ void Game::init() {
 	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
 
-	
 
 	// Initialize objects.
 	triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
@@ -125,7 +124,6 @@ void Game::printVersionInfo() {
 
 void Game::render() {
 	if (!isPaused) {
-		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		scene->render();
 	}
 }
@@ -135,18 +133,18 @@ void Game::render() {
 void Game::update() {
 	updateInput();
 	if (!isPaused) {
-		Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
-		if (col.isCollision) printf("cube2 > sphere2        %f\n", (float)glfwGetTime());
-		col = Collision::checkCollision(sphere1->collider, sphere2->collider);
-		if (col.isCollision) printf("sphere1 > sphere2        %f\n", (float)glfwGetTime());
-		col = Collision::checkCollision(cube3->collider, cube2->collider);
-		if (col.isCollision) printf("cube3 > cube2        %f\n", (float)glfwGetTime());
+		//Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
+		//if (col.isCollision) printf("cube2 > sphere2        %f\n", (float)glfwGetTime());
+		//col = Collision::checkCollision(sphere1->collider, sphere2->collider);
+		//if (col.isCollision) printf("sphere1 > sphere2        %f\n", (float)glfwGetTime());
+		//col = Collision::checkCollision(cube3->collider, cube2->collider);
+		//if (col.isCollision) printf("cube3 > cube2        %f\n", (float)glfwGetTime());
 		// Parametric Equation (spiral)
 		//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
 		//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());
 		// Parametric Equation (circle)
-		monkey->position.x = cos((float)glfwGetTime());
-		monkey->position.y = sin((float)glfwGetTime()) + 10.0f;
+		//monkey->position.x = cos((float)glfwGetTime());
+		//monkey->position.y = sin((float)glfwGetTime()) + 10.0f;
 		scene->update();
 	}
 }
@@ -158,168 +156,168 @@ void Game::updateInput() {
 	// TESTING
 	//======================================================================
 	// Keys for quick testing of things.
-	if (glfwGetKey(window, GLFW_KEY_KP_8)) {
-		sphere2->position += sphere2->forward() * 0.01f;
-		//cube2->position += cube2->forward() * 0.01f;
-	}
-	if (glfwGetKey(window, GLFW_KEY_KP_5)) {
-		sphere2->position -= sphere2->forward() * 0.01f;
-		//cube2->position -= cube2->forward() * 0.01f;
-	}
-	if (glfwGetKey(window, GLFW_KEY_KP_4)) {
-		sphere2->position -= sphere2->right() * 0.01f;
-		//cube2->position -= cube2->right() * 0.01f;
-		//square2->scale += glm::vec3(0.1f);
-	}
-	if (glfwGetKey(window, GLFW_KEY_KP_6)) {
-		sphere2->position += sphere2->right() * 0.01f;
-		//cube2->position += cube2->right() * 0.01f;
-		//square2->scale += glm::vec3(0.1f);
-	}
-	if (glfwGetKey(window, GLFW_KEY_KP_9)) {
-		sphere2->position += glm::vec3(0, 0.01f, 0);
-		//cube2->position += glm::vec3(0, 0.01f, 0);
-		//square2->scale += glm::vec3(0.1f);
-	}
-	if (glfwGetKey(window, GLFW_KEY_KP_3)) {
-		sphere2->position -= glm::vec3(0, 0.01f, 0);
-		//cube2->position -= glm::vec3(0, 0.01f, 0);
-		//square2->scale += glm::vec3(0.1f);
-	}
+	//if (glfwGetKey(window, GLFW_KEY_KP_8)) {
+	//	sphere2->position += sphere2->forward() * 0.01f;
+	//	//cube2->position += cube2->forward() * 0.01f;
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_KP_5)) {
+	//	sphere2->position -= sphere2->forward() * 0.01f;
+	//	//cube2->position -= cube2->forward() * 0.01f;
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_KP_4)) {
+	//	sphere2->position -= sphere2->right() * 0.01f;
+	//	//cube2->position -= cube2->right() * 0.01f;
+	//	//square2->scale += glm::vec3(0.1f);
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_KP_6)) {
+	//	sphere2->position += sphere2->right() * 0.01f;
+	//	//cube2->position += cube2->right() * 0.01f;
+	//	//square2->scale += glm::vec3(0.1f);
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_KP_9)) {
+	//	sphere2->position += glm::vec3(0, 0.01f, 0);
+	//	//cube2->position += glm::vec3(0, 0.01f, 0);
+	//	//square2->scale += glm::vec3(0.1f);
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_KP_3)) {
+	//	sphere2->position -= glm::vec3(0, 0.01f, 0);
+	//	//cube2->position -= glm::vec3(0, 0.01f, 0);
+	//	//square2->scale += glm::vec3(0.1f);
+	//}
 
 
 
-	// Spawn new cubes.
-	/*if (glfwGetKey(window, GLFW_KEY_SPACE) && !isSpaceKeyDown) {
-	isSpaceKeyDown = true;
-	GameObject *newCube = new GameObject(GameObject::PRIMITIVE_CUBE, shaderManager->getShader("texture"), circleTexture);
-	newCube->position = scene->mainCam->position + glm::vec3(0, 0, -1);
-	newCube->scale = glm::vec3(0.03f);
-	scene->add(newCube);
-	}*/
-	/*if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
-		isSpaceKeyDown = false;
-	}*/
+	//// Spawn new cubes.
+	///*if (glfwGetKey(window, GLFW_KEY_SPACE) && !isSpaceKeyDown) {
+	//isSpaceKeyDown = true;
+	//GameObject *newCube = new GameObject(GameObject::PRIMITIVE_CUBE, shaderManager->getShader("texture"), circleTexture);
+	//newCube->position = scene->mainCam->position + glm::vec3(0, 0, -1);
+	//newCube->scale = glm::vec3(0.03f);
+	//scene->add(newCube);
+	//}*/
+	///*if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
+	//	isSpaceKeyDown = false;
+	//}*/
 
 
 
 
 
-	//======================================================================
-	// ROTATE STUFF
-	//======================================================================
+	////======================================================================
+	//// ROTATE STUFF
+	////======================================================================
 
-	// the plus/equals key
-	float rotateDir = 0;
-	if (glfwGetKey(window, GLFW_KEY_EQUAL)) {
-		rotateDir = 3.0f;
-	} // the minus/dash/underscore key
-	else if (glfwGetKey(window, GLFW_KEY_MINUS)) {
-		rotateDir = -3.0f;
-	}
+	//// the plus/equals key
+	//float rotateDir = 0;
+	//if (glfwGetKey(window, GLFW_KEY_EQUAL)) {
+	//	rotateDir = 3.0f;
+	//} // the minus/dash/underscore key
+	//else if (glfwGetKey(window, GLFW_KEY_MINUS)) {
+	//	rotateDir = -3.0f;
+	//}
 
-	// rotate X
-	if (glfwGetKey(window, GLFW_KEY_X)) {
-		square1->rotation.x += rotateDir;
-		square2->rotation.x += rotateDir;
-		cube2->rotation.x += rotateDir;
-		sphere1->rotation.x += rotateDir;
-	}
-	// rotate Y
-	if (glfwGetKey(window, GLFW_KEY_Y)) {
-		square1->rotation.y += rotateDir;
-		square2->rotation.y += rotateDir;
-		cube2->rotation.y += rotateDir;
-		sphere1->rotation.y += rotateDir;
-	}
-	// rotate Z
-	if (glfwGetKey(window, GLFW_KEY_Z)) {
-		square1->rotation.z += rotateDir;
-		square2->rotation.z += rotateDir;
-		cube2->rotation.z += rotateDir;
-		sphere1->rotation.z += rotateDir;
-	}
-
-
-
-	//======================================================================
-	// PAUSE MODE
-	//======================================================================
-	if (glfwGetKey(window, GLFW_KEY_P) && !isPKeyDown) {
-		isPaused = !isPaused;
-		isPKeyDown = true;
-	}
-	if (glfwGetKey(window, GLFW_KEY_P) == GLFW_RELEASE) {
-		isPKeyDown = false;
-	}
+	//// rotate X
+	//if (glfwGetKey(window, GLFW_KEY_X)) {
+	//	square1->rotation.x += rotateDir;
+	//	square2->rotation.x += rotateDir;
+	//	cube2->rotation.x += rotateDir;
+	//	sphere1->rotation.x += rotateDir;
+	//}
+	//// rotate Y
+	//if (glfwGetKey(window, GLFW_KEY_Y)) {
+	//	square1->rotation.y += rotateDir;
+	//	square2->rotation.y += rotateDir;
+	//	cube2->rotation.y += rotateDir;
+	//	sphere1->rotation.y += rotateDir;
+	//}
+	//// rotate Z
+	//if (glfwGetKey(window, GLFW_KEY_Z)) {
+	//	square1->rotation.z += rotateDir;
+	//	square2->rotation.z += rotateDir;
+	//	cube2->rotation.z += rotateDir;
+	//	sphere1->rotation.z += rotateDir;
+	//}
 
 
 
-	//======================================================================
-	// DEBUG MODE
-	//======================================================================
-	if (glfwGetKey(window, GLFW_KEY_TAB) && !isTabKeyDown) {
-		isDebugMode = !isDebugMode;
-		isTabKeyDown = true;
-		// Make colliders render.
-		for (auto &i : scene->sceneObjects) {
-			if (i->collider != nullptr) i->collider->isRender = isDebugMode;
-		}
-	}
-	if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_RELEASE) {
-		isTabKeyDown = false;
-	}
+	////======================================================================
+	//// PAUSE MODE
+	////======================================================================
+	//if (glfwGetKey(window, GLFW_KEY_P) && !isPKeyDown) {
+	//	isPaused = !isPaused;
+	//	isPKeyDown = true;
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_P) == GLFW_RELEASE) {
+	//	isPKeyDown = false;
+	//}
 
 
-	//======================================================================
-	// CAMERA STUFF
-	//======================================================================
-	float camSpeed = 0.1f;
-	if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
-		camSpeed *= 4;
-	}
 
-	// move the camera forward and backward
-	if (glfwGetKey(window, GLFW_KEY_W)) {
-		//scene->mainCam->position.z -= 0.1f;
-		scene->mainCam->position += glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_S)) {
-		//scene->mainCam->position.z += 0.1f;
-		scene->mainCam->position -= glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
-	}
+	////======================================================================
+	//// DEBUG MODE
+	////======================================================================
+	//if (glfwGetKey(window, GLFW_KEY_TAB) && !isTabKeyDown) {
+	//	isDebugMode = !isDebugMode;
+	//	isTabKeyDown = true;
+	//	// Make colliders render.
+	//	for (auto &i : scene->sceneObjects) {
+	//		if (i->collider != nullptr) i->collider->isRender = isDebugMode;
+	//	}
+	//}
+	//if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_RELEASE) {
+	//	isTabKeyDown = false;
+	//}
 
-	// move the camera left and right
-	if (glfwGetKey(window, GLFW_KEY_A)) {
-		scene->mainCam->position -= scene->mainCam->right() * camSpeed;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_D)) {
-		scene->mainCam->position += scene->mainCam->right() * camSpeed;
-	}
 
-	// move the camera up and down
-	if (glfwGetKey(window, GLFW_KEY_KP_ADD)) {
-		scene->mainCam->position.y += camSpeed;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_KP_SUBTRACT)) {
-		scene->mainCam->position.y -= camSpeed;
-	}
+	////======================================================================
+	//// CAMERA STUFF
+	////======================================================================
+	//float camSpeed = 0.1f;
+	//if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
+	//	camSpeed *= 4;
+	//}
 
-	// rotate the camera left and right
-	if (glfwGetKey(window, GLFW_KEY_LEFT)) {
-		scene->mainCam->rotation.y += camSpeed * 20;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_RIGHT)) {
-		scene->mainCam->rotation.y -= camSpeed * 20;
-	}
+	//// move the camera forward and backward
+	//if (glfwGetKey(window, GLFW_KEY_W)) {
+	//	//scene->mainCam->position.z -= 0.1f;
+	//	scene->mainCam->position += glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
+	//}
+	//else if (glfwGetKey(window, GLFW_KEY_S)) {
+	//	//scene->mainCam->position.z += 0.1f;
+	//	scene->mainCam->position -= glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
+	//}
 
-	// rotate the camera up and down
-	if (glfwGetKey(window, GLFW_KEY_UP)) {
-		scene->mainCam->rotation.x += camSpeed * 10;
-	}
-	else if (glfwGetKey(window, GLFW_KEY_DOWN)) {
-		scene->mainCam->rotation.x -= camSpeed * 10;
-	}
+	//// move the camera left and right
+	//if (glfwGetKey(window, GLFW_KEY_A)) {
+	//	scene->mainCam->position -= scene->mainCam->right() * camSpeed;
+	//}
+	//else if (glfwGetKey(window, GLFW_KEY_D)) {
+	//	scene->mainCam->position += scene->mainCam->right() * camSpeed;
+	//}
+
+	//// move the camera up and down
+	//if (glfwGetKey(window, GLFW_KEY_KP_ADD)) {
+	//	scene->mainCam->position.y += camSpeed;
+	//}
+	//else if (glfwGetKey(window, GLFW_KEY_KP_SUBTRACT)) {
+	//	scene->mainCam->position.y -= camSpeed;
+	//}
+
+	//// rotate the camera left and right
+	//if (glfwGetKey(window, GLFW_KEY_LEFT)) {
+	//	scene->mainCam->rotation.y += camSpeed * 20;
+	//}
+	//else if (glfwGetKey(window, GLFW_KEY_RIGHT)) {
+	//	scene->mainCam->rotation.y -= camSpeed * 20;
+	//}
+
+	//// rotate the camera up and down
+	//if (glfwGetKey(window, GLFW_KEY_UP)) {
+	//	scene->mainCam->rotation.x += camSpeed * 10;
+	//}
+	//else if (glfwGetKey(window, GLFW_KEY_DOWN)) {
+	//	scene->mainCam->rotation.x -= camSpeed * 10;
+	//}
 }
 
 
