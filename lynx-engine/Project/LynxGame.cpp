@@ -26,40 +26,21 @@ LynxGame::~LynxGame() {
 
 void LynxGame::createWindow(int width, int height, std::string windowName, bool isFullscreen) {
 	printf("game start \n");
-
-	if (!glfwInit()) {
-		printf("Failed to initialize GLFW\n");
-	}
-
-	// 4x antialiasing
-	glfwWindowHint(GLFW_SAMPLES, 4);
-
-	// We want OpenGL 4.3
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 4);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	// To make MacOS happy; should not be needed
-	//glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-
-
-	// Open a window or fullscreen and create its OpenGL context.
-	windowWidth = width;
-	windowHeight = height;
-	if (isFullscreen) {
-		window = glfwCreateWindow(width, height, windowName.c_str(), glfwGetPrimaryMonitor(), nullptr); // Fullscreen
-	}
-	else {
-		window = glfwCreateWindow(width, height, windowName.c_str(), nullptr, nullptr); // Windowed
-	}
-
-	if (window == NULL) {
-		printf("Failed to open GLFW window\n");
-		glfwTerminate();
-	}
-
-
-
-	glfwMakeContextCurrent(window);
+	/**
+	 * DEFAULT SFML WINDOW SETTINGS
+	 * sf::ContextSettings settings;
+	 * settings.depthBits = 24;
+	 * settings.stencilBits = 0;
+	 * settings.antialiasingLevel = 0;
+	 * settings.majorVersion = 4;
+	 * settings.minorVersion = 4;
+	*/
+	GLuint style = sf::Style::Default;
+	if (isFullscreen) sf::Style::Fullscreen;
+	window.create(sf::VideoMode(width, height), windowName.c_str(), style);
+	window.setVerticalSyncEnabled(true);
+	// Limit the framerate to 60 frames per second.
+	window.setFramerateLimit(60);
 
 	/*
 		GLEW has a problem with core contexts. It calls
@@ -77,36 +58,39 @@ void LynxGame::createWindow(int width, int height, std::string windowName, bool 
 		//Problem: glewInit failed, something is seriously wrong.
 		printf("glewInit failed.");
 	}
+}
 
-	// Ensure we can capture the escape key being pressed below
-	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
+
+
+void LynxGame::start() {
+	// Enable OpenGL stuff.
 	glEnable(GL_DEPTH_TEST);
 	//glEnable(GL_CULL_FACE);
 	// Accept fragment if it's closer to the camera than the former one.
 	glDepthFunc(GL_LESS);
+
+	while (window.isOpen()) {
+		// Check all the window's events that were triggered since the last iteration of the loop.
+		sf::Event event;
+		while (window.pollEvent(event)) {
+			// Close event occured.
+			if (event.type == sf::Event::Closed) {
+				window.close();
+			} // Window resize occured.
+			else if (event.type == sf::Event::Resized) {
+				glViewport(0, 0, event.size.width, event.size.height);
+			}
+		}
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+		update();
+		render();
+		// End the current frame and display its contents on screen (internally swaps the front and back buffers).
+		window.display();
+	}
 }
 
 
 void LynxGame::quit() {
 	printf("game quit");
-	glfwTerminate();
-}
-
-
-void LynxGame::start() {
-	// THE LOOP
-	// TODO: get an fps timer going and properly
-	// do a loop
-	do {
-		update();
-		render();
-
-		// update other events like input handling 
-		glfwPollEvents();
-		// put the stuff we've been drawing onto the display
-		glfwSwapBuffers(window);
-	} // Check if the ESC key was pressed or the window was closed.
-	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS && glfwWindowShouldClose(window) == 0);
-	quit();
 }

@@ -1,9 +1,7 @@
 #pragma once
-// Include GLEW. Always include it before gl.h and glfw.h
 #include <GL/glew.h>
 #include <string>
 #include <map>
-// image loader library
 #include <FreeImage.h>
 #include "Texture.h"
 

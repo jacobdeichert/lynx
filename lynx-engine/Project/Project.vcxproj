@@ -89,8 +89,8 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glm;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\include;C:\Users\Jacob\stuff\vs-dev\glfw-3.0.4.bin.WIN32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glfw-3.0.4.bin.WIN32\lib-msvc120;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>C:\Users\Jacob\stuff\vs-dev\SFML-2.1\include;C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glm;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
     <TargetName>lynx</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

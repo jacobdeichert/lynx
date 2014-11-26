@@ -1,7 +1,6 @@
 #pragma once
-// Always include glew before glfw.
 #include <GL/glew.h>
-#include <GLFW/glfw3.h>
+#include <SFML/Window.hpp>
 
 // TODO: get rid of printf statements and log to my logmanager instead.
 #include <iostream>
@@ -10,9 +9,7 @@ namespace lynx {
 
 	class LynxGame {
 	public:
-		GLFWwindow *window;
-		int windowWidth;
-		int windowHeight;
+		sf::Window window;
 
 		LynxGame();
 
