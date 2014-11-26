@@ -39,8 +39,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>..\..\lynx-engine\Project;C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glm;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\include;C:\Users\Jacob\stuff\vs-dev\glfw-3.0.4.bin.WIN32\include;$(IncludePath)</IncludePath>
-    <LibraryPath>..\..\lynx-engine\Debug;C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glfw-3.0.4.bin.WIN32\lib-msvc120;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\lib\Release\Win32;$(LibraryPath)</LibraryPath>
+    <IncludePath>..\..\lynx-engine\Project;C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glm;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\include;C:\Users\Jacob\stuff\vs-dev\SFML-2.1\include;$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
@@ -50,7 +50,8 @@
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>opengl32.lib;glew32.lib;glfw3.lib;FreeImage.lib;lynx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;sfml-window.lib;sfml-system.lib;FreeImage.lib;lynx.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\lynx-engine\Debug;C:\Users\Jacob\stuff\vs-dev\SFML-2.1\lib;C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\lib\Release\Win32;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
