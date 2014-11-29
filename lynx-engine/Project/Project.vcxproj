@@ -18,7 +18,7 @@
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="LynxGame.cpp" />
     <ClCompile Include="GameObject.cpp" />
-    <ClCompile Include="LogManager.cpp" />
+    <ClCompile Include="Logger.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="SphereCollider.cpp" />
     <ClCompile Include="Texture.cpp" />
@@ -46,7 +46,7 @@
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="LynxGame.h" />
     <ClInclude Include="GameObject.h" />
-    <ClInclude Include="LogManager.h" />
+    <ClInclude Include="Logger.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="SphereCollider.h" />
     <ClInclude Include="Texture.h" />
