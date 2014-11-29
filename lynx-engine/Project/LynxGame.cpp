@@ -20,7 +20,7 @@ LynxGame::LynxGame() {}
 
 
 LynxGame::~LynxGame() {
-	quit();
+	if (window.isOpen()) quit();
 }
 
 
@@ -51,16 +51,13 @@ void LynxGame::createWindow(int width, int height, std::string windowName, bool 
 		of GLEW is 1.10.0 but they still haven't correct it.
 		The glError() is #1280.
 	*/
-	// Needed in core profile
-	glewExperimental = GL_TRUE;
+	glewExperimental = GL_TRUE; // Needed in core profile.
 	GLenum err = glewInit();
 	if (err != GLEW_OK) {
 		//Problem: glewInit failed, something is seriously wrong.
 		printf("glewInit failed.");
 	}
 }
-
-
 
 
 void LynxGame::start() {
@@ -76,7 +73,7 @@ void LynxGame::start() {
 		while (window.pollEvent(event)) {
 			// Close event occured.
 			if (event.type == sf::Event::Closed) {
-				window.close();
+				quit();
 			} // Window resize occured.
 			else if (event.type == sf::Event::Resized) {
 				glViewport(0, 0, event.size.width, event.size.height);
@@ -93,4 +90,5 @@ void LynxGame::start() {
 
 void LynxGame::quit() {
 	printf("game quit");
+	window.close();
 }

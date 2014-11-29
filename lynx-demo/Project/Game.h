@@ -6,7 +6,7 @@
 #include <gtc/random.hpp>
 using namespace lynx;
 
-class Game : public lynx::LynxGame {
+class Game : public LynxGame {
 public:
 	Scene *scene;
 	GameObject *triangle1;
@@ -26,7 +26,11 @@ public:
 	bool isPKeyDown = false;
 	bool isTabKeyDown = false;
 
-	void updateInput();
+
+
+	Game();
+
+	virtual ~Game();
 
 	void init();
 
@@ -36,8 +40,6 @@ public:
 
 	virtual void update();
 
-
-	Game();
-	virtual ~Game();
+	void updateInput();
 };
 

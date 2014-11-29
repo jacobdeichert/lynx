@@ -6,7 +6,6 @@
 #include <iostream>
 
 namespace lynx {
-
 	class LynxGame {
 	public:
 		sf::Window window;
@@ -15,16 +14,15 @@ namespace lynx {
 
 		virtual ~LynxGame();
 
-		void start();
-
-		void quit();
 
 		void createWindow(int width, int height, std::string windowName, bool isFullscreen = false);
 
 		virtual void render() = 0;
+		
+		void start();
+
+		void quit();
 
 		virtual void update() = 0;
-	private:
 	};
-
 }
