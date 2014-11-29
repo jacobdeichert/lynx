@@ -3,15 +3,10 @@ using namespace lynx;
 
 
 
-Window::Window() {
-	
+Window::Window() {}
 
 
-}
-
-
-Window::~Window() {
-}
+Window::~Window() {}
 
 
 
