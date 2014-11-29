@@ -16,31 +16,37 @@ Game::Game() {
 
 
 
-Game::~Game() {}
+Game::~Game() {
+	quit();
+}
 
+void Game::quit() {
+	printf("quitting\n");
+	shutdown();
+}
 
 void Game::onClose() {
 	printf("onClose\n");
+	quit();
 }
-
-
-void Game::onKeyDown(KeyCode key) {
-	printf("onKeyDown\n");
-	
-}
-
-
-void Game::onKeyUp(KeyCode key) {
-	printf("onKeyUp\n");
-
-}
-
 
 void Game::onResize(int width, int height) {
 	printf("onResize\n");
 	glViewport(0, 0, width, height);
 	scene->mainCam->aspectRatio = (float)width / (float)height;
 }
+
+void Game::onKeyPressed(KeyEvent key) {
+	printf("onKeyDown\n");
+}
+
+
+void Game::onKeyReleased(KeyEvent key) {
+	printf("onKeyUp\n");
+
+}
+
+
 
 
 void Game::init() {

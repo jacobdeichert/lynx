@@ -17,12 +17,12 @@ using namespace lynx;
 
 
 LynxGame::LynxGame() {
-	hasQuit = false;
+	hasShutdown = false;
 }
 
 
 LynxGame::~LynxGame() {
-	quit();
+	shutdown();
 }
 
 
@@ -42,16 +42,16 @@ void LynxGame::beginLoop() {
 			switch (event.type) {
 			case sf::Event::Closed:
 				onClose();
-				quit();
+				shutdown();
 				break;
 			case sf::Event::Resized:
 				onResize(event.size.width, event.size.height);
 				break;
 			case sf::Event::KeyPressed:
-				onKeyDown(event.key.code);
+				onKeyPressed(event.key);
 				break;
 			case sf::Event::KeyReleased:
-				onKeyUp(event.key.code);
+				onKeyReleased(event.key);
 				break;
 			}
 		}
@@ -63,9 +63,31 @@ void LynxGame::beginLoop() {
 }
 
 
-void LynxGame::quit() {
-	if (!hasQuit) {
-		hasQuit = true;
+void LynxGame::shutdown() {
+	if (!hasShutdown) {
+		hasShutdown = true;
 		if (window.isOpen()) window.close();
+		exit(0);
 	}
 }
+
+
+
+void LynxGame::onClose() {}
+void LynxGame::onResize(int width, int height) {}
+void LynxGame::onLostFocus() {}
+void LynxGame::onGainedFocus() {}
+void LynxGame::onTextEntered() {}
+void LynxGame::onKeyPressed(KeyEvent key) {}
+void LynxGame::onKeyReleased(KeyEvent key) {}
+void LynxGame::onMouseWheelMoved() {}
+void LynxGame::onMouseButtonPressed() {}
+void LynxGame::onMouseButtonReleased() {}
+void LynxGame::onMouseMoved() {}
+void LynxGame::onMouseEntered() {}
+void LynxGame::onMouseLeft() {}
+void LynxGame::onJoystickButtonPressed() {}
+void LynxGame::onJoystickButtonReleased() {}
+void LynxGame::onJoystickMoved() {}
+void LynxGame::onJoystickConnected() {}
+void LynxGame::onJoystickDisconnected() {}

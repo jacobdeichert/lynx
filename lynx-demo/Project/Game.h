@@ -31,16 +31,28 @@ public:
 
 	virtual ~Game();
 
+	void quit();
+
 	void printVersionInfo();
 
 	void updateInput();
 
-	virtual void onClose();
-	virtual void onKeyDown(KeyCode key);
-	virtual void onKeyUp(KeyCode key);
-	virtual void onResize(int width, int height);
+	
 	virtual void init();
 	virtual void render();
 	virtual void update();
+	virtual void onClose();
+	virtual void onResize(int width, int height);
+	//virtual void onLostFocus();
+	//virtual void onGainedFocus();
+	//virtual void onTextEntered();
+	virtual void onKeyPressed(KeyEvent key);
+	virtual void onKeyReleased(KeyEvent key);
+	/*virtual void onMouseWheelMoved();
+	virtual void onMouseButtonPressed();
+	virtual void onMouseButtonReleased();
+	virtual void onMouseMoved();
+	virtual void onMouseEntered();
+	virtual void onMouseLeft();*/
 };
 
