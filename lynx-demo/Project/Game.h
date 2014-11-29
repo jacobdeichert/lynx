@@ -25,21 +25,22 @@ public:
 	bool isSpaceKeyDown = false;
 	bool isPKeyDown = false;
 	bool isTabKeyDown = false;
-
-
+	
 
 	Game();
 
 	virtual ~Game();
 
-	void init();
-
 	void printVersionInfo();
 
-	virtual void render();
-
-	virtual void update();
-
 	void updateInput();
+
+	virtual void onClose();
+	virtual void onKeyDown(KeyCode key);
+	virtual void onKeyUp(KeyCode key);
+	virtual void onResize(int width, int height);
+	virtual void init();
+	virtual void render();
+	virtual void update();
 };
 

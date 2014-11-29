@@ -2,14 +2,16 @@
 
 
 Game::Game() {
-	createWindow(1280, 720, "OpenGL Demo");
-	init();
+	setup(1280, 720, "OpenGL Demo");
 	// Check OpenGL error.
 	/*GLenum err;
 	while ((err = glGetError()) != GL_NO_ERROR) {
 		std::cout << "OpenGL error: " << err << std::endl;
 	}*/
-	start();
+
+
+
+
 }
 
 
@@ -17,11 +19,34 @@ Game::Game() {
 Game::~Game() {}
 
 
+void Game::onClose() {
+	printf("onClose\n");
+}
+
+
+void Game::onKeyDown(KeyCode key) {
+	printf("onKeyDown\n");
+	
+}
+
+
+void Game::onKeyUp(KeyCode key) {
+	printf("onKeyUp\n");
+
+}
+
+
+void Game::onResize(int width, int height) {
+	printf("onResize\n");
+	glViewport(0, 0, width, height);
+	scene->mainCam->aspectRatio = (float)width / (float)height;
+}
+
 
 void Game::init() {
 	printVersionInfo();
 	FreeImage_Initialise(true);
-	scene = new Scene(glm::vec4(0, 0, 0, 1), window.getSize().x, window.getSize().y);
+	scene = new Scene(glm::vec4(0, 0, 0, 1), (float)1280/(float)720);
 
 
 	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
@@ -112,18 +137,9 @@ void Game::init() {
 
 
 
-void Game::printVersionInfo() {
-	printf("============================================================\n");
-	printf("Renderer: %s\n", glGetString(GL_RENDERER));
-	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
-	printf("OpenGL Shading Language Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
-	printf("============================================================\n");
-}
-
-
-
 void Game::render() {
 	if (!isPaused) {
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		scene->render();
 	}
 }
@@ -321,4 +337,13 @@ void Game::updateInput() {
 }
 
 
+
+
+void Game::printVersionInfo() {
+	printf("============================================================\n");
+	printf("Renderer: %s\n", glGetString(GL_RENDERER));
+	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
+	printf("OpenGL Shading Language Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
+	printf("============================================================\n");
+}
 
