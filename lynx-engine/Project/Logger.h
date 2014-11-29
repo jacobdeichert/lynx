@@ -14,7 +14,6 @@ namespace lynx {
 			Everything less than the specified severity will be written to the log file.
 		*/
 		enum SeverityLevel {
-			SEV_LEVEL_NONE,
 			SEV_LEVEL_ERROR,
 			SEV_LEVEL_WARN,
 			SEV_LEVEL_INFO

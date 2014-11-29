@@ -1,7 +1,7 @@
 #include "Logger.h"
 using namespace lynx;
 
-const char* Logger::SEVERITY_LEVEL_NAME[4] = { "", "ERROR", "WARN", "INFO" };
+const char* Logger::SEVERITY_LEVEL_NAME[3] = { "ERROR", "WARN", "" };
 
 
 
@@ -27,8 +27,8 @@ Logger::~Logger() {
 
 
 void Logger::log(std::string message, SeverityLevel level) {
-	if (level != SEV_LEVEL_NONE && level <= severityLevel) {
-		io.writel(SEVERITY_LEVEL_NAME[level] + std::string(": ") + message);
+	if (level <= severityLevel) {
+		io.writel(SEVERITY_LEVEL_NAME[level] + std::string("> ") + message);
 	}
 }
 
