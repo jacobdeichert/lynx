@@ -15,7 +15,7 @@ Window::~Window() {
 
 
 
-void Window::create(int width, int height, std::string windowName, bool isFullscreen) {
+void Window::init(int width, int height, std::string windowName, bool isFullscreen) {
 	/**
 	* DEFAULT SFML WINDOW SETTINGS
 	* sf::ContextSettings settings;
@@ -27,7 +27,7 @@ void Window::create(int width, int height, std::string windowName, bool isFullsc
 	*/
 	GLuint style = sf::Style::Default;
 	if (isFullscreen) sf::Style::Fullscreen;
-	sf::Window::create(sf::VideoMode(width, height), windowName.c_str(), style);
+	create(sf::VideoMode(width, height), windowName.c_str(), style);
 	setVerticalSyncEnabled(true);
 	// Limit the framerate to 60 frames per second.
 	setFramerateLimit(60);
