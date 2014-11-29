@@ -6,12 +6,11 @@ Camera::Camera() {}
 
 
 
-Camera::Camera(int _windowWidth, int _windowHeight) {
+Camera::Camera(float aspectRatio) {
 	fov = 45.0f;
 	near = 0.1f;
 	far = 1000.0f;
-	windowWidth = _windowWidth;
-	windowHeight = _windowHeight;
+	this->aspectRatio = aspectRatio;
 
 	position = glm::vec3(0, 0, 2.0f); // eye
 	direction = glm::vec3(0, 0, -1); // center
@@ -68,13 +67,11 @@ void Camera::update() {
 
 	
 
-
-
 	// FPS camera: http://3dgep.com/understanding-the-view-matrix/
 
 	projection = glm::perspective(
 		fov,			// The horizontal Field of View, in degrees : the amount of "zoom". Think "camera lens". Usually between 90° (extra wide) and 30° (quite zoomed in)
-		(float)windowWidth / (float)windowHeight,	// Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
+		aspectRatio,	// Aspect Ratio. Depends on the size of your window. Notice that 4/3 == 800/600 == 1280/960, sounds familiar ?
 		near,			// Near clipping plane. Keep as big as possible, or you'll get precision issues.
 		far);			// Far clipping plane. Keep as little as possible.
 }

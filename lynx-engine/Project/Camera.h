@@ -6,15 +6,10 @@
 namespace lynx {
 	class Camera : public GameObject {
 	public:
-		/*float left;
-		float right;
-		float bottom;
-		float top;*/
-		int windowWidth;
-		int windowHeight;
 		float near;
 		float far;
 		float fov;
+		float aspectRatio;
 		glm::vec3 direction;
 		glm::vec3 up;
 		glm::mat4 view;
@@ -23,7 +18,7 @@ namespace lynx {
 		Camera();
 
 
-		Camera(int _windowWidth, int _windowHeight);
+		Camera(float aspectRatio);
 
 
 		virtual ~Camera();
