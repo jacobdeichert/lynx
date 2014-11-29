@@ -16,7 +16,7 @@ namespace lynx {
 
 		glm::vec4 clearColor;
 
-		Scene(glm::vec4 _clearColor, int _windowWidth, int _windowHeight);
+		Scene(glm::vec4 _clearColor, float aspectRatio);
 
 		virtual ~Scene();
 
