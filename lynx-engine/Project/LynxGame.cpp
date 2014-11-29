@@ -70,24 +70,3 @@ void LynxGame::shutdown() {
 		exit(0);
 	}
 }
-
-
-
-void LynxGame::onClose() {}
-void LynxGame::onResize(int width, int height) {}
-void LynxGame::onLostFocus() {}
-void LynxGame::onGainedFocus() {}
-void LynxGame::onTextEntered() {}
-void LynxGame::onKeyPressed(KeyEvent key) {}
-void LynxGame::onKeyReleased(KeyEvent key) {}
-void LynxGame::onMouseWheelMoved() {}
-void LynxGame::onMouseButtonPressed() {}
-void LynxGame::onMouseButtonReleased() {}
-void LynxGame::onMouseMoved() {}
-void LynxGame::onMouseEntered() {}
-void LynxGame::onMouseLeft() {}
-void LynxGame::onJoystickButtonPressed() {}
-void LynxGame::onJoystickButtonReleased() {}
-void LynxGame::onJoystickMoved() {}
-void LynxGame::onJoystickConnected() {}
-void LynxGame::onJoystickDisconnected() {}
