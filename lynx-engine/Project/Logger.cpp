@@ -1,6 +1,5 @@
 #include "Logger.h"
-
-namespace lynx {
+using namespace lynx;
 
 const char* Logger::SEVERITY_LEVEL_NAME[4] = { "", "ERROR", "WARN", "INFO" };
 
@@ -43,5 +42,4 @@ void Logger::warn(std::string message) {
 
 void Logger::error(std::string message) {
 	log(message, SEV_LEVEL_ERROR);
-}
 }
