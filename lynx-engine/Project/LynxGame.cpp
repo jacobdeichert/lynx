@@ -18,7 +18,6 @@ using namespace lynx;
 
 LynxGame::LynxGame() {
 	hasShutdown = false;
-	Logger::get("LynxEngine").log("Creating log");
 }
 
 
@@ -27,8 +26,9 @@ LynxGame::~LynxGame() {
 }
 
 
-void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, bool isFullscreen) {
+void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, std::string logFilename, bool isFullscreen) {
 	// TODO parse a settings manager
+	Log::init(logFilename);
 	window.init(windowWidth, windowHeight, windowName, isFullscreen);
 	init();
 	beginLoop();
