@@ -18,6 +18,7 @@ using namespace lynx;
 
 LynxGame::LynxGame() {
 	hasShutdown = false;
+	Logger::get("LynxEngine").log("Creating log");
 }
 
 

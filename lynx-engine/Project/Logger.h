@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 #include "FileIO.h"
 
 namespace lynx {
@@ -22,16 +23,22 @@ namespace lynx {
 
 		/*
 			Set the path for the log file and the severity level of the output.
-			@param filePath The path to the log file.
+			@param filename The path to the log file.
 			@param level The level of severity that will define which messages are sent to the log file.
 		*/
-		Logger(std::string filePath, SeverityLevel level = SEV_LEVEL_INFO);
-
+		Logger(std::string filename, SeverityLevel level = SEV_LEVEL_INFO);
 
 
 		~Logger();
 
 
+		/*
+			Get a specific logger instance. If it doesn't exist, it will be created.
+			@param filename The name of the log file.
+			@param level The level of severity that will define which messages are sent to the log file.
+		*/
+		static Logger& get(std::string filename, SeverityLevel level = SEV_LEVEL_INFO);
+		
 
 		/*
 			Write to the log file with a given severity level. The default severity level
@@ -72,6 +79,12 @@ namespace lynx {
 			are sent to the log file.
 		*/
 		SeverityLevel severityLevel;
+
+
+		/*
+			All loggers that have been created so far.
+		*/
+		static std::map<std::string, Logger*> loggers;
 
 
 		/*
