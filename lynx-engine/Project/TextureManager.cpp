@@ -36,7 +36,7 @@ void TextureManager::load(std::string _textureFilePath) {
 	// Determine the image file type.
 	FREE_IMAGE_FORMAT format = FreeImage_GetFIFFromFilename(_textureFilePath.c_str());
 	if (format == FIF_UNKNOWN) {
-		printf("Unknown file type for texture file: %s\n", _textureFilePath);
+		Log::error("TextureManager: unknown file type for texture \"" + _textureFilePath + "\"");
 		return;
 	}
 
@@ -44,21 +44,20 @@ void TextureManager::load(std::string _textureFilePath) {
 	// Load the image.
 	FIBITMAP *bitmap = FreeImage_Load(format, _textureFilePath.c_str());
 	if (!bitmap) {
-		printf("Failed to load image: %s\n", _textureFilePath);
+		Log::error("TextureManager: failed to load texture \"" + _textureFilePath + "\"");
 		return;
 	}
 
 
 	/**
-		* Convert our image up to 32 bits (8 bits per channel, Red/Green/Blue/Alpha)
-		* but only if the image is not already 32 bits (i.e. 8 bits per channel).
-		*/
+	 * Convert our image up to 32 bits (8 bits per channel, Red/Green/Blue/Alpha)
+	 * but only if the image is not already 32 bits (i.e. 8 bits per channel).
+	 */
 	int bitsPerPixel = FreeImage_GetBPP(bitmap);
 	FIBITMAP* bitmap32;
 	if (bitsPerPixel == 32) {
 		bitmap32 = bitmap;
-	}
-	else {
+	} else {
 		bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
 	}
 
@@ -68,33 +67,31 @@ void TextureManager::load(std::string _textureFilePath) {
 
 
 	/**
-		* Check the color format.
-		*
-		* FreeImage will store the color components for a
-		* pixel in the order red/green/blue on some platforms
-		* but in the order blue/green/red on other platforms.
-		*/
+	 * Check the color format.
+	 *
+	 * FreeImage will store the color components for a
+	 * pixel in the order red/green/blue on some platforms
+	 * but in the order blue/green/red on other platforms.
+	 */
 	if (FI_RGBA_RED == 0) {
 		colorFormat = GL_RGBA;
-	}
-	else {
+	} else {
 		colorFormat = GL_BGRA;
 	}
 	// Send the image to OpenGL with the determined color format.
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, colorFormat, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(bitmap32));
 	/**
-		* Mag Filter and min filter are constants that specify the filtering algorithm.
-		* For the mag filter, the only options are GL_NEAREST and GL_LINEAR, giving nearest
-		* neighbor and linear filtering. The default for the mag filter is GL_LINEAR, and
-		* there is rarely any need to change it. For min filter, in addition to GL_NEAREST
-		* and GL_LINEAR, there are four options that use mipmaps for more efficient
-		* filtering. The default min filter is GL_NEAREST_MIPMAP_LINEAR, which does
-		* averaging between mipmaps and nearest neighbor filtering within each mipmap. For
-		* even better results, at the cost of greater inefficiency, you can use GL_LINEAR_MIPMAP_LINEAR,
-		* which does averaging both between and within mipmaps. (You can research the remaining two
-		* options on your own if you are curious)
-		*
-		*/
+	 * Mag Filter and min filter are constants that specify the filtering algorithm.
+	 * For the mag filter, the only options are GL_NEAREST and GL_LINEAR, giving nearest
+	 * neighbor and linear filtering. The default for the mag filter is GL_LINEAR, and
+	 * there is rarely any need to change it. For min filter, in addition to GL_NEAREST
+	 * and GL_LINEAR, there are four options that use mipmaps for more efficient
+	 * filtering. The default min filter is GL_NEAREST_MIPMAP_LINEAR, which does
+	 * averaging between mipmaps and nearest neighbor filtering within each mipmap. For
+	 * even better results, at the cost of greater inefficiency, you can use GL_LINEAR_MIPMAP_LINEAR,
+	 * which does averaging both between and within mipmaps. (You can research the remaining two
+	 * options on your own if you are curious)
+	 */
 	// Set the min and max filters.
 	// TODO: make this a parameter...
 	GLuint minFilter = GL_LINEAR_MIPMAP_LINEAR;
@@ -120,11 +117,11 @@ void TextureManager::load(std::string _textureFilePath) {
 	// Unload the 32-bit color bitmap
 	FreeImage_Unload(bitmap32);
 	/**
-		* If we had to do a conversion to 32-bit color, then unload the original
-		* non-32-bit-color version of the image data too. Otherwise, bitmap32 and
-		* bitmap point at the same data, and that data's already been free'd, so
-		* don't attempt to free it again! (or we'll crash).
-		*/
+	 * If we had to do a conversion to 32-bit color, then unload the original
+	 * non-32-bit-color version of the image data too. Otherwise, bitmap32 and
+	 * bitmap point at the same data, and that data's already been free'd, so
+	 * don't attempt to free it again! (or we'll crash).
+	 */
 	if (bitsPerPixel != 32) {
 		FreeImage_Unload(bitmap);
 	}
@@ -132,7 +129,9 @@ void TextureManager::load(std::string _textureFilePath) {
 
 	// Save the texture in the map of loaded ones.
 	loadedTextures[_textureFilePath] = new Texture(_textureFilePath, textureID);
-	//}
+
+
+	Log::info("TextureManager: texture loaded \"" + _textureFilePath + "\"");
 }
 
 
