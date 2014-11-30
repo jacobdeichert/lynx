@@ -1,19 +1,6 @@
 #include "LynxGame.h"
 using namespace lynx;
 
-/*============================================================================================
-- tutorial, left off here http://www.opengl-tutorial.org/beginners-tutorials/tutorial-2-the-first-triangle/
-- http://open.gl
-
-- good example repos
-- https://github.com/nikagra/opengl-demo
-- https://github.com/dot-bin/Fun-with-OpenGL
-- https://github.com/tumanoid/OpenGL-4.3-exploration
-
-- cool object viewer https://github.com/hardware/ObjectViewer
-- good tuts https://github.com/giawa/opengl4tutorials
-============================================================================================*/
-
 
 
 LynxGame::LynxGame() {
