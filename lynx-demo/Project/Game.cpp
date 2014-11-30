@@ -22,11 +22,12 @@ void Game::quit() {
 }
 
 void Game::printVersionInfo() {
-	printf("============================================================\n");
-	printf("Renderer: %s\n", glGetString(GL_RENDERER));
-	printf("OpenGL Version: %s\n", glGetString(GL_VERSION));
-	printf("OpenGL Shading Language Version: %s\n", glGetString(GL_SHADING_LANGUAGE_VERSION));
-	printf("============================================================\n");
+	Log::debug("============================================================");
+	Log::debug("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
+	Log::debug("OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
+	Log::debug("OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
+	Log::debug("OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
+	Log::debug("============================================================");
 }
 
 void Game::updateInput() {
