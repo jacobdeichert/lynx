@@ -70,7 +70,7 @@ void LynxGame::beginLoop() {
 
 
 void LynxGame::shutdown() {
-	Log::warn("game loop ended");
+	Log::info("game loop ended");
 	Log::info("begin shutdown");
 	if (!hasShutdown) {
 		hasShutdown = true;
