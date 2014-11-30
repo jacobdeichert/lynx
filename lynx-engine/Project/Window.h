@@ -1,6 +1,7 @@
 #pragma once
 #include <GL/glew.h>
 #include <SFML/Window.hpp>
+#include "Logger.h"
 
 namespace lynx {
 	class Window : public sf::Window {

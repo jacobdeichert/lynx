@@ -61,7 +61,7 @@ namespace lynx {
 
 			// Open a new file for the logger.
 			io.openFileOut(logFilePath);
-			Log::info("Log file created.");
+			Log::info("log file created");
 		}
 
 

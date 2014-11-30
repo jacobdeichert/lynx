@@ -20,12 +20,19 @@ void Window::init(int width, int height, std::string windowName, bool isFullscre
 	* settings.majorVersion = 4;
 	* settings.minorVersion = 4;
 	*/
+	int frameLimit = 60;
+	Log::info("window initialized");
+	Log::info("window width = " + std::to_string(width));
+	Log::info("window height = " + std::to_string(height));
+	Log::info("window height = " + std::to_string(height));
+	Log::info("window isFullscreen = " + std::to_string(isFullscreen));
+	Log::info("window frame limit = " + std::to_string(frameLimit));
 	GLuint style = sf::Style::Default;
 	if (isFullscreen) sf::Style::Fullscreen;
 	create(sf::VideoMode(width, height), windowName.c_str(), style);
 	setVerticalSyncEnabled(true);
 	// Limit the framerate to 60 frames per second.
-	setFramerateLimit(60);
+	setFramerateLimit(frameLimit);
 }
 
 void Window::onCreate() {
@@ -42,12 +49,14 @@ void Window::onCreate() {
 	GLenum err = glewInit();
 	if (err != GLEW_OK) {
 		//Problem: glewInit failed, something is seriously wrong.
-		printf("glewInit failed.");
+		Log::fatal("glewInit() failed");
 	}
 
 	// Enable default OpenGL stuff.
 	glEnable(GL_DEPTH_TEST);
+	Log::info("default enabled: GL_DEPTH_TEST");
 	//glEnable(GL_CULL_FACE);
 	// Accept fragment if it's closer to the camera than the former one.
 	glDepthFunc(GL_LESS);
+	Log::info("default glDepthFunc: GL_LESS");
 }

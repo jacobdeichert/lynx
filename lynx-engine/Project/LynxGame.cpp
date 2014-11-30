@@ -30,22 +30,26 @@ void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, 
 	// TODO parse a settings manager
 	Log::init(logFilename);
 	window.init(windowWidth, windowHeight, windowName, isFullscreen);
+	Log::info("begin initializing game");
 	init();
 	beginLoop();
 }
 
 
 void LynxGame::beginLoop() {
+	Log::info("begin game loop");
 	while (window.isOpen()) {
 		// Check all the window's events that were triggered since the last iteration of the loop.
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			switch (event.type) {
 			case sf::Event::Closed:
+				Log::info("window event: closed");
 				onClose();
 				shutdown();
 				break;
 			case sf::Event::Resized:
+				Log::info("window event: resized");
 				onResize(event.size.width, event.size.height);
 				break;
 			case sf::Event::KeyPressed:
