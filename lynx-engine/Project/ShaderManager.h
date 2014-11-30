@@ -5,6 +5,7 @@
 #include <map>
 #include <fstream>
 #include <glm.hpp>
+#include "Logger.h"
 #include "GameObject.h"
 
 
