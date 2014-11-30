@@ -65,12 +65,12 @@ void LynxGame::beginLoop() {
 		// End the current frame and display its contents on screen (internally swaps the front and back buffers).
 		window.display();
 	}
-	Log::warn("game loop ended: window closed");
 	shutdown();
 }
 
 
 void LynxGame::shutdown() {
+	Log::warn("game loop ended");
 	Log::info("begin shutdown");
 	if (!hasShutdown) {
 		hasShutdown = true;
