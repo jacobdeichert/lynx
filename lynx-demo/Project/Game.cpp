@@ -17,7 +17,7 @@ Game::~Game() {
 
 
 void Game::quit() {
-	printf("quitting\n");
+	Log::debug("begin quit");
 	shutdown();
 }
 
@@ -205,22 +205,18 @@ Overridden methods from LynxGame
 ============================================================================*/
 
 void Game::onClose() {
-	printf("onClose\n");
 	quit();
 }
 
 void Game::onResize(int width, int height) {
-	printf("onResize\n");
 	glViewport(0, 0, width, height);
 	scene->mainCam->aspectRatio = (float)width / (float)height;
 }
 
 void Game::onKeyPressed(KeyEvent key) {
-	printf("onKeyDown\n");
 }
 
 void Game::onKeyReleased(KeyEvent key) {
-	printf("onKeyUp\n");
 
 }
 
