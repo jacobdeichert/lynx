@@ -18,7 +18,8 @@ namespace lynx {
 			SEV_LEVEL_FATAL,
 			SEV_LEVEL_ERROR,
 			SEV_LEVEL_WARN,
-			SEV_LEVEL_INFO
+			SEV_LEVEL_INFO,
+			SEV_LEVEL_ENGINE
 		};
 
 
@@ -27,7 +28,7 @@ namespace lynx {
 		 * @param filename The path to the log file.
 		 * @param level The level of severity that will define which messages are sent to the log file.
 		 */
-		void init(std::string filename, SeverityLevel level = SEV_LEVEL_INFO);
+		void init(std::string filename, SeverityLevel level = SEV_LEVEL_ENGINE);
 		
 		
 		/**
@@ -76,5 +77,12 @@ namespace lynx {
 		 * @param message The message to be written to the log file
 		 */
 		void info(std::string message);
+
+
+		/**
+		 * Write to the log file with a severity level of SEV_LEVEL_ENGINE.
+		 * @param message The message to be written to the log file
+		 */
+		void engine(std::string message);
 	}
 }
