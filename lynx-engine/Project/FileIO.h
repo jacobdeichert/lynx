@@ -3,7 +3,6 @@
 #include <sstream>
 #include <iostream>
 
-
 /**
  * USAGE
  *

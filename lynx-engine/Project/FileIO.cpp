@@ -1,4 +1,5 @@
 #include "FileIO.h"
+#include "Logger.h"
 using namespace lynx;
 
 
@@ -27,17 +28,17 @@ void FileIO::openFileOut(std::string path) {
 	}
 
 	if (fileOperationType == FILE_WRITE) {
-		fileOut = std::ofstream(path); // create an object using the file name
+		fileOut = std::ofstream(path);
 
 		if (!fileOut) {
-			printf("ERROR: cannot open file %s\n", path);
+			Log::error("FileIO> cannot open file: " + path);
 		}
 		else {
 			isFileOut = true;
 		}
 	}
 	else {
-		printf("ERROR: the current file operation type doesn't support this operation.\n");
+		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
 
@@ -49,17 +50,17 @@ void FileIO::openFileIn(std::string path) {
 	}
 
 	if (fileOperationType == FILE_READ) {
-		fileIn = std::ifstream(path); // create an object using the file name
+		fileIn = std::ifstream(path);
 
 		if (!fileIn) {
-			printf("ERROR: cannot open file %s\n", path);
+			Log::error("FileIO> cannot open file: " + path);
 		}
 		else {
 			isFileIn = true;
 		}
 	}
 	else {
-		printf("ERROR: the current file operation type doesn't support this operation.\n");
+		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
 
@@ -73,11 +74,11 @@ void FileIO::closeFileOut() {
 			fileOperationType = FILE_NONE;
 		}
 		else {
-			printf("ERROR: cannot close file, no file is open.\n");
+			Log::error("FileIO> cannot close file because no file is open");
 		}
 	}
 	else {
-		printf("ERROR: the current file operation type doesn't support this operation.\n");
+		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
 
@@ -91,11 +92,11 @@ void FileIO::closeFileIn() {
 			fileOperationType = FILE_NONE;
 		}
 		else {
-			printf("ERROR: cannot close file, no file is open.\n");
+			Log::error("FileIO> cannot close file because no file is open");
 		}
 	}
 	else {
-		printf("ERROR: the current file operation type doesn't support this operation.\n");
+		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
 
@@ -107,11 +108,11 @@ void FileIO::write(std::string s) {
 			fileOut << s;
 		}
 		else {
-			printf("ERROR: cannot write to file, no file is open.\n");
+			Log::error("FileIO> cannot write to file because no file is open");
 		}
 	}
 	else {
-		printf("ERROR: the current file operation type doesn't support this operation.\n");
+		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
 
@@ -123,11 +124,11 @@ void FileIO::writel(std::string s) {
 			fileOut << s << std::endl;
 		}
 		else {
-			printf("ERROR: cannot write to file, no file is open.\n");
+			Log::error("FileIO> cannot write to file because no file is open");
 		}
 	}
 	else {
-		printf("ERROR: the current file operation type doesn't support this operation.\n");
+		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
 
@@ -145,12 +146,12 @@ bool FileIO::readLine() {
 			}
 		} // If no file is open.
 		else {
-			printf("ERROR: cannot read file, no file is open.\n");
+			Log::error("FileIO> cannot read file because no file is open");
 			return false;
 		}
 	} // If the file operation is not set to reading at the moment.
 	else {
-		printf("ERROR: the current file operation type doesn't support this operation.\n");
+		Log::error("FileIO> the current file operation type doesn't support this operation");
 		return false;
 	}
 }
