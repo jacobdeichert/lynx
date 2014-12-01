@@ -384,7 +384,7 @@ void Game::update() {
 		// TIPPPPPP: If i don't update camera first, models attached to cam will be lagging behind
 		updateInput();
 		scene->update();
-		//doTest();
+		doTest();
 	}
 }
 
@@ -398,12 +398,15 @@ void Game::doTest() {
 	//scene->mainCam->position.x += scene->mainCam->left().x * 0.02f;
 	//printf("pos x: %f\n", square2->position.x);
 	//printf("cam x: %f\n", scene->mainCam->position.x);
+
 	/*Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
 	if (col.isCollision) printf("cube2 > sphere2\n");
 	col = Collision::checkCollision(sphere1->collider, sphere2->collider);
 	if (col.isCollision) printf("sphere1 > sphere2\n");
 	col = Collision::checkCollision(cube3->collider, cube2->collider);
 	if (col.isCollision) printf("cube3 > cube2\n");*/
+	
+	
 	// Parametric Equation (spiral)
 	//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
 	//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());
@@ -413,7 +416,7 @@ void Game::doTest() {
 	//=====================================================================
 	// Check which side of plane point is on.
 	//=====================================================================
-	if (plane->dot(scene->mainCam->position) > 0) {
+	/*if (plane->dot(scene->mainCam->position) > 0) {
 		printf("i'm in front of the plane\n");
 	}
 	else if (plane->dot(scene->mainCam->position) < 0) {
@@ -421,12 +424,12 @@ void Game::doTest() {
 	}
 	else {
 		printf("i'm on the plane!!\n");
-	}
+	}*/
 
 	//=====================================================================
 	// Check if Ray intersects Sphere.
 	//=====================================================================
-	bool didIt = false;
+	/*bool didIt = false;
 	float dis;
 	Ray r = Ray(scene->mainCam->position, scene->mainCam->forward());
 	didIt = r.intersects(sphere1->position, ((SphereCollider*)sphere1->collider)->radius, dis);
@@ -437,5 +440,5 @@ void Game::doTest() {
 		printf("no\n");
 	}
 	sphere1->collider->isRender = didIt;
-	rayModel->position = r.origin + r.direction;
+	rayModel->position = r.origin + r.direction;*/
 }

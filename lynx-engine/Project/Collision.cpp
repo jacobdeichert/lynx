@@ -96,8 +96,7 @@ Collision Collision::checkAABBToSphere(BoxCollider *box, SphereCollider *sphere)
 
 
 Collision Collision::checkSphereToSphere(SphereCollider *sphere1, SphereCollider *sphere2) {
-	glm::vec3 d = *sphere1->center - *sphere2->center;
-	float distance = sqrt(pow(d.x, 2) + pow(d.y, 2) + pow(d.z, 2));
+	float distance = glm::distance(*sphere1->center, *sphere2->center);
 
 	// If the distance is less than both radii combined, there is a collision.
 	if (distance <= sphere1->radius + sphere2->radius) {
