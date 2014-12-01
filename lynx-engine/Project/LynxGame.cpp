@@ -17,6 +17,12 @@ void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, 
 	// TODO parse a settings manager
 	Log::init(logFilename);
 	window.init(windowWidth, windowHeight, windowName, isFullscreen);
+	Log::info("============================================================");
+	Log::info("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
+	Log::info("OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
+	Log::info("OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
+	Log::info("OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
+	Log::info("============================================================");
 	Log::info("begin initializing game");
 	init();
 	beginLoop();
