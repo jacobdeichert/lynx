@@ -131,7 +131,7 @@ void TextureManager::load(std::string _textureFilePath) {
 	loadedTextures[_textureFilePath] = new Texture(_textureFilePath, textureID);
 
 
-	Log::engine("TextureManager> loaded texture: \"" + _textureFilePath + "\"");
+	Log::info("TextureManager> loaded texture: \"" + _textureFilePath + "\"");
 }
 
 

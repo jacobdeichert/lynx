@@ -63,12 +63,12 @@ namespace lynx {
 			// Open a new file for the logger.
 			io.openFileOut(logFilePath);
 
-			Log::engine("logger initialized");
+			Log::info("logger initialized");
 		}
 
 
 		void deinit() {
-			Log::engine("logger deinitialized");
+			Log::info("logger deinitialized");
 
 			// Make sure to close the current log file if it's open.
 			if (io.isOutOpen()) io.closeFileOut();

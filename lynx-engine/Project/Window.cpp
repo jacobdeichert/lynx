@@ -55,10 +55,10 @@ void Window::init(int width, int height, std::string title, bool isFullscreen) {
 }
 
 void Window::onCreate() {
-	Log::engine("window initialized");
-	Log::engine("window title = " + title);
-	Log::engine("window width = " + std::to_string(getSize().x));
-	Log::engine("window height = " + std::to_string(getSize().y));
+	Log::info("window initialized");
+	Log::info("window title = " + title);
+	Log::info("window width = " + std::to_string(getSize().x));
+	Log::info("window height = " + std::to_string(getSize().y));
 	/*
 	GLEW has a problem with core contexts. It calls
 	glGetString(GL_EXTENSIONS), which causes GL_INVALID_ENUM
@@ -77,9 +77,9 @@ void Window::onCreate() {
 
 	// Enable default OpenGL stuff.
 	glEnable(GL_DEPTH_TEST);
-	Log::engine("default enabled: GL_DEPTH_TEST");
+	Log::info("default enabled: GL_DEPTH_TEST");
 	//glEnable(GL_CULL_FACE);
 	// Accept fragment if it's closer to the camera than the former one.
 	glDepthFunc(GL_LESS);
-	Log::engine("default glDepthFunc: GL_LESS");
+	Log::info("default glDepthFunc: GL_LESS");
 }
