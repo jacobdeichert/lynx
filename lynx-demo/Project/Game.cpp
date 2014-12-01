@@ -31,13 +31,13 @@ void Game::updateInput() {
 		sphere2->position -= sphere2->forward() * 0.01f;
 		//cube2->position -= cube2->forward() * 0.01f;
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad4)) {
-		sphere2->position -= sphere2->right() * 0.01f;
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad6)) {
+		sphere2->position -= sphere2->left() * 0.01f;
 		//cube2->position -= cube2->right() * 0.01f;
 		//square2->scale += glm::vec3(0.1f);
 	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad6)) {
-		sphere2->position += sphere2->right() * 0.01f;
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad4)) {
+		sphere2->position += sphere2->left() * 0.01f;
 		//cube2->position += cube2->right() * 0.01f;
 		//square2->scale += glm::vec3(0.1f);
 	}
@@ -107,10 +107,10 @@ void Game::updateInput() {
 
 	// move the camera left and right
 	if (Keyboard::isKeyPressed(Keyboard::Key::A)) {
-		scene->mainCam->position -= scene->mainCam->right() * camSpeed;
+		scene->mainCam->position += scene->mainCam->left() * camSpeed;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
-		scene->mainCam->position += scene->mainCam->right() * camSpeed;
+		scene->mainCam->position -= scene->mainCam->left() * camSpeed;
 	}
 
 	// move the camera up and down
@@ -131,10 +131,10 @@ void Game::updateInput() {
 
 	// rotate the camera up and down
 	if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
-		scene->mainCam->rotation.x += camSpeed * 10;
+		scene->mainCam->rotation.x -= camSpeed * 10;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
-		scene->mainCam->rotation.x -= camSpeed * 10;
+		scene->mainCam->rotation.x += camSpeed * 10;
 	}
 }
 
@@ -306,11 +306,10 @@ void Game::init() {
 	triangle1->scale = glm::vec3(8);
 	triangle1->rotation = glm::vec3(0, 90, 0);
 
-	square1->position = glm::vec3(-0.9f, 0, -1.6f);
-	square1->rotation = glm::vec3(0, 0, 0);
+	square1->position = glm::vec3(-0.9f, 0, 2.0f);
 	square1->scale = glm::vec3(0.4f);
 
-	square2->position = glm::vec3(0.8f, 0.1f, -0.01f);
+	square2->position = glm::vec3(0.8f, 0.1f, 2.0f);
 	square2->scale = glm::vec3(0.4f);
 
 	cube1->position = glm::vec3(0.5f, -0.3f, -0.95f);
@@ -325,12 +324,11 @@ void Game::init() {
 	cube3->scale = glm::vec3(0.5f);
 	cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->position);
 
-	sphere1->position = glm::vec3(5.5f, -0.4f, -1.3f);
+	sphere1->position = glm::vec3(5.5f, -0.4f, 1.3f);
 	sphere1->collider = new SphereCollider(0.5f, &sphere1->position);
 
 	sphere2->position = glm::vec3(7.0f, -0.4f, -1.3f);
 	sphere2->collider = new SphereCollider(0.75f, &sphere2->position);
-	sphere2->scale = glm::vec3(1.0f);
 
 	monkey->position = glm::vec3(0, 20.0f, 0);
 	monkey->rotation = glm::vec3(-90.0f, 0, 0);
@@ -353,7 +351,6 @@ void Game::init() {
 
 
 	// Add objects to the scene.
-	//scene->add(triangle1);
 	scene->add(square1);
 	scene->add(square2);
 	scene->add(cube2);
@@ -366,11 +363,11 @@ void Game::init() {
 	scene->add(scene->mainCam);
 
 
-
 	// TEMP
 	rayModel = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
 	scene->add(rayModel);
 	rayModel->scale = glm::vec3(0.01f);
+	plane = new Plane(glm::vec3(0, 0, -1), square1->position.z);
 }
 
 
@@ -386,35 +383,59 @@ void Game::update() {
 	if (!isPaused) {
 		// TIPPPPPP: If i don't update camera first, models attached to cam will be lagging behind
 		updateInput();
-		//Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
-		//if (col.isCollision) printf("cube2 > sphere2        %f\n", (float)glfwGetTime());
-		//col = Collision::checkCollision(sphere1->collider, sphere2->collider);
-		//if (col.isCollision) printf("sphere1 > sphere2        %f\n", (float)glfwGetTime());
-		//col = Collision::checkCollision(cube3->collider, cube2->collider);
-		//if (col.isCollision) printf("cube3 > cube2        %f\n", (float)glfwGetTime());
-		// Parametric Equation (spiral)
-		//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
-		//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());
-		// Parametric Equation (circle)
-		//monkey->position.x = cos((float)glfwGetTime());
-		//monkey->position.y = sin((float)glfwGetTime()) + 10.0f;
-		
-
-
-
-		// TEMP
 		scene->update();
-		bool didIt = false;
-		float dis;
-		Ray r = Ray(scene->mainCam->position, scene->mainCam->forward());
-		didIt = r.intersects(sphere1->position, ((SphereCollider*)sphere1->collider)->radius, dis);
-		if (didIt) {
-			printf("omfg: %f\n", dis);
-		} else {
-			printf("no\n");
-		}
-		sphere1->collider->isRender = didIt;
-		//if (Keyboard::isKeyPressed(Keyboard::F))
-			rayModel->position = r.origin + r.direction;
+		//doTest();
 	}
+}
+
+
+
+void Game::doTest() {
+	//scene->mainCam->position.z -= scene->mainCam->forward().z *0.02f;
+	//square2->position.x += 0.02f;
+	//square2->position.x += 0.02f;
+	//scene->mainCam->position.z += 0.02f;
+	//scene->mainCam->position.x += scene->mainCam->left().x * 0.02f;
+	//printf("pos x: %f\n", square2->position.x);
+	//printf("cam x: %f\n", scene->mainCam->position.x);
+	/*Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
+	if (col.isCollision) printf("cube2 > sphere2\n");
+	col = Collision::checkCollision(sphere1->collider, sphere2->collider);
+	if (col.isCollision) printf("sphere1 > sphere2\n");
+	col = Collision::checkCollision(cube3->collider, cube2->collider);
+	if (col.isCollision) printf("cube3 > cube2\n");*/
+	// Parametric Equation (spiral)
+	//sphere1->position.x = glfwGetTime() * cos(glfwGetTime());
+	//sphere1->position.y = glfwGetTime() * sin(glfwGetTime());
+	// Parametric Equation (circle)
+	//monkey->position.x = cos((float)glfwGetTime());
+	//monkey->position.y = sin((float)glfwGetTime()) + 10.0f;
+	//=====================================================================
+	// Check which side of plane point is on.
+	//=====================================================================
+	if (plane->dot(scene->mainCam->position) > 0) {
+		printf("i'm in front of the plane\n");
+	}
+	else if (plane->dot(scene->mainCam->position) < 0) {
+		printf("i'm behind the plane\n");
+	}
+	else {
+		printf("i'm on the plane!!\n");
+	}
+
+	//=====================================================================
+	// Check if Ray intersects Sphere.
+	//=====================================================================
+	bool didIt = false;
+	float dis;
+	Ray r = Ray(scene->mainCam->position, scene->mainCam->forward());
+	didIt = r.intersects(sphere1->position, ((SphereCollider*)sphere1->collider)->radius, dis);
+	if (didIt) {
+		printf("yes: %f\n", dis);
+	}
+	else {
+		printf("no\n");
+	}
+	sphere1->collider->isRender = didIt;
+	rayModel->position = r.origin + r.direction;
 }
