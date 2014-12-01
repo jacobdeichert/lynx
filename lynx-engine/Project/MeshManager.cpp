@@ -1,4 +1,5 @@
 #include "MeshManager.h"
+#include "FileIO.h"
 using namespace lynx;
 
 const std::vector<GLfloat> MeshManager::TRIANGLE_VERTICES {
