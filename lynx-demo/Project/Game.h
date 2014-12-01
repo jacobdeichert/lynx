@@ -43,9 +43,9 @@ public:
 	//virtual void onTextEntered();
 	virtual void onKeyPressed(KeyEvent key);
 	virtual void onKeyReleased(KeyEvent key);
+	virtual void onMouseButtonPressed(MouseButtonEvent mouse);
+	virtual void onMouseButtonReleased(MouseButtonEvent mouse);
 	/*virtual void onMouseWheelMoved();
-	virtual void onMouseButtonPressed();
-	virtual void onMouseButtonReleased();
 	virtual void onMouseMoved();
 	virtual void onMouseEntered();
 	virtual void onMouseLeft();*/
