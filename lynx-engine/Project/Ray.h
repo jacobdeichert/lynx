@@ -26,16 +26,3 @@ namespace lynx {
 	};
 }
 
-
-/*
-================
-JAKE'S STYLE GUIDE
-================
-
-namespace: mine
-classes: MyClass
-enum: MyEnum { THING1, THING2 }
-member variables: my_member_var_
-functions: myFunction(Type my_param)
-
-*/
