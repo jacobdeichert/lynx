@@ -66,12 +66,24 @@ Collision Collision::checkAABBToSphere(BoxCollider *box, SphereCollider *sphere)
 	glm::vec3 corner2 = glm::vec3(box->center->x + box->scale.x / 2, box->center->y + box->scale.y / 2, box->center->z + box->scale.z / 2);
 
 	float distSquared = pow(sphere->radius, 2);
-	if (sphere->center->x < corner1.x) distSquared -= pow(sphere->center->x - corner1.x, 2);
-	else if (sphere->center->x > corner2.x) distSquared -= pow(sphere->center->x - corner2.x, 2);
-	if (sphere->center->y < corner1.y) distSquared -= pow(sphere->center->y - corner1.y, 2);
-	else if (sphere->center->y > corner2.y) distSquared -= pow(sphere->center->y - corner2.y, 2);
-	if (sphere->center->z < corner1.z) distSquared -= pow(sphere->center->z - corner1.z, 2);
-	else if (sphere->center->z > corner2.z) distSquared -= pow(sphere->center->z - corner2.z, 2);
+	
+	if (sphere->center->x < corner1.x) {
+		distSquared -= pow(sphere->center->x - corner1.x, 2);
+	} else if (sphere->center->x > corner2.x) {
+		distSquared -= pow(sphere->center->x - corner2.x, 2);
+	}
+
+	if (sphere->center->y < corner1.y) {
+		distSquared -= pow(sphere->center->y - corner1.y, 2);
+	} else if (sphere->center->y > corner2.y) {
+		distSquared -= pow(sphere->center->y - corner2.y, 2);
+	}
+
+	if (sphere->center->z < corner1.z) {
+		distSquared -= pow(sphere->center->z - corner1.z, 2);
+	} else if (sphere->center->z > corner2.z) {
+		distSquared -= pow(sphere->center->z - corner2.z, 2);
+	}
 
 
 	// If it's more, then there is an intersection.
