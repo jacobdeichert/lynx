@@ -17,32 +17,32 @@ void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, 
 	// TODO parse a settings manager
 	Log::init(logFilename);
 	window.init(windowWidth, windowHeight, windowName, isFullscreen);
-	Log::info("============================================================");
-	Log::info("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
-	Log::info("OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
-	Log::info("OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
-	Log::info("OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
-	Log::info("============================================================");
-	Log::info("begin initializing game");
+	Log::engine("============================================================");
+	Log::engine("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
+	Log::engine("OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
+	Log::engine("OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
+	Log::engine("OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
+	Log::engine("============================================================");
+	Log::engine("begin initializing game");
 	init();
 	beginLoop();
 }
 
 
 void LynxGame::beginLoop() {
-	Log::info("begin game loop");
+	Log::engine("begin game loop");
 	while (window.isOpen()) {
 		// Check all the window's events that were triggered since the last iteration of the loop.
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			switch (event.type) {
 			case sf::Event::Closed:
-				Log::info("window event: closed");
+				Log::engine("window event: closed");
 				onClose();
 				shutdown();
 				break;
 			case sf::Event::Resized:
-				Log::info("window event: resized");
+				Log::engine("window event: resized");
 				onResize(event.size.width, event.size.height);
 				break;
 			case sf::Event::KeyPressed:
@@ -63,15 +63,15 @@ void LynxGame::beginLoop() {
 
 
 void LynxGame::shutdown() {
-	Log::info("game loop ended");
-	Log::info("begin shutdown");
+	Log::engine("game loop ended");
+	Log::engine("begin shutdown");
 	if (!hasShutdown) {
 		hasShutdown = true;
 		if (window.isOpen()) {
 			window.close();
-			Log::info("window closed");
+			Log::engine("window closed");
 		}
-		Log::info("shutdown complete");
+		Log::engine("shutdown complete");
 		Log::deinit();
 		exit(0);
 	}

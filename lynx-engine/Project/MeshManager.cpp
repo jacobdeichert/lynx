@@ -110,7 +110,7 @@ void MeshManager::load(std::string meshFilePath) {
 
 	// Create and save the mesh.
 	loadedMeshes[meshFilePath] = new Mesh(vertices, elements);
-	Log::info("MeshManager> loaded mesh: \"" + meshFilePath + "\"");
+	Log::engine("MeshManager> loaded mesh: \"" + meshFilePath + "\"");
 }
 
 
@@ -118,7 +118,7 @@ void MeshManager::create(std::string meshName, std::vector<GLfloat> vertices, st
 	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshName) == loadedMeshes.end()) {
 		loadedMeshes[meshName] = new Mesh(vertices, elements);
-		Log::info("MeshManager> loaded mesh: \"" + meshName + "\"");
+		Log::engine("MeshManager> loaded mesh: \"" + meshName + "\"");
 	}
 }
 
