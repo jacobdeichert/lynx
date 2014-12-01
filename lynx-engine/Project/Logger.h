@@ -57,6 +57,7 @@ namespace lynx {
 		void fatal(std::string message);
 
 
+
 		/**
 		 * Write to the log file with a severity level of SEV_LEVEL_ERROR.
 		 * @param message The message to be written to the log file
