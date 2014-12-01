@@ -215,10 +215,24 @@ void Game::onResize(int width, int height) {
 }
 
 void Game::onKeyPressed(KeyEvent key) {
+	/**
+	* Apparently, I should only use this event type of
+	* key checking for gui types of stuff. For gameplay input,
+	* I should be checking every frame anyways.
+	*/
 }
 
 void Game::onKeyReleased(KeyEvent key) {
-
+	/**
+	 * Apparently, I should only use this event type of 
+	 * key checking for gui types of stuff. For gameplay input,
+	 * I should be checking every frame anyways.
+	*/
+	/*switch (key.code) {
+	case Keyboard::Key::A:
+		printf("key A was released");
+		break;
+	}*/
 }
 
 

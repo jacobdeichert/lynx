@@ -6,6 +6,7 @@
 
 namespace lynx {
 	using KeyEvent = sf::Event::KeyEvent;
+	using Keyboard = sf::Keyboard;
 	class LynxGame {
 	public:
 		LynxGame();
