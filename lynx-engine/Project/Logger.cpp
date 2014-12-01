@@ -17,7 +17,7 @@ namespace lynx {
 			/**
 			* Strings that represent each severity level. They are defined in Logger.cpp.
 			*/
-			const char* SEVERITY_LEVEL_NAME[7] = { "TRACE", "DEBUG", "FATAL", "ERROR", "WARN", "INFO", "ENGINE" };
+			const char* SEVERITY_LEVEL_NAME[6] = { "TRACE", "DEBUG", "FATAL", "ERROR", "WARN", "INFO" };
 
 
 			/**
@@ -102,11 +102,6 @@ namespace lynx {
 
 		void info(std::string message) {
 			write(message, SEV_LEVEL_INFO);
-		}
-
-
-		void engine(std::string message) {
-			write(message, SEV_LEVEL_ENGINE);
 		}
 	}
 }
