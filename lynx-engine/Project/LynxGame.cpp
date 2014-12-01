@@ -51,6 +51,12 @@ void LynxGame::beginLoop() {
 			case sf::Event::KeyReleased:
 				onKeyReleased(event.key);
 				break;
+			case sf::Event::MouseButtonPressed:
+				onMouseButtonPressed(event.mouseButton);
+				break;
+			case sf::Event::MouseButtonReleased:
+				onMouseButtonReleased(event.mouseButton);
+				break;
 			}
 		}
 		update();
