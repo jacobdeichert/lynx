@@ -50,12 +50,12 @@ void GameObject::update() {
 
 glm::vec3 GameObject::forward() {
 	glm::mat4 view = glm::inverse(model);
-	return -glm::normalize(glm::vec3(view[0][2], view[1][2], view[2][2]));
+	return glm::normalize(glm::vec3(view[0][2], view[1][2], view[2][2]));
 }
 
 
 
-glm::vec3 GameObject::right() {
+glm::vec3 GameObject::left() {
 	glm::mat4 view = glm::inverse(model);
 	return glm::normalize(glm::vec3(view[0][0], view[1][0], view[2][0]));
 }

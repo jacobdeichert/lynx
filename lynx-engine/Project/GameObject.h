@@ -45,6 +45,6 @@ namespace lynx {
 		virtual glm::vec3 forward();
 
 
-		virtual glm::vec3 right();
+		virtual glm::vec3 left();
 	};
 }

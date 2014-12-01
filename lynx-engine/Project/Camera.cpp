@@ -12,7 +12,7 @@ Camera::Camera(float aspectRatio) {
 	far = 1000.0f;
 	this->aspectRatio = aspectRatio;
 
-	position = glm::vec3(0, 0, 2.0f); // eye
+	position = glm::vec3(0, 0, -10.0f); // eye
 	direction = glm::vec3(0, 0, -1); // center
 	up = glm::vec3(0, 1, 0);
 }
@@ -47,10 +47,10 @@ void Camera::update() {
 
 	// Create a 4x4 view matrix from the right, up, forward and eye position vectors
 	view = {
-		xaxis.x, yaxis.x, zaxis.x, 0,
-		xaxis.y, yaxis.y, zaxis.y, 0,
-		xaxis.z, yaxis.z, zaxis.z, 0,
-		-glm::dot(xaxis, position), -glm::dot(yaxis, position), -glm::dot(zaxis, position), 1
+		-xaxis.x, yaxis.x, -zaxis.x, 0,
+		-xaxis.y, yaxis.y, -zaxis.y, 0,
+		-xaxis.z, yaxis.z, -zaxis.z, 0,
+		glm::dot(xaxis, position), -glm::dot(yaxis, position), glm::dot(zaxis, position), 1
 	};
 
 
@@ -83,6 +83,6 @@ glm::vec3 Camera::forward() {
 
 
 
-glm::vec3 Camera::right() {
-	return glm::normalize(glm::vec3(view[0][0], view[1][0], view[2][0]));
+glm::vec3 Camera::left() {
+	return -glm::normalize(glm::vec3(view[0][0], view[1][0], view[2][0]));
 }

@@ -38,11 +38,11 @@ namespace lynx {
 		virtual glm::vec3 forward();
 
 		/**
-		* Override the GameObject's right vector because in that function,
+		* Override the GameObject's left vector because in that function,
 		* the view matrix is calculated from the inverse of the model
 		* matrix since GameObjects don't have a view matrix. Cameras
 		* have a view matrix, so it saves one calculation by overriding.
 		*/
-		virtual glm::vec3 right();
+		virtual glm::vec3 left();
 	};
 }
