@@ -22,9 +22,6 @@ public:
 	GameObject *gun;
 	bool isPaused = false;
 	bool isDebugMode = false;
-	bool isSpaceKeyDown = false;
-	bool isPKeyDown = false;
-	bool isTabKeyDown = false;
 	
 
 	Game();
@@ -32,8 +29,6 @@ public:
 	virtual ~Game();
 
 	void quit();
-
-	void printVersionInfo();
 
 	void updateInput();
 

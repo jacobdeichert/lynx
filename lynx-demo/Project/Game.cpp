@@ -14,189 +14,128 @@ Game::~Game() {
 	quit();
 }
 
-
-
 void Game::quit() {
 	Log::debug("begin quit");
 	shutdown();
 }
 
-void Game::printVersionInfo() {
-	Log::debug("============================================================");
-	Log::debug("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
-	Log::debug("OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
-	Log::debug("OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
-	Log::debug("OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
-	Log::debug("============================================================");
-}
-
 void Game::updateInput() {
 	//======================================================================
-	// TESTING
+	// QUICK TESTING
 	//======================================================================
-	// Keys for quick testing of things.
-	//if (glfwGetKey(window, GLFW_KEY_KP_8)) {
-	//	sphere2->position += sphere2->forward() * 0.01f;
-	//	//cube2->position += cube2->forward() * 0.01f;
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_KP_5)) {
-	//	sphere2->position -= sphere2->forward() * 0.01f;
-	//	//cube2->position -= cube2->forward() * 0.01f;
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_KP_4)) {
-	//	sphere2->position -= sphere2->right() * 0.01f;
-	//	//cube2->position -= cube2->right() * 0.01f;
-	//	//square2->scale += glm::vec3(0.1f);
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_KP_6)) {
-	//	sphere2->position += sphere2->right() * 0.01f;
-	//	//cube2->position += cube2->right() * 0.01f;
-	//	//square2->scale += glm::vec3(0.1f);
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_KP_9)) {
-	//	sphere2->position += glm::vec3(0, 0.01f, 0);
-	//	//cube2->position += glm::vec3(0, 0.01f, 0);
-	//	//square2->scale += glm::vec3(0.1f);
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_KP_3)) {
-	//	sphere2->position -= glm::vec3(0, 0.01f, 0);
-	//	//cube2->position -= glm::vec3(0, 0.01f, 0);
-	//	//square2->scale += glm::vec3(0.1f);
-	//}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad8)) {
+		sphere2->position += sphere2->forward() * 0.01f;
+		//cube2->position += cube2->forward() * 0.01f;
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad5)) {
+		sphere2->position -= sphere2->forward() * 0.01f;
+		//cube2->position -= cube2->forward() * 0.01f;
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad4)) {
+		sphere2->position -= sphere2->right() * 0.01f;
+		//cube2->position -= cube2->right() * 0.01f;
+		//square2->scale += glm::vec3(0.1f);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad6)) {
+		sphere2->position += sphere2->right() * 0.01f;
+		//cube2->position += cube2->right() * 0.01f;
+		//square2->scale += glm::vec3(0.1f);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad9)) {
+		sphere2->position += glm::vec3(0, 0.01f, 0);
+		//cube2->position += glm::vec3(0, 0.01f, 0);
+		//square2->scale += glm::vec3(0.1f);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad3)) {
+		sphere2->position -= glm::vec3(0, 0.01f, 0);
+		//cube2->position -= glm::vec3(0, 0.01f, 0);
+		//square2->scale += glm::vec3(0.1f);
+	}
 
 
+	//======================================================================
+	// ROTATE STUFF
+	//======================================================================
+	float rotateDir = 0;
+	if (Keyboard::isKeyPressed(Keyboard::Key::Equal)) {
+		rotateDir = 3.0f;
+	} // the minus/dash/underscore key
+	else if (Keyboard::isKeyPressed(Keyboard::Key::Dash)) {
+		rotateDir = -3.0f;
+	}
 
-	//// Spawn new cubes.
-	///*if (glfwGetKey(window, GLFW_KEY_SPACE) && !isSpaceKeyDown) {
-	//isSpaceKeyDown = true;
-	//GameObject *newCube = new GameObject(GameObject::PRIMITIVE_CUBE, shaderManager->getShader("texture"), circleTexture);
-	//newCube->position = scene->mainCam->position + glm::vec3(0, 0, -1);
-	//newCube->scale = glm::vec3(0.03f);
-	//scene->add(newCube);
-	//}*/
-	///*if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
-	//	isSpaceKeyDown = false;
-	//}*/
-
-
-
-
-
-	////======================================================================
-	//// ROTATE STUFF
-	////======================================================================
-
-	//// the plus/equals key
-	//float rotateDir = 0;
-	//if (glfwGetKey(window, GLFW_KEY_EQUAL)) {
-	//	rotateDir = 3.0f;
-	//} // the minus/dash/underscore key
-	//else if (glfwGetKey(window, GLFW_KEY_MINUS)) {
-	//	rotateDir = -3.0f;
-	//}
-
-	//// rotate X
-	//if (glfwGetKey(window, GLFW_KEY_X)) {
-	//	square1->rotation.x += rotateDir;
-	//	square2->rotation.x += rotateDir;
-	//	cube2->rotation.x += rotateDir;
-	//	sphere1->rotation.x += rotateDir;
-	//}
-	//// rotate Y
-	//if (glfwGetKey(window, GLFW_KEY_Y)) {
-	//	square1->rotation.y += rotateDir;
-	//	square2->rotation.y += rotateDir;
-	//	cube2->rotation.y += rotateDir;
-	//	sphere1->rotation.y += rotateDir;
-	//}
-	//// rotate Z
-	//if (glfwGetKey(window, GLFW_KEY_Z)) {
-	//	square1->rotation.z += rotateDir;
-	//	square2->rotation.z += rotateDir;
-	//	cube2->rotation.z += rotateDir;
-	//	sphere1->rotation.z += rotateDir;
-	//}
+	// rotate X
+	if (Keyboard::isKeyPressed(Keyboard::Key::X)) {
+		square1->rotation.x += rotateDir;
+		square2->rotation.x += rotateDir;
+		cube2->rotation.x += rotateDir;
+		sphere1->rotation.x += rotateDir;
+	}
+	// rotate Y
+	if (Keyboard::isKeyPressed(Keyboard::Key::Y)) {
+		square1->rotation.y += rotateDir;
+		square2->rotation.y += rotateDir;
+		cube2->rotation.y += rotateDir;
+		sphere1->rotation.y += rotateDir;
+	}
+	// rotate Z
+	if (Keyboard::isKeyPressed(Keyboard::Key::Z)) {
+		square1->rotation.z += rotateDir;
+		square2->rotation.z += rotateDir;
+		cube2->rotation.z += rotateDir;
+		sphere1->rotation.z += rotateDir;
+	}
 
 
+	//======================================================================
+	// CAMERA STUFF
+	//======================================================================
+	float camSpeed = 0.1f;
+	if (Keyboard::isKeyPressed(Keyboard::Key::LShift)) {
+		camSpeed *= 4;
+	}
 
-	////======================================================================
-	//// PAUSE MODE
-	////======================================================================
-	//if (glfwGetKey(window, GLFW_KEY_P) && !isPKeyDown) {
-	//	isPaused = !isPaused;
-	//	isPKeyDown = true;
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_P) == GLFW_RELEASE) {
-	//	isPKeyDown = false;
-	//}
+	// move the camera forward and backward
+	if (Keyboard::isKeyPressed(Keyboard::Key::W)) {
+		//scene->mainCam->position.z -= 0.1f;
+		scene->mainCam->position += glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
+		//scene->mainCam->position.z += 0.1f;
+		scene->mainCam->position -= glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
+	}
 
+	// move the camera left and right
+	if (Keyboard::isKeyPressed(Keyboard::Key::A)) {
+		scene->mainCam->position -= scene->mainCam->right() * camSpeed;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
+		scene->mainCam->position += scene->mainCam->right() * camSpeed;
+	}
 
+	// move the camera up and down
+	if (Keyboard::isKeyPressed(Keyboard::Key::Add)) {
+		scene->mainCam->position.y += camSpeed;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::Subtract)) {
+		scene->mainCam->position.y -= camSpeed;
+	}
 
-	////======================================================================
-	//// DEBUG MODE
-	////======================================================================
-	//if (glfwGetKey(window, GLFW_KEY_TAB) && !isTabKeyDown) {
-	//	isDebugMode = !isDebugMode;
-	//	isTabKeyDown = true;
-	//	// Make colliders render.
-	//	for (auto &i : scene->sceneObjects) {
-	//		if (i->collider != nullptr) i->collider->isRender = isDebugMode;
-	//	}
-	//}
-	//if (glfwGetKey(window, GLFW_KEY_TAB) == GLFW_RELEASE) {
-	//	isTabKeyDown = false;
-	//}
+	// rotate the camera left and right
+	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
+		scene->mainCam->rotation.y += camSpeed * 20;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
+		scene->mainCam->rotation.y -= camSpeed * 20;
+	}
 
-
-	////======================================================================
-	//// CAMERA STUFF
-	////======================================================================
-	//float camSpeed = 0.1f;
-	//if (glfwGetKey(window, GLFW_KEY_LEFT_SHIFT)) {
-	//	camSpeed *= 4;
-	//}
-
-	//// move the camera forward and backward
-	//if (glfwGetKey(window, GLFW_KEY_W)) {
-	//	//scene->mainCam->position.z -= 0.1f;
-	//	scene->mainCam->position += glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
-	//}
-	//else if (glfwGetKey(window, GLFW_KEY_S)) {
-	//	//scene->mainCam->position.z += 0.1f;
-	//	scene->mainCam->position -= glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
-	//}
-
-	//// move the camera left and right
-	//if (glfwGetKey(window, GLFW_KEY_A)) {
-	//	scene->mainCam->position -= scene->mainCam->right() * camSpeed;
-	//}
-	//else if (glfwGetKey(window, GLFW_KEY_D)) {
-	//	scene->mainCam->position += scene->mainCam->right() * camSpeed;
-	//}
-
-	//// move the camera up and down
-	//if (glfwGetKey(window, GLFW_KEY_KP_ADD)) {
-	//	scene->mainCam->position.y += camSpeed;
-	//}
-	//else if (glfwGetKey(window, GLFW_KEY_KP_SUBTRACT)) {
-	//	scene->mainCam->position.y -= camSpeed;
-	//}
-
-	//// rotate the camera left and right
-	//if (glfwGetKey(window, GLFW_KEY_LEFT)) {
-	//	scene->mainCam->rotation.y += camSpeed * 20;
-	//}
-	//else if (glfwGetKey(window, GLFW_KEY_RIGHT)) {
-	//	scene->mainCam->rotation.y -= camSpeed * 20;
-	//}
-
-	//// rotate the camera up and down
-	//if (glfwGetKey(window, GLFW_KEY_UP)) {
-	//	scene->mainCam->rotation.x += camSpeed * 10;
-	//}
-	//else if (glfwGetKey(window, GLFW_KEY_DOWN)) {
-	//	scene->mainCam->rotation.x -= camSpeed * 10;
-	//}
+	// rotate the camera up and down
+	if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
+		scene->mainCam->rotation.x += camSpeed * 10;
+	}
+	else if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
+		scene->mainCam->rotation.x -= camSpeed * 10;
+	}
 }
 
 
@@ -214,31 +153,56 @@ void Game::onResize(int width, int height) {
 	scene->mainCam->aspectRatio = (float)width / (float)height;
 }
 
-void Game::onKeyPressed(KeyEvent key) {
-	/**
-	* Apparently, I should only use this event type of
-	* key checking for gui types of stuff. For gameplay input,
-	* I should be checking every frame anyways.
-	*/
-}
+void Game::onKeyPressed(KeyEvent key) {}
 
 void Game::onKeyReleased(KeyEvent key) {
 	/**
 	 * Apparently, I should only use this event type of 
 	 * key checking for gui types of stuff. For gameplay input,
-	 * I should be checking every frame anyways.
+	 * I should be checking every frame anyways. However, simple toggles
+	 * fit well in here.
 	*/
-	/*switch (key.code) {
-	case Keyboard::Key::A:
-		printf("key A was released");
+	switch (key.code) {
+	//======================================================================
+	// PAUSE
+	//======================================================================
+	case Keyboard::Key::P:
+		isPaused = !isPaused;
+		printf(isPaused ? "paused\n" : "playing\n");
 		break;
+	//======================================================================
+	// DEBUG MODE
+	//======================================================================
+	case Keyboard::Key::Tab:
+		isDebugMode = !isDebugMode;
+		// Make colliders render.
+		for (auto &i : scene->sceneObjects) {
+			if (i->collider != nullptr) i->collider->isRender = isDebugMode;
+		}
+		printf(isDebugMode ? "debug: on\n" : "debug: off\n");
+		break;
+	//======================================================================
+	// QUIT
+	//======================================================================
+	case Keyboard::Key::Escape:
+		quit();
+		break;
+	}
+
+	//Spawn new cubes.
+	/*if (glfwGetKey(window, GLFW_KEY_SPACE) && !isSpaceKeyDown) {
+	isSpaceKeyDown = true;
+	GameObject *newCube = new GameObject(GameObject::PRIMITIVE_CUBE, shaderManager->getShader("texture"), circleTexture);
+	newCube->position = scene->mainCam->position + glm::vec3(0, 0, -1);
+	newCube->scale = glm::vec3(0.03f);
+	scene->add(newCube);
+	}*/
+	/*if (glfwGetKey(window, GLFW_KEY_SPACE) == GLFW_RELEASE) {
+	isSpaceKeyDown = false;
 	}*/
 }
 
-
-
 void Game::init() {
-	printVersionInfo();
 	FreeImage_Initialise(true);
 	scene = new Scene(glm::vec4(0, 0, 0, 1), (float)1280/(float)720);
 
@@ -337,8 +301,8 @@ void Game::render() {
 }
 
 void Game::update() {
-	updateInput();
 	if (!isPaused) {
+		updateInput();
 		//Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
 		//if (col.isCollision) printf("cube2 > sphere2        %f\n", (float)glfwGetTime());
 		//col = Collision::checkCollision(sphere1->collider, sphere2->collider);
