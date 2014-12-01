@@ -5,7 +5,7 @@ using namespace lynx;
 Plane::Plane() {}
 
 Plane::Plane(glm::vec3 normal, float distance) {
-	this->normal = normal;
+	this->normal = glm::normalize(normal);
 	this->distance = distance;
 }
 
