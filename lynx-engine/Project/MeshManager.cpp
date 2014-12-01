@@ -2,7 +2,7 @@
 using namespace lynx;
 
 const std::vector<GLfloat> MeshManager::TRIANGLE_VERTICES {
-	// guessed the normals for this
+	// TODO: load this properly. guessed the normals for this
 	-0.0693f, -0.04f,0,		0, 1, 0,	1, 0,		1, 0, 0,
 	0.0693f, -0.04f, 0,		0, 1, 0,	0, 0,		0, 1, 0,
 	0, 0.08f, 0,			0, 1, 0,	0.5f, 1,	0, 0, 1
@@ -12,8 +12,8 @@ const std::vector<GLuint> MeshManager::TRIANGLE_ELEMENTS {
 	0, 1, 2
 };
 
-const std::vector<GLfloat> MeshManager::QUAD_VERTICES{
-	// guessed the normals for this
+const std::vector<GLfloat> MeshManager::QUAD_VERTICES {
+	// TODO: load this properly. guessed the normals for this
 	-1, 1, 0,		0, 1, 0,		0, 1,		1, 1, 1,	// top left
 	1, 1, 0,		0, 1, 0,		1, 1,		1, 1, 1,	// top right
 	1, -1, 0,		0, 1, 0,		1, 0,		1, 1, 1,	// bottom right
@@ -109,8 +109,7 @@ void MeshManager::load(std::string meshFilePath) {
 
 	// Create and save the mesh.
 	loadedMeshes[meshFilePath] = new Mesh(vertices, elements);
-	printf("loaded: %s\n", meshFilePath.c_str());
-	//}
+	Log::info("MeshManager> loaded mesh: \"" + meshFilePath + "\"");
 }
 
 
@@ -118,7 +117,7 @@ void MeshManager::create(std::string meshName, std::vector<GLfloat> vertices, st
 	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshName) == loadedMeshes.end()) {
 		loadedMeshes[meshName] = new Mesh(vertices, elements);
-		printf("loaded: %s\n", meshName.c_str());
+		Log::info("MeshManager> loaded mesh: \"" + meshName + "\"");
 	}
 }
 

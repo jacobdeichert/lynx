@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include "Mesh.h"
-#include "FileIO.h"
+#include "Logger.h"
 
 
 namespace lynx {
@@ -22,9 +22,3 @@ namespace lynx {
 		static const std::vector<GLuint> QUAD_ELEMENTS;
 	};
 }
-//const GLfloat PrimitiveObject::PRIMITIVE_VERTICES[NUM_VERTICES_TOTAL][3] = {
-//	// perfect equilateral triangle 
-//	{ -0.0693f, -0.04f, 0 },
-//	{ 0.0693f, -0.04f, 0 },
-//	{ 0.0f, 0.08f, 0 },
-//

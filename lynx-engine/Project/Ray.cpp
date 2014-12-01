@@ -1,6 +1,7 @@
 #include "Ray.h"
+using namespace lynx;
 
-namespace lynx {
+
 
 Ray::Ray() {}
 
@@ -16,6 +17,4 @@ Ray::~Ray() {}
 
 glm::vec3 Ray::getPoint(float distance) {
 	return origin + direction * distance;
-}
-
 }

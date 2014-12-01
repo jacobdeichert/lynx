@@ -110,7 +110,7 @@ void ShaderManager::compileShader(std::string shaderNameID, std::string vertexSh
 
 void ShaderManager::loadShader(std::string shaderNameID, std::string vertexShaderFilePath, std::string fragmentShaderFilePath) {
 	compileShader(shaderNameID, getShaderCode(vertexShaderFilePath), getShaderCode(fragmentShaderFilePath));
-	Log::info("ShaderManager> shader loaded: " + shaderNameID + "(" + vertexShaderFilePath + "," + fragmentShaderFilePath + ")");
+	Log::info("ShaderManager> shader loaded: " + shaderNameID + " (" + vertexShaderFilePath + "," + fragmentShaderFilePath + ")");
 }
 
 
