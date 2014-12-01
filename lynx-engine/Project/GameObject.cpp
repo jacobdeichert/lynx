@@ -41,6 +41,13 @@ void GameObject::addChild(GameObject *_gameObject) {
 }
 
 
+
+void GameObject::update() {
+
+}
+
+
+
 glm::vec3 GameObject::forward() {
 	glm::mat4 view = glm::inverse(model);
 	return -glm::normalize(glm::vec3(view[0][2], view[1][2], view[2][2]));

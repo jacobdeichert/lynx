@@ -24,7 +24,7 @@ namespace lynx {
 		virtual ~Camera();
 
 
-		void update();
+		virtual void update();
 
 		/**
 		 * Override the GameObject's forward vector because in that function,

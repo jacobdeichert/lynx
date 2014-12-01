@@ -39,6 +39,9 @@ namespace lynx {
 		void addChild(GameObject *_gameObject);
 
 
+		virtual void update();
+
+
 		virtual glm::vec3 forward();
 
 
