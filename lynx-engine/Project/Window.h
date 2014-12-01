@@ -14,7 +14,6 @@ namespace lynx {
 
 		void init(int width, int height, std::string title, bool isFullscreen = false);
 	protected:
-		int fpsLimit;
 		bool isFullscreen;
 		std::string title;
 		virtual void onCreate();

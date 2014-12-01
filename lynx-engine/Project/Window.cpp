@@ -13,7 +13,6 @@ Window::~Window() {}
 void Window::init(int width, int height, std::string title, bool isFullscreen) {
 	this->isFullscreen = isFullscreen;
 	this->title = title;
-	fpsLimit = 60;
 	/**
 	* DEFAULT SFML WINDOW SETTINGS
 	* sf::ContextSettings settings;
@@ -49,8 +48,10 @@ void Window::init(int width, int height, std::string title, bool isFullscreen) {
 	 * high as 10 or 15 milliseconds. Don't rely on this feature to implement precise
 	 * timing. Never use both setVerticalSyncEnabled and setFramerateLimit at the same
 	 * time! They would badly mix and make things worse.
+	 *
+	 * Example: setFramerateLimit(60);
 	 */
-	setFramerateLimit(fpsLimit);
+	setVerticalSyncEnabled(true);
 }
 
 void Window::onCreate() {
@@ -58,7 +59,6 @@ void Window::onCreate() {
 	Log::info("window title = " + title);
 	Log::info("window width = " + std::to_string(getSize().x));
 	Log::info("window height = " + std::to_string(getSize().y));
-	Log::info("window fps limit = " + std::to_string(fpsLimit));
 	/*
 	GLEW has a problem with core contexts. It calls
 	glGetString(GL_EXTENSIONS), which causes GL_INVALID_ENUM
