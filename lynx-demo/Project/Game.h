@@ -4,6 +4,7 @@
 #include <Scene.h>
 #include <Collision.h>
 #include <gtc/random.hpp>
+#include <Ray.h>
 using namespace lynx;
 
 class Game : public LynxGame {
@@ -20,6 +21,7 @@ public:
 	GameObject *monkey;
 	GameObject *ground;
 	GameObject *gun;
+	GameObject *rayModel;// TEMP
 	bool isPaused = false;
 	bool isDebugMode = false;
 	

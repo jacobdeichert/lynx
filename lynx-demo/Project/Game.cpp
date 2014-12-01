@@ -148,12 +148,15 @@ void Game::onClose() {
 	quit();
 }
 
+
 void Game::onResize(int width, int height) {
 	glViewport(0, 0, width, height);
 	scene->mainCam->aspectRatio = (float)width / (float)height;
 }
 
+
 void Game::onKeyPressed(KeyEvent key) {}
+
 
 void Game::onKeyReleased(KeyEvent key) {
 	/**
@@ -202,6 +205,77 @@ void Game::onKeyReleased(KeyEvent key) {
 	}*/
 }
 
+
+void  Game::onMouseButtonPressed(MouseButtonEvent mouse) {
+
+	// ENTIRE METHOD IS TEMPPPPP
+	printf("screen x: %u\n", mouse.x);
+	printf("screen y: %u\n", mouse.y);
+	
+	//GLint viewport[4]; //var to hold the viewport info
+	//GLfloat winX, winY, winZ; //variables to hold screen x,y,z coordinates
+
+	////glGetDoublev(GL_MODELVIEW_MATRIX, modelview); //get the modelview info
+	////glGetDoublev(GL_PROJECTION_MATRIX, projection); //get the projection matrix info
+	//glGetIntegerv(GL_VIEWPORT, viewport); //get the viewport info
+
+	//winX = (float)mouse.x;
+	//winY =  (float)viewport[3] - (float)mouse.y;
+	//winZ = 0;
+
+	////get the world coordinates from the screen coordinates
+	//glm::vec3 v = glm::unProject(glm::vec3(winX, winY, winZ), scene->mainCam->view, scene->mainCam->projection, glm::vec4(viewport[0], viewport[1], viewport[2], viewport[3]));
+
+
+	float x = 2.0f * mouse.x / 1280 - 1;
+	float y = -2.0f * mouse.y / 720 + 1;
+	glm::mat4 viewProjectionInverse = glm::inverse(scene->mainCam->projection * scene->mainCam->view);
+
+	glm::vec4 point = glm::vec4(x, y, 0, 1);
+	glm::vec4 v = viewProjectionInverse * point;
+
+	bool didIt = false;
+	//float x = (2.0f * mouse.x) / 1280 - 1.0f;
+	//float y = 1.0f - (2.0f * mouse.y) / 720;
+	//float z = 1.0f;//We don't actually need to specify a z yet, but I put one in (for the craic).
+	//glm::vec3 ray_nds = glm::vec3(x, y, z);
+	//glm::vec4 ray_clip = glm::vec4(ray_nds.x, ray_nds.y, -1.0, 1.0);
+	//glm::vec4 ray_eye = glm::inverse(scene->mainCam->projection) * ray_clip;
+	//ray_eye = glm::vec4(ray_eye.x, ray_eye.y, -1.0, 0.0);
+
+	//glm::vec4 thing = glm::inverse(scene->mainCam->view) * ray_eye;
+	//glm::vec3 ray_wor = glm::vec3(thing);
+	//ray_wor = glm::normalize(ray_wor);// don't forget to normalise the vector at some point
+
+	printf("world x: %f\n", v.x);
+	printf("world y: %f\n", v.y);
+	printf("world z: %f\n", v.z);
+
+	//Ray r = Ray(glm::vec3(v.x, v.y, v.z), scene->mainCam->forward());
+	Ray r = Ray(scene->mainCam->position, scene->mainCam->forward());
+	//didIt = glm::intersectRaySphere(r.origin, r.direction, glm::vec3(0), 5.0f, sphere1->position, glm::vec3(0, 0, 0));
+
+	float dis;
+	didIt = r.intersects(sphere1->position, 0.5f, dis);
+
+
+	if (didIt) {
+		printf("omfg: %f", dis);
+	}
+	else {
+		printf("no");
+	}
+	sphere1->collider->isRender = didIt;
+
+	rayModel->position = r.origin + r.direction;
+}
+
+
+void  Game::onMouseButtonReleased(MouseButtonEvent mouse) {
+
+}
+
+
 void Game::init() {
 	FreeImage_Initialise(true);
 	scene = new Scene(glm::vec4(0, 0, 0, 1), (float)1280/(float)720);
@@ -226,7 +300,6 @@ void Game::init() {
 	monkey = new GameObject(MeshManager::getInstance()->get("models/monkey.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	ground = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/metal.jpg"));
 	gun = new GameObject(MeshManager::getInstance()->get("models/gun.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/gun-1.png"));
-	
 	
 
 	triangle1->position = glm::vec3(0.0f, -0.2f, 0.7f);
@@ -291,7 +364,15 @@ void Game::init() {
 	scene->add(ground);
 	scene->add(gun);
 	scene->add(scene->mainCam);
+
+
+
+	// TEMP
+	rayModel = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
+	scene->add(rayModel);
+	rayModel->scale = glm::vec3(0.01f);
 }
+
 
 void Game::render() {
 	if (!isPaused) {
@@ -300,8 +381,10 @@ void Game::render() {
 	}
 }
 
+
 void Game::update() {
 	if (!isPaused) {
+		// TIPPPPPP: If i don't update camera first, models attached to cam will be lagging behind
 		updateInput();
 		//Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
 		//if (col.isCollision) printf("cube2 > sphere2        %f\n", (float)glfwGetTime());
@@ -315,6 +398,23 @@ void Game::update() {
 		// Parametric Equation (circle)
 		//monkey->position.x = cos((float)glfwGetTime());
 		//monkey->position.y = sin((float)glfwGetTime()) + 10.0f;
+		
+
+
+
+		// TEMP
 		scene->update();
+		bool didIt = false;
+		float dis;
+		Ray r = Ray(scene->mainCam->position, scene->mainCam->forward());
+		didIt = r.intersects(sphere1->position, ((SphereCollider*)sphere1->collider)->radius, dis);
+		if (didIt) {
+			printf("omfg: %f\n", dis);
+		} else {
+			printf("no\n");
+		}
+		sphere1->collider->isRender = didIt;
+		//if (Keyboard::isKeyPressed(Keyboard::F))
+			rayModel->position = r.origin + r.direction;
 	}
 }
