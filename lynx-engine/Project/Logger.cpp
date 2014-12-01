@@ -46,7 +46,7 @@ namespace lynx {
 			 */
 			void write(std::string message, SeverityLevel level) {
 				if (level <= severityLevel) {
-					io.writel(SEVERITY_LEVEL_NAME[level] + std::string("> ") + message);
+					io.writeLine(SEVERITY_LEVEL_NAME[level] + std::string("> ") + message);
 				}
 			}
 		}

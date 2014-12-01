@@ -1,24 +1,24 @@
 #pragma once
 #include <fstream>
 #include <sstream>
-#include <iostream>
-
-/**
- * USAGE
- *
- * Reading a file:
-	std::string fileText;
-	FileIO *fileIn = new FileIO();
-	f->openFileIn("file.txt");
-	while (f->readLine()) {
-		fileText += f->getLine();
-	}
-	f->closeFileIn();
-*/
 
 
 
 namespace lynx {
+	/**
+	 * ==============================
+	 * USAGE
+	 * ==============================
+	 * Reading a file
+	 * ------------------------------
+	 * std::string fileText;
+	 * FileIO fileIn;
+	 * f.openFileIn("file.txt");
+	 * while (f.readLine()) {
+	 *		fileText += f.getLine();
+	 * }
+	 * f.closeFileIn();
+	 */
 	class FileIO {
 	private:
 		/**
@@ -46,7 +46,7 @@ namespace lynx {
 		void closeFileOut();
 		void closeFileIn();
 		void write(std::string s);
-		void writel(std::string s);
+		void writeLine(std::string s);
 		bool readLine();
 		std::string getLine();
 		bool isOutOpen();

@@ -118,7 +118,7 @@ void FileIO::write(std::string s) {
 
 
 
-void FileIO::writel(std::string s) {
+void FileIO::writeLine(std::string s) {
 	if (fileOperationType == FILE_WRITE) {
 		if (isFileOut) {
 			fileOut << s << std::endl;
