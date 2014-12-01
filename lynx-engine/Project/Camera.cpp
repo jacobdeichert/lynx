@@ -63,7 +63,7 @@ void Camera::update() {
 	model = glm::rotate(model, rotation.y, glm::vec3(0, 1, 0));
 	model = glm::rotate(model, rotation.z, glm::vec3(0, 0, 1));*/
 	
-	view = glm::inverse(model);
+	//view = glm::inverse(model);
 
 	
 
