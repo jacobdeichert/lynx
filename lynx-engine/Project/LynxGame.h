@@ -1,5 +1,4 @@
 #pragma once
-// TODO: get rid of printf statements and log to my logmanager instead.
 #include <iostream>
 #include "Window.h"
 #include "Logger.h"

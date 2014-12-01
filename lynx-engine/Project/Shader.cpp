@@ -49,7 +49,6 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 	if (_mesh->activeShaderID != programID) {
 		_mesh->activeShaderID = programID;
 
-		//printf("mesh activated: %s \n", name.c_str());
 		// Bind the mesh VAO and VBO before activating the attributes.
 		glBindVertexArray(_mesh->vao);
 		glBindBuffer(GL_ARRAY_BUFFER, _mesh->vbo);
