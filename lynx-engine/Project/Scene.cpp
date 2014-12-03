@@ -61,25 +61,24 @@ void Scene::renderObjects(std::vector<GameObject*> _objects, glm::mat4 _vp) {
 			
 			// Render the object with the mvp (model, view, projection matrix)
 			ShaderManager::getInstance()->render(i, _vp * i->model);
+		}
 
+		// Render the collider with the mvp if there is one.
+		if (i->collider != nullptr && i->collider->isRender) {
+			// Calculate position and scale for collider model. Ignore rotation.
+			glm::mat4 colliderModel = glm::translate(glm::mat4(), i->position);
 
-			// Render the collider with the mvp if there is one.
-			if (i->collider != nullptr && i->collider->isRender) {
-				// Calculate position and scale for collider model. Ignore rotation.
-				glm::mat4 colliderModel = glm::translate(glm::mat4(), i->position);
-				
-				switch (i->collider->colliderType) {
-				case Collider::COLLIDER_TYPE_SPHERE:
-					sphereColliderVisual->scale = glm::vec3(((SphereCollider*)i->collider)->radius * 2);
-					colliderModel = glm::scale(colliderModel, sphereColliderVisual->scale);
-					ShaderManager::getInstance()->render(sphereColliderVisual, _vp * colliderModel);
-					break;
-				case Collider::COLLIDER_TYPE_AABB:
-					boxColliderVisual->scale = ((BoxCollider*)i->collider)->scale;
-					colliderModel = glm::scale(colliderModel, boxColliderVisual->scale);
-					ShaderManager::getInstance()->render(boxColliderVisual, _vp * colliderModel);
-					break;
-				}
+			switch (i->collider->colliderType) {
+			case Collider::COLLIDER_TYPE_SPHERE:
+				sphereColliderVisual->scale = glm::vec3(((SphereCollider*)i->collider)->radius * 2);
+				colliderModel = glm::scale(colliderModel, sphereColliderVisual->scale);
+				ShaderManager::getInstance()->render(sphereColliderVisual, _vp * colliderModel);
+				break;
+			case Collider::COLLIDER_TYPE_AABB:
+				boxColliderVisual->scale = ((BoxCollider*)i->collider)->scale;
+				colliderModel = glm::scale(colliderModel, boxColliderVisual->scale);
+				ShaderManager::getInstance()->render(boxColliderVisual, _vp * colliderModel);
+				break;
 			}
 		}
 		// Render any children.
