@@ -7,7 +7,7 @@ Camera::Camera() {}
 
 
 Camera::Camera(float aspectRatio) {
-	fov = 45.0f;
+	fov = 70.0f;
 	near = 0.1f;
 	far = 1000.0f;
 	this->aspectRatio = aspectRatio;
