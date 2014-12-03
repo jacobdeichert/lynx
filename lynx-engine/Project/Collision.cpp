@@ -2,8 +2,7 @@
 using namespace lynx;
 
 
-Collision::Collision() {
-}
+Collision::Collision() {}
 
 
 Collision::Collision(bool _isCollision) {
@@ -11,19 +10,13 @@ Collision::Collision(bool _isCollision) {
 }
 
 
-Collision::~Collision() {
-}
-
+Collision::~Collision() {}
 
 
 //
 //bool Collision::checkCollision(std::vector<Collider*> colliders) {
 //	return false;
 //}
-
-
-
-
 
 
 Collision Collision::checkCollision(Collider *collider1, Collider *collider2) {
