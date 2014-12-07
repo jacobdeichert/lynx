@@ -24,32 +24,22 @@ void Game::updateInput() {
 	// QUICK TESTING
 	//======================================================================
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad8)) {
-		sphere2->transform->position += sphere2->transform->forward() * 0.01f;
-		//cube2->position += cube2->forward() * 0.01f;
+		sphere2->transform->translate(sphere2->transform->forward() * 0.01f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad5)) {
-		sphere2->transform->position -= sphere2->transform->forward() * 0.01f;
-		//cube2->position -= cube2->forward() * 0.01f;
+		sphere2->transform->translate(-sphere2->transform->forward() * 0.01f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad6)) {
-		sphere2->transform->position -= sphere2->transform->left() * 0.01f;
-		//cube2->position -= cube2->right() * 0.01f;
-		//square2->scale += glm::vec3(0.1f);
+		sphere2->transform->translate(-sphere2->transform->left() * 0.01f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad4)) {
-		sphere2->transform->position += sphere2->transform->left() * 0.01f;
-		//cube2->position += cube2->right() * 0.01f;
-		//square2->scale += glm::vec3(0.1f);
+		sphere2->transform->translate(sphere2->transform->left() * 0.01f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad9)) {
-		sphere2->transform->position += glm::vec3(0, 0.01f, 0);
-		//cube2->position += glm::vec3(0, 0.01f, 0);
-		//square2->scale += glm::vec3(0.1f);
+		sphere2->transform->translate(glm::vec3(0, 0.01f, 0));
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad3)) {
-		sphere2->transform->position -= glm::vec3(0, 0.01f, 0);
-		//cube2->position -= glm::vec3(0, 0.01f, 0);
-		//square2->scale += glm::vec3(0.1f);
+		sphere2->transform->translate(-glm::vec3(0, 0.01f, 0));
 	}
 
 
@@ -64,26 +54,26 @@ void Game::updateInput() {
 		rotateDir = -3.0f;
 	}
 
-	// rotate X
+	// Rotate X
 	if (Keyboard::isKeyPressed(Keyboard::Key::X)) {
-		square1->transform->rotation.x += rotateDir;
-		square2->transform->rotation.x += rotateDir;
-		cube2->transform->rotation.x += rotateDir;
-		sphere1->transform->rotation.x += rotateDir;
+		square1->transform->rotate(rotateDir, 0, 0);
+		square2->transform->rotate(rotateDir, 0, 0);
+		cube2->transform->rotate(rotateDir, 0, 0);
+		sphere1->transform->rotate(rotateDir, 0, 0);
 	}
-	// rotate Y
+	// Rotate Y
 	if (Keyboard::isKeyPressed(Keyboard::Key::Y)) {
-		square1->transform->rotation.y += rotateDir;
-		square2->transform->rotation.y += rotateDir;
-		cube2->transform->rotation.y += rotateDir;
-		sphere1->transform->rotation.y += rotateDir;
+		square1->transform->rotate(0, rotateDir, 0);
+		square2->transform->rotate(0, rotateDir, 0);
+		cube2->transform->rotate(0, rotateDir, 0);
+		sphere1->transform->rotate(0, rotateDir, 0);
 	}
-	// rotate Z
+	// Rotate Z
 	if (Keyboard::isKeyPressed(Keyboard::Key::Z)) {
-		square1->transform->rotation.z += rotateDir;
-		square2->transform->rotation.z += rotateDir;
-		cube2->transform->rotation.z += rotateDir;
-		sphere1->transform->rotation.z += rotateDir;
+		square1->transform->rotate(0, 0, rotateDir);
+		square2->transform->rotate(0, 0, rotateDir);
+		cube2->transform->rotate(0, 0, rotateDir);
+		sphere1->transform->rotate(0, 0, rotateDir);
 	}
 
 
@@ -98,43 +88,43 @@ void Game::updateInput() {
 	// move the camera forward and backward
 	if (Keyboard::isKeyPressed(Keyboard::Key::W)) {
 		//scene->mainCam->position.z -= 0.1f;
-		scene->mainCam->transform->position += glm::vec3(scene->mainCam->transform->forward().x, 0, scene->mainCam->transform->forward().z) * camSpeed;
+		scene->mainCam->transform->translate(scene->mainCam->transform->forward().x * camSpeed, 0, scene->mainCam->transform->forward().z * camSpeed);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
 		//scene->mainCam->position.z += 0.1f;
-		scene->mainCam->transform->position -= glm::vec3(scene->mainCam->transform->forward().x, 0, scene->mainCam->transform->forward().z) * camSpeed;
+		scene->mainCam->transform->translate(-scene->mainCam->transform->forward().x * camSpeed, 0, -scene->mainCam->transform->forward().z * camSpeed);
 	}
 
 	// move the camera left and right
 	if (Keyboard::isKeyPressed(Keyboard::Key::A)) {
-		scene->mainCam->transform->position += scene->mainCam->transform->left() * camSpeed;
+		scene->mainCam->transform->translate(scene->mainCam->transform->left().x * camSpeed, 0, scene->mainCam->transform->left().z * camSpeed);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
-		scene->mainCam->transform->position -= scene->mainCam->transform->left() * camSpeed;
+		scene->mainCam->transform->translate(-scene->mainCam->transform->left().x * camSpeed, 0, -scene->mainCam->transform->left().z * camSpeed);
 	}
 
 	// move the camera up and down
 	if (Keyboard::isKeyPressed(Keyboard::Key::Add)) {
-		scene->mainCam->transform->position.y += camSpeed;
+		scene->mainCam->transform->translate(0, camSpeed, 0);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Subtract)) {
-		scene->mainCam->transform->position.y -= camSpeed;
+		scene->mainCam->transform->translate(0, -camSpeed, 0);
 	}
 
 	// rotate the camera left and right
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
-		scene->mainCam->transform->rotation.y += camSpeed * 20;
+		scene->mainCam->transform->rotate(0, camSpeed * 20, 0);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
-		scene->mainCam->transform->rotation.y -= camSpeed * 20;
+		scene->mainCam->transform->rotate(0, -camSpeed * 20, 0);
 	}
 
 	// rotate the camera up and down
 	if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
-		scene->mainCam->transform->rotation.x -= camSpeed * 10;
+		scene->mainCam->transform->rotate(-camSpeed * 20, 0, 0);
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
-		scene->mainCam->transform->rotation.x += camSpeed * 10;
+		scene->mainCam->transform->rotate(camSpeed * 20, 0, 0);
 	}
 }
 
@@ -304,44 +294,44 @@ void Game::init() {
 	castle = new GameObject(MeshManager::getInstance()->get("models/castle.ply"), ShaderManager::getInstance()->getShader("color"));
 
 
-	triangle1->transform->position = glm::vec3(0.0f, -0.2f, 0.7f);
-	triangle1->transform->scale = glm::vec3(8);
-	triangle1->transform->rotation = glm::vec3(0, 90, 0);
+	triangle1->transform->setPosition(0.0f, -0.2f, 0.7f);
+	triangle1->transform->setScale(8);
+	triangle1->transform->setRotation(0, 90, 0);
 
-	square1->transform->position = glm::vec3(-0.9f, 0, 2.0f);
-	square1->transform->scale = glm::vec3(0.4f);
+	square1->transform->setPosition(-0.9f, 0, 2.0f);
+	square1->transform->setScale(0.4f);
 
-	square2->transform->position = glm::vec3(0.8f, 0.1f, 2.0f);
-	square2->transform->scale = glm::vec3(0.4f);
+	square2->transform->setPosition(0.8f, 0.1f, 2.0f);
+	square2->transform->setScale(0.4f);
 
-	cube1->transform->position = glm::vec3(0.5f, -0.3f, -0.95f);
-	cube1->transform->scale = glm::vec3(0.06f, 0.3f, 0.06f);
-	cube1->transform->rotation = glm::vec3(90, 0, 0);
+	cube1->transform->setPosition(0.5f, -0.3f, -0.95f);
+	cube1->transform->setScale(0.06f, 0.3f, 0.06f);
+	cube1->transform->setRotation(90, 0, 0);
 
-	cube2->transform->position = glm::vec3(5.75f, 0.4f, -0.3f);
-	cube2->transform->scale = glm::vec3(0.4f);
+	cube2->transform->setPosition(5.75f, 0.4f, -0.3f);
+	cube2->transform->setScale(0.4f);
 	cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->transform->position);
 
-	cube3->transform->position = glm::vec3(5.75f, -0.4f, -0.3f);
-	cube3->transform->scale = glm::vec3(0.5f);
+	cube3->transform->setPosition(5.75f, -0.4f, -0.3f);
+	cube3->transform->setScale(0.5f);
 	cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->transform->position);
 
-	sphere1->transform->position = glm::vec3(5.5f, -0.4f, 1.3f);
+	sphere1->transform->setPosition(5.5f, -0.4f, 1.3f);
 	sphere1->collider = new SphereCollider(0.5f, &sphere1->transform->position);
 
-	sphere2->transform->position = glm::vec3(7.0f, -0.4f, -1.3f);
+	sphere2->transform->setPosition(7.0f, -0.4f, -1.3f);
 	sphere2->collider = new SphereCollider(0.75f, &sphere2->transform->position);
 
-	monkey->transform->position = glm::vec3(0, 20.0f, 0);
-	monkey->transform->rotation = glm::vec3(-90.0f, 0, 0);
+	monkey->transform->setPosition(0, 20.0f, 0);
+	monkey->transform->setRotation(-90.0f, 0, 0);
 
-	ground->transform->position = glm::vec3(0, -8.0f, 0);
-	ground->transform->rotation = glm::vec3(-90, 0, 0);
-	ground->transform->scale = glm::vec3(70);
+	ground->transform->setPosition(0, -8.0f, 0);
+	ground->transform->setRotation(-90, 0, 0);
+	ground->transform->setScale(70);
 
-	gun->transform->position = glm::vec3(0, 20, 0);
+	gun->transform->setPosition(0, 20, 0);
 
-	castle->transform->scale = glm::vec3(100, 100, 100);
+	castle->transform->setScale(100);
 
 
 
@@ -371,7 +361,7 @@ void Game::init() {
 	// TEMP
 	rayModel = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
 	scene->add(rayModel);
-	rayModel->transform->scale = glm::vec3(0.01f);
+	rayModel->transform->setScale(0.01f);
 	plane = new Plane(glm::vec3(0, 0, -1), square1->transform->position.z);
 }
 

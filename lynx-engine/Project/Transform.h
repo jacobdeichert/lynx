@@ -33,10 +33,30 @@ namespace lynx {
 
 
 		glm::vec3 forward();
-
+		
 
 
 		glm::vec3 left();
+
+
+
+		void setPosition(glm::vec3 position);
+		void setPosition(float x, float y, float z);
+		void translate(glm::vec3 translation);
+		void translate(float x, float y, float z);
+
+
+
+		void setRotation(glm::vec3 rotation);
+		void setRotation(float x, float y, float z);
+		void rotate(glm::vec3 rotation);
+		void rotate(float x, float y, float z);
+
+
+
+		void setScale(glm::vec3 scale);
+		void setScale(float xyz);
+		void setScale(float x, float y, float z);
 	};
 }
 
