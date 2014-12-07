@@ -10,8 +10,8 @@ namespace lynx {
 		float far;
 		float fov;
 		float aspectRatio;
-		glm::vec3 direction;
-		glm::vec3 up;
+		//glm::vec3 direction;
+		//glm::vec3 up;
 		glm::mat4 view;
 		glm::mat4 projection;
 
@@ -35,7 +35,7 @@ namespace lynx {
 		 * Virtual is optional here, but it is a good practice to
 		 * remind the developer that it's overriding something.
 		 */
-		virtual glm::vec3 forward();
+		//virtual glm::vec3 forward();
 
 		/**
 		* Override the GameObject's left vector because in that function,
@@ -43,6 +43,6 @@ namespace lynx {
 		* matrix since GameObjects don't have a view matrix. Cameras
 		* have a view matrix, so it saves one calculation by overriding.
 		*/
-		virtual glm::vec3 left();
+		//virtual glm::vec3 left();
 	};
 }

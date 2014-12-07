@@ -3,6 +3,7 @@
 #include "Shader.h"
 #include "Texture.h"
 #include "Collider.h"
+#include "Transform.h"
 
 namespace lynx {
 	class GameObject {
@@ -13,15 +14,11 @@ namespace lynx {
 		Texture *texture = nullptr;
 		Collider *collider = nullptr;
 		GLenum drawMode = NULL;
-		GameObject *parent = nullptr;
-		std::vector<GameObject*> children;
-		glm::mat4 model = glm::mat4();
-		glm::vec3 acceleration = glm::vec3(0);
-		glm::vec3 position = glm::vec3(0);
-		glm::vec3 rotation = glm::vec3(0);
-		glm::vec3 scale = glm::vec3(1);
-		glm::vec3 velocity = glm::vec3(0);
 		bool isWireframeMode = false;
+
+		// Start using components...
+		Transform *transform = nullptr;
+
 
 
 		GameObject();
@@ -36,15 +33,8 @@ namespace lynx {
 		virtual ~GameObject();
 
 
-		void addChild(GameObject *_gameObject);
+		virtual void update(glm::mat4 vp);
+		//virtual void render();
 
-
-		virtual void update();
-
-
-		virtual glm::vec3 forward();
-
-
-		virtual glm::vec3 left();
 	};
 }

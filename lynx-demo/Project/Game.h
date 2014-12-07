@@ -22,6 +22,7 @@ public:
 	GameObject *monkey;
 	GameObject *ground;
 	GameObject *gun;
+	GameObject *castle;
 	bool isPaused = false;
 	bool isDebugMode = false;
 

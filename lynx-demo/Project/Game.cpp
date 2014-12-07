@@ -24,30 +24,30 @@ void Game::updateInput() {
 	// QUICK TESTING
 	//======================================================================
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad8)) {
-		sphere2->position += sphere2->forward() * 0.01f;
+		sphere2->transform->position += sphere2->transform->forward() * 0.01f;
 		//cube2->position += cube2->forward() * 0.01f;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad5)) {
-		sphere2->position -= sphere2->forward() * 0.01f;
+		sphere2->transform->position -= sphere2->transform->forward() * 0.01f;
 		//cube2->position -= cube2->forward() * 0.01f;
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad6)) {
-		sphere2->position -= sphere2->left() * 0.01f;
+		sphere2->transform->position -= sphere2->transform->left() * 0.01f;
 		//cube2->position -= cube2->right() * 0.01f;
 		//square2->scale += glm::vec3(0.1f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad4)) {
-		sphere2->position += sphere2->left() * 0.01f;
+		sphere2->transform->position += sphere2->transform->left() * 0.01f;
 		//cube2->position += cube2->right() * 0.01f;
 		//square2->scale += glm::vec3(0.1f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad9)) {
-		sphere2->position += glm::vec3(0, 0.01f, 0);
+		sphere2->transform->position += glm::vec3(0, 0.01f, 0);
 		//cube2->position += glm::vec3(0, 0.01f, 0);
 		//square2->scale += glm::vec3(0.1f);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad3)) {
-		sphere2->position -= glm::vec3(0, 0.01f, 0);
+		sphere2->transform->position -= glm::vec3(0, 0.01f, 0);
 		//cube2->position -= glm::vec3(0, 0.01f, 0);
 		//square2->scale += glm::vec3(0.1f);
 	}
@@ -66,24 +66,24 @@ void Game::updateInput() {
 
 	// rotate X
 	if (Keyboard::isKeyPressed(Keyboard::Key::X)) {
-		square1->rotation.x += rotateDir;
-		square2->rotation.x += rotateDir;
-		cube2->rotation.x += rotateDir;
-		sphere1->rotation.x += rotateDir;
+		square1->transform->rotation.x += rotateDir;
+		square2->transform->rotation.x += rotateDir;
+		cube2->transform->rotation.x += rotateDir;
+		sphere1->transform->rotation.x += rotateDir;
 	}
 	// rotate Y
 	if (Keyboard::isKeyPressed(Keyboard::Key::Y)) {
-		square1->rotation.y += rotateDir;
-		square2->rotation.y += rotateDir;
-		cube2->rotation.y += rotateDir;
-		sphere1->rotation.y += rotateDir;
+		square1->transform->rotation.y += rotateDir;
+		square2->transform->rotation.y += rotateDir;
+		cube2->transform->rotation.y += rotateDir;
+		sphere1->transform->rotation.y += rotateDir;
 	}
 	// rotate Z
 	if (Keyboard::isKeyPressed(Keyboard::Key::Z)) {
-		square1->rotation.z += rotateDir;
-		square2->rotation.z += rotateDir;
-		cube2->rotation.z += rotateDir;
-		sphere1->rotation.z += rotateDir;
+		square1->transform->rotation.z += rotateDir;
+		square2->transform->rotation.z += rotateDir;
+		cube2->transform->rotation.z += rotateDir;
+		sphere1->transform->rotation.z += rotateDir;
 	}
 
 
@@ -98,43 +98,43 @@ void Game::updateInput() {
 	// move the camera forward and backward
 	if (Keyboard::isKeyPressed(Keyboard::Key::W)) {
 		//scene->mainCam->position.z -= 0.1f;
-		scene->mainCam->position += glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
+		scene->mainCam->transform->position += glm::vec3(scene->mainCam->transform->forward().x, 0, scene->mainCam->transform->forward().z) * camSpeed;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::S)) {
 		//scene->mainCam->position.z += 0.1f;
-		scene->mainCam->position -= glm::vec3(scene->mainCam->forward().x, 0, scene->mainCam->forward().z) * camSpeed;
+		scene->mainCam->transform->position -= glm::vec3(scene->mainCam->transform->forward().x, 0, scene->mainCam->transform->forward().z) * camSpeed;
 	}
 
 	// move the camera left and right
 	if (Keyboard::isKeyPressed(Keyboard::Key::A)) {
-		scene->mainCam->position += scene->mainCam->left() * camSpeed;
+		scene->mainCam->transform->position += scene->mainCam->transform->left() * camSpeed;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::D)) {
-		scene->mainCam->position -= scene->mainCam->left() * camSpeed;
+		scene->mainCam->transform->position -= scene->mainCam->transform->left() * camSpeed;
 	}
 
 	// move the camera up and down
 	if (Keyboard::isKeyPressed(Keyboard::Key::Add)) {
-		scene->mainCam->position.y += camSpeed;
+		scene->mainCam->transform->position.y += camSpeed;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Subtract)) {
-		scene->mainCam->position.y -= camSpeed;
+		scene->mainCam->transform->position.y -= camSpeed;
 	}
 
 	// rotate the camera left and right
 	if (Keyboard::isKeyPressed(Keyboard::Key::Left)) {
-		scene->mainCam->rotation.y += camSpeed * 20;
+		scene->mainCam->transform->rotation.y += camSpeed * 20;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Right)) {
-		scene->mainCam->rotation.y -= camSpeed * 20;
+		scene->mainCam->transform->rotation.y -= camSpeed * 20;
 	}
 
 	// rotate the camera up and down
 	if (Keyboard::isKeyPressed(Keyboard::Key::Up)) {
-		scene->mainCam->rotation.x -= camSpeed * 10;
+		scene->mainCam->transform->rotation.x -= camSpeed * 10;
 	}
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
-		scene->mainCam->rotation.x += camSpeed * 10;
+		scene->mainCam->transform->rotation.x += camSpeed * 10;
 	}
 }
 
@@ -252,11 +252,11 @@ void  Game::onMouseButtonPressed(MouseButtonEvent mouse) {
 	printf("world z: %f\n", v.z);
 
 	//Ray r = Ray(glm::vec3(v.x, v.y, v.z), scene->mainCam->forward());
-	Ray r = Ray(scene->mainCam->position, scene->mainCam->forward());
+	Ray r = Ray(scene->mainCam->transform->position, scene->mainCam->transform->forward());
 	//didIt = glm::intersectRaySphere(r.origin, r.direction, glm::vec3(0), 5.0f, sphere1->position, glm::vec3(0, 0, 0));
 
 	float dis;
-	didIt = r.intersects(sphere1->position, 0.5f, dis);
+	didIt = r.intersects(sphere1->transform->position, 0.5f, dis);
 
 
 	if (didIt) {
@@ -267,7 +267,7 @@ void  Game::onMouseButtonPressed(MouseButtonEvent mouse) {
 	}
 	sphere1->collider->isRender = didIt;
 
-	rayModel->position = r.origin + r.direction;
+	rayModel->transform->position = r.origin + r.direction;
 }
 
 
@@ -282,7 +282,8 @@ void Game::init() {
 
 
 	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
-	ShaderManager::getInstance()->loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
+	//ShaderManager::getInstance()->loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
+	ShaderManager::getInstance()->loadShader("color", "shaders/color_vert.glsl", "shaders/color_frag.glsl");
 	//shaderManager->loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
 	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
@@ -300,54 +301,57 @@ void Game::init() {
 	monkey = new GameObject(MeshManager::getInstance()->get("models/monkey.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	ground = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/metal.jpg"));
 	gun = new GameObject(MeshManager::getInstance()->get("models/gun.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/gun-1.png"));
-	
+	castle = new GameObject(MeshManager::getInstance()->get("models/castle.ply"), ShaderManager::getInstance()->getShader("color"));
 
-	triangle1->position = glm::vec3(0.0f, -0.2f, 0.7f);
-	triangle1->scale = glm::vec3(8);
-	triangle1->rotation = glm::vec3(0, 90, 0);
 
-	square1->position = glm::vec3(-0.9f, 0, 2.0f);
-	square1->scale = glm::vec3(0.4f);
+	triangle1->transform->position = glm::vec3(0.0f, -0.2f, 0.7f);
+	triangle1->transform->scale = glm::vec3(8);
+	triangle1->transform->rotation = glm::vec3(0, 90, 0);
 
-	square2->position = glm::vec3(0.8f, 0.1f, 2.0f);
-	square2->scale = glm::vec3(0.4f);
+	square1->transform->position = glm::vec3(-0.9f, 0, 2.0f);
+	square1->transform->scale = glm::vec3(0.4f);
 
-	cube1->position = glm::vec3(0.5f, -0.3f, -0.95f);
-	cube1->scale = glm::vec3(0.06f, 0.3f, 0.06f);
-	cube1->rotation = glm::vec3(90, 0, 0);
+	square2->transform->position = glm::vec3(0.8f, 0.1f, 2.0f);
+	square2->transform->scale = glm::vec3(0.4f);
 
-	cube2->position = glm::vec3(5.75f, 0.4f, -0.3f);
-	cube2->scale = glm::vec3(0.4f);
-	cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->position);
+	cube1->transform->position = glm::vec3(0.5f, -0.3f, -0.95f);
+	cube1->transform->scale = glm::vec3(0.06f, 0.3f, 0.06f);
+	cube1->transform->rotation = glm::vec3(90, 0, 0);
 
-	cube3->position = glm::vec3(5.75f, -0.4f, -0.3f);
-	cube3->scale = glm::vec3(0.5f);
-	cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->position);
+	cube2->transform->position = glm::vec3(5.75f, 0.4f, -0.3f);
+	cube2->transform->scale = glm::vec3(0.4f);
+	cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->transform->position);
 
-	sphere1->position = glm::vec3(5.5f, -0.4f, 1.3f);
-	sphere1->collider = new SphereCollider(0.5f, &sphere1->position);
+	cube3->transform->position = glm::vec3(5.75f, -0.4f, -0.3f);
+	cube3->transform->scale = glm::vec3(0.5f);
+	cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->transform->position);
 
-	sphere2->position = glm::vec3(7.0f, -0.4f, -1.3f);
-	sphere2->collider = new SphereCollider(0.75f, &sphere2->position);
+	sphere1->transform->position = glm::vec3(5.5f, -0.4f, 1.3f);
+	sphere1->collider = new SphereCollider(0.5f, &sphere1->transform->position);
 
-	monkey->position = glm::vec3(0, 20.0f, 0);
-	monkey->rotation = glm::vec3(-90.0f, 0, 0);
+	sphere2->transform->position = glm::vec3(7.0f, -0.4f, -1.3f);
+	sphere2->collider = new SphereCollider(0.75f, &sphere2->transform->position);
 
-	ground->position = glm::vec3(0, -8.0f, 0);
-	ground->rotation = glm::vec3(-90, 0, 0);
-	ground->scale = glm::vec3(70);
+	monkey->transform->position = glm::vec3(0, 20.0f, 0);
+	monkey->transform->rotation = glm::vec3(-90.0f, 0, 0);
 
-	gun->position = glm::vec3(0, 20, 0);
+	ground->transform->position = glm::vec3(0, -8.0f, 0);
+	ground->transform->rotation = glm::vec3(-90, 0, 0);
+	ground->transform->scale = glm::vec3(70);
+
+	gun->transform->position = glm::vec3(0, 20, 0);
+
+	castle->transform->scale = glm::vec3(100, 100, 100);
 
 
 
 	//square1->addChild(cube1);
-	square2->addChild(triangle1);
+	square2->transform->addChild(triangle1->transform);
 	//square1->addChild(scene->mainCam);
-	scene->mainCam->addChild(cube1);
+	scene->mainCam->transform->addChild(cube1->transform);
 
 	// add mag to gun
-	gun->addChild(new GameObject(MeshManager::getInstance()->get("models/mag.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/mag-1.png")));
+	gun->transform->addChild((new GameObject(MeshManager::getInstance()->get("models/mag.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/mag-1.png")))->transform);
 
 
 	// Add objects to the scene.
@@ -360,21 +364,22 @@ void Game::init() {
 	scene->add(monkey);
 	scene->add(ground);
 	scene->add(gun);
+	scene->add(castle);
 	scene->add(scene->mainCam);
 
 
 	// TEMP
 	rayModel = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
 	scene->add(rayModel);
-	rayModel->scale = glm::vec3(0.01f);
-	plane = new Plane(glm::vec3(0, 0, -1), square1->position.z);
+	rayModel->transform->scale = glm::vec3(0.01f);
+	plane = new Plane(glm::vec3(0, 0, -1), square1->transform->position.z);
 }
 
 
 void Game::render() {
 	if (!isPaused) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		scene->render();
+		scene->update();
 	}
 }
 
@@ -383,7 +388,6 @@ void Game::update() {
 	if (!isPaused) {
 		// TIPPPPPP: If i don't update camera first, models attached to cam will be lagging behind
 		updateInput();
-		scene->update();
 		doTest();
 	}
 }
