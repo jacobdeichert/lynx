@@ -46,34 +46,34 @@ void Game::updateInput() {
 	//======================================================================
 	// ROTATE STUFF
 	//======================================================================
-	float rotateDir = 0;
+	float r = 0;
 	if (Keyboard::isKeyPressed(Keyboard::Key::Equal)) {
-		rotateDir = 3.0f;
+		r = 3.0f;
 	} // the minus/dash/underscore key
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Dash)) {
-		rotateDir = -3.0f;
+		r = -3.0f;
 	}
 
 	// Rotate X
 	if (Keyboard::isKeyPressed(Keyboard::Key::X)) {
-		square1->transform->rotate(rotateDir, 0, 0);
-		square2->transform->rotate(rotateDir, 0, 0);
-		cube2->transform->rotate(rotateDir, 0, 0);
-		sphere1->transform->rotate(rotateDir, 0, 0);
+		square1->transform->rotate(r, 0, 0);
+		square2->transform->rotate(r, 0, 0);
+		cube2->transform->rotate(r, 0, 0);
+		sphere1->transform->rotate(r, 0, 0);
 	}
 	// Rotate Y
 	if (Keyboard::isKeyPressed(Keyboard::Key::Y)) {
-		square1->transform->rotate(0, rotateDir, 0);
-		square2->transform->rotate(0, rotateDir, 0);
-		cube2->transform->rotate(0, rotateDir, 0);
-		sphere1->transform->rotate(0, rotateDir, 0);
+		square1->transform->rotate(0, r, 0);
+		square2->transform->rotate(0, r, 0);
+		cube2->transform->rotate(0, r, 0);
+		sphere1->transform->rotate(0, r, 0);
 	}
 	// Rotate Z
 	if (Keyboard::isKeyPressed(Keyboard::Key::Z)) {
-		square1->transform->rotate(0, 0, rotateDir);
-		square2->transform->rotate(0, 0, rotateDir);
-		cube2->transform->rotate(0, 0, rotateDir);
-		sphere1->transform->rotate(0, 0, rotateDir);
+		square1->transform->rotate(0, 0, r);
+		square2->transform->rotate(0, 0, r);
+		cube2->transform->rotate(0, 0, r);
+		sphere1->transform->rotate(0, 0, r);
 	}
 
 
