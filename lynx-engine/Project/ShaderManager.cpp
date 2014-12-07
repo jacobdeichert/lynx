@@ -1,4 +1,10 @@
 #include "ShaderManager.h"
+#include <GL/glew.h>
+#include <vector>
+#include <fstream>
+#include <glm.hpp>
+#include "Logger.h"
+#include "Shader.h"
 using namespace lynx;
 
 
@@ -117,47 +123,5 @@ void ShaderManager::loadShader(std::string shaderNameID, std::string vertexShade
 
 Shader* ShaderManager::getShader(std::string shaderNameID) {
 	return loadedShaders[shaderNameID];
-}
-
-
-
-
-
-void ShaderManager::render(GameObject *_gameObject, glm::mat4 _mvp) {
-	/**
-	 * Activate the shader if it isn't already the current one.
-	 * 
-	 * currentShader == _gameObject->shader results in true if they are the same,
-	 * otherwise false.
-	 */
-	_gameObject->shader->activate(_gameObject->mesh, currentShader == _gameObject->shader);
-
-	// Set this shader as the current shader.
-	currentShader = _gameObject->shader;
-
-	// Update all uniforms in the shader.
-	_gameObject->shader->updateUniforms(_mvp);
-
-	// Bind the VAO.
-	// TODO: make a currentVAO and check if it's already bound.
-	glBindVertexArray(_gameObject->mesh->vao);
-
-	// Bind the texture if there is one.
-	if (_gameObject->texture != nullptr) glBindTexture(GL_TEXTURE_2D, _gameObject->texture->textureID);
-
-	// Activate wireframe mode if it's enabled for this object.
-	if (_gameObject->isWireframeMode) glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
-	// Draw the mesh using the specified draw mode.
-	glDrawElements(_gameObject->drawMode, _gameObject->mesh->numElements, GL_UNSIGNED_INT, (void*)0);
-	
-	// Reactivate fill mode if this game object used wireframe mode.
-	if (_gameObject->isWireframeMode) glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
-
-	// Make sure we disable and unbind everything to prevent rendering issues later.
-	/*
-	glUseProgram(0);
-	glBindVertexArray(0);
-	*/
 }
 

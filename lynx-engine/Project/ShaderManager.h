@@ -1,17 +1,18 @@
 #pragma once
-#include <GL/glew.h>
-#include <string>
-#include <vector>
 #include <map>
-#include <fstream>
 #include <glm.hpp>
-#include "Logger.h"
-#include "GameObject.h"
+#include "components\Graphics.h"
 
 
 namespace lynx {
 	class ShaderManager {
 	public:
+		Shader* currentShader = nullptr;
+		// The camera projection * view.
+		// TODO: move this somewhere better??
+		glm::mat4 vp; 
+
+
 		static ShaderManager* getInstance();
 
 
@@ -27,11 +28,7 @@ namespace lynx {
 		std::string getShaderCode(std::string filePath);
 
 
-		void render(GameObject *_gameObject, glm::mat4 _mvp);
-
-
 	private:
-		Shader* currentShader = nullptr;
 		static ShaderManager* instance;
 		std::map<std::string, Shader*> loadedShaders;
 

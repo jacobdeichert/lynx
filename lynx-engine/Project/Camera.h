@@ -10,12 +10,8 @@ namespace lynx {
 		float far;
 		float fov;
 		float aspectRatio;
-		//glm::vec3 direction;
-		//glm::vec3 up;
 		glm::mat4 view;
 		glm::mat4 projection;
-
-		Camera();
 
 
 		Camera(float aspectRatio);

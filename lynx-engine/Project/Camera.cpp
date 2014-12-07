@@ -2,19 +2,14 @@
 using namespace lynx;
 
 
-Camera::Camera() {}
 
-
-
-Camera::Camera(float aspectRatio) {
+Camera::Camera(float aspectRatio) : GameObject("Main Camera") {
 	fov = 70.0f;
 	near = 0.1f;
 	far = 1000.0f;
 	this->aspectRatio = aspectRatio;
 
-	transform->position = glm::vec3(0, 0, -10.0f); // eye
-	//direction = glm::vec3(0, 0, -1); // center
-	//up = glm::vec3(0, 1, 0);
+	transform->setPosition(0, 0, -4.0f); // eye
 }
 
 

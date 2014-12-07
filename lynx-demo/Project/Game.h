@@ -4,16 +4,17 @@
 #include <Scene.h>
 #include <Collision.h>
 #include <gtc/random.hpp>
-#include <Ray.h>
-#include <Plane.h>
+//#include <Ray.h>
+//#include <Plane.h>
+#include <ShaderManager.h>
 using namespace lynx;
 
 class Game : public LynxGame {
 public:
 	Scene *scene;
-	GameObject *triangle1;
-	GameObject *square1;
-	GameObject *square2;
+	//GameObject *triangle1;
+	//GameObject *square1;
+	//GameObject *square2;
 	GameObject *cube1;
 	GameObject *cube2;
 	GameObject *cube3;
@@ -26,8 +27,8 @@ public:
 	bool isPaused = false;
 	bool isDebugMode = false;
 
-	GameObject *rayModel;// TEMP
-	Plane* plane;
+	//GameObject *rayModel;// TEMP
+	//Plane* plane;
 	void doTest();
 	
 

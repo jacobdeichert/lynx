@@ -1,4 +1,6 @@
 #include "Scene.h"
+#include "ShaderManager.h"
+#include "BoxCollider.h"
 using namespace lynx;
 
 
@@ -32,12 +34,11 @@ void Scene::add(GameObject *_gameObject) {
 void Scene::update() {
 	mainCam->update();
 
-	// Calculate this once instead of inside the loop.
-	glm::mat4 vp = mainCam->projection * mainCam->view;
+	ShaderManager::getInstance()->vp = mainCam->projection * mainCam->view;
 
 	// Render all the scene objects.
 	// Cool C++11 way to loop through all objects in a vector.
 	for (auto &i : sceneObjects) {
-		i->update(vp);
+		i->update();
 	}
 }

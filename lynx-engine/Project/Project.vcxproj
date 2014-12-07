@@ -15,8 +15,10 @@
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Collision.cpp" />
-    <ClCompile Include="Component.cpp" />
+    <ClCompile Include="Components\Component.cpp" />
+    <ClCompile Include="Components\Transform.cpp" />
     <ClCompile Include="FileIO.cpp" />
+    <ClCompile Include="components\Graphics.cpp" />
     <ClCompile Include="LynxGame.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Logger.cpp" />
@@ -30,7 +32,6 @@
     <ClCompile Include="Scene.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="ShaderManager.cpp" />
-    <ClCompile Include="Transform.cpp" />
     <ClCompile Include="Window.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -47,8 +48,10 @@
     <ClInclude Include="Camera.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Collision.h" />
-    <ClInclude Include="Component.h" />
+    <ClInclude Include="Components\Component.h" />
+    <ClInclude Include="Components\Transform.h" />
     <ClInclude Include="FileIO.h" />
+    <ClInclude Include="components\Graphics.h" />
     <ClInclude Include="LynxGame.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Logger.h" />
@@ -62,7 +65,6 @@
     <ClInclude Include="Scene.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="ShaderManager.h" />
-    <ClInclude Include="Transform.h" />
     <ClInclude Include="Window.h" />
   </ItemGroup>
   <ItemGroup>

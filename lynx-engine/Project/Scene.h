@@ -2,8 +2,6 @@
 #include <glm.hpp>
 #include <vector>
 #include "Camera.h"
-#include "ShaderManager.h"
-#include "BoxCollider.h"
 
 
 namespace lynx {

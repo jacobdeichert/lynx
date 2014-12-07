@@ -3,53 +3,57 @@
 using namespace lynx;
 
 
-GameObject::GameObject() {
-	transform = new Transform(this);
+GameObject::GameObject(std::string name) {
+	this->name = name;
 }
 
-GameObject::GameObject(PrimitiveType _primitiveType, Shader *_shader, Texture *_texture) {
-	shader = _shader;
-	texture = _texture;
-	transform = new Transform(this);
+//GameObject::GameObject(Graphics *graphics) {
+	//GameObject();
+	//this->graphics = graphics;
 
-	// Initialize the primitive model
-	if (_primitiveType == PRIMITIVE_TRIANGLE) {
-		mesh = MeshManager::getInstance()->get("PRIMITIVE_TRIANGLE");
-		drawMode = GL_TRIANGLES;
-	}
-	else if (_primitiveType == PRIMITIVE_QUAD) {
-		mesh = MeshManager::getInstance()->get("PRIMITIVE_QUAD");
-		drawMode = GL_TRIANGLE_FAN;
-	}
-}
+	//shader = _shader;
+	//texture = _texture;
 
-GameObject::GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture) {
-	mesh = _mesh;
-	shader = _shader;
-	texture = _texture;
-	drawMode = GL_TRIANGLES;
-	transform = new Transform(this);
-}
+	//// Initialize the primitive model
+	//if (_primitiveType == PRIMITIVE_TRIANGLE) {
+	//	mesh = MeshManager::getInstance()->get("PRIMITIVE_TRIANGLE");
+	//	drawMode = GL_TRIANGLES;
+	//}
+	//else if (_primitiveType == PRIMITIVE_QUAD) {
+	//	mesh = MeshManager::getInstance()->get("PRIMITIVE_QUAD");
+	//	drawMode = GL_TRIANGLE_FAN;
+	//}
+//}
+//
+//GameObject::GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture) {
+//	GameObject();
+//	mesh = _mesh;
+//	shader = _shader;
+//	texture = _texture;
+//}
 
 
 GameObject::~GameObject() {
-	delete mesh;
-	delete shader;
-	delete texture;
 	delete collider;
 	delete transform;
+	delete graphics;
 }
 
 
+void GameObject::addComponent(Component *c) {
+	//printf("%s", typename(c));
+}
 
-void GameObject::update(glm::mat4 vp) {
+
+void GameObject::addComponent(Graphics *g) {
+	//printf("%s", typename(c));
+	graphics = g;
+}
+
+
+void GameObject::update() {
 	transform->update();
-
-	// If there is a mesh (prevents camera model from being updated here).
-	if (mesh != nullptr) {
-		// Render the object with the mvp (model, view, projection matrix)
-		ShaderManager::getInstance()->render(this, vp * transform->model);
-	}
+	if (graphics) graphics->update();
 
 	// Move to a Physics component?
 	// Render the collider with the mvp if there is one.
@@ -73,7 +77,7 @@ void GameObject::update(glm::mat4 vp) {
 
 	// Update any children.
 	for (auto &i : transform->children) {
-		i->gameObject->update(vp);
+		i->gameObject->update();
 	}
 }
 

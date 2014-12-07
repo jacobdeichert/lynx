@@ -1,40 +1,31 @@
 #pragma once
-#include "MeshManager.h"
-#include "Shader.h"
-#include "Texture.h"
 #include "Collider.h"
-#include "Transform.h"
+#include "components/Transform.h"
+#include "components/Graphics.h"
 
 namespace lynx {
 	class GameObject {
 	public:
-		static const enum PrimitiveType { PRIMITIVE_NONE, PRIMITIVE_TRIANGLE, PRIMITIVE_QUAD };
-		Mesh *mesh = nullptr;
-		Shader *shader = nullptr;
-		Texture *texture = nullptr;
+		std::string name;
 		Collider *collider = nullptr;
-		GLenum drawMode = NULL;
-		bool isWireframeMode = false;
 
 		// Start using components...
-		Transform *transform = nullptr;
+		// Transform is always added.
+		Transform *transform = new Transform(this);
+		Graphics *graphics = nullptr;
 
 
 
-		GameObject();
-
-
-		GameObject(PrimitiveType _primitiveType, Shader *_shader, Texture *_texture);
-
-
-		GameObject(Mesh *_mesh, Shader *_shader, Texture *_texture = nullptr);
+		GameObject(std::string name);
 
 
 		virtual ~GameObject();
 
 
-		virtual void update(glm::mat4 vp);
-		//virtual void render();
+		virtual void update();
 
+
+		void addComponent(Component *c);
+		void addComponent(Graphics *g);
 	};
 }
