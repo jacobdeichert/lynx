@@ -79,6 +79,7 @@ void TextureManager::load(std::string _textureFilePath) {
 		colorFormat = GL_BGRA;
 	}
 	// Send the image to OpenGL with the determined color format.
+	// TODO: move this below glGenerateMipmap???? Not sure????
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, colorFormat, GL_UNSIGNED_BYTE, (void*)FreeImage_GetBits(bitmap32));
 	/**
 	 * Mag Filter and min filter are constants that specify the filtering algorithm.
@@ -105,7 +106,7 @@ void TextureManager::load(std::string _textureFilePath) {
 	}
 
 
-	// for testing transparency
+	// TODO: for testing transparency
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	//glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	//glEnable(GL_BLEND);

@@ -32,12 +32,11 @@ void Scene::add(GameObject *_gameObject) {
 
 
 void Scene::update() {
+	// Always update cameras before other objects
+	// so that the vp can be calculated.
 	mainCam->update();
 
-	ShaderManager::getInstance()->vp = mainCam->projection * mainCam->view;
-
 	// Render all the scene objects.
-	// Cool C++11 way to loop through all objects in a vector.
 	for (auto &i : sceneObjects) {
 		i->update();
 	}

@@ -21,6 +21,7 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 	* not the texture object ID!
 	*
 	* This so far only needs to be called once...
+	* TODO: move somewhere else???!?!? Not sure???
 	*/
 	glActiveTexture(GL_TEXTURE0);	// Set the active texture unit.
 	glUniform1i(uniformTexture, 0);	// Bind the first sampler to texture unit 0.

@@ -20,6 +20,14 @@ void Game::quit() {
 }
 
 void Game::updateInput() {
+	//sphere2->transform->translate(sphere2->transform->forward() *  0.01f);
+	//scene->mainCam->transform->translate(scene->mainCam->transform->forward() * 0.01f);
+	//sphere2->transform->translate(sphere2->transform->left() *  0.01f);
+	//scene->mainCam->transform->translate(scene->mainCam->transform->left() * 0.01f);
+	//sphere2->transform->translate(0.01f, 0, 0);
+	//scene->mainCam->transform->translate(0.01f,0, 0);
+	//printf("sphere: %1.2f, %1.2f, %1.2f\n", sphere2->transform->position.x, sphere2->transform->position.y, sphere2->transform->position.z);
+	//printf("cam: %1.2f, %1.2f, %1.2f\n", scene->mainCam->transform->position.x, scene->mainCam->transform->position.y, scene->mainCam->transform->position.z);
 	//======================================================================
 	// QUICK TESTING
 	//======================================================================
@@ -41,7 +49,12 @@ void Game::updateInput() {
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad3)) {
 		sphere2->transform->translate(-glm::vec3(0, 0.01f, 0));
 	}
-
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad7)) {
+		sphere2->transform->rotate(0, -0.1f, 0);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad1)) {
+		sphere2->transform->rotate(0, 0.1f, 0);
+	}
 
 	////======================================================================
 	//// ROTATE STUFF
@@ -280,15 +293,15 @@ void Game::init() {
 
 
 	// Initialize objects.
+	scene->mainCam->transform->rotate(0, 180, 0);
 	//triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
 	//square1 = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/jd.png"));
 	//square2 = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/jd.png"));
 	cube1 = new GameObject("cube1");
 	cube1->addComponent(new Graphics(cube1, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png")));
-	cube1->transform->setPosition(0.5f, -0.3f, -0.95f);
-	cube1->transform->setScale(0.06f, 0.3f, 0.06f);
-	cube1->transform->setRotation(90, 0, 0);
-	scene->add(cube1);
+	cube1->transform->setPosition(-0.3f, -0.2f, 0.4f);
+	cube1->transform->setScale(0.06f, 0.06f, 0.3f);
+	scene->mainCam->transform->addChild(cube1->transform);
 
 
 	cube2 = new GameObject("cube2");
@@ -363,13 +376,11 @@ void Game::init() {
 	//square1->addChild(cube1);
 	//square2->transform->addChild(triangle1->transform);
 	//square1->addChild(scene->mainCam);
-	//scene->mainCam->transform->addChild(cube1->transform);
 
 	// Add objects to the scene.
 	/*scene->add(square1);
 	scene->add(square2);
 	scene->add(ground);*/
-	scene->add(scene->mainCam);
 
 
 
