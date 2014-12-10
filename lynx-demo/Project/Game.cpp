@@ -139,6 +139,10 @@ void Game::updateInput() {
 	else if (Keyboard::isKeyPressed(Keyboard::Key::Down)) {
 		scene->mainCam->transform->rotate(camSpeed * 20, 0, 0);
 	}
+
+
+	cube1->transform->rotate(1, 0, 0);
+	cube2->transform->rotate(2, 0, 0);// TODO: fix bug, rotates in opposite direction to cube1
 }
 
 
@@ -299,8 +303,10 @@ void Game::init() {
 	//square2 = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/jd.png"));
 	cube1 = new GameObject("cube1");
 	cube1->addComponent(new Graphics(cube1, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png")));
-	cube1->transform->setPosition(-0.3f, -0.2f, 0.4f);
-	cube1->transform->setScale(0.06f, 0.06f, 0.3f);
+	//cube1->transform->setPosition(-0.3f, -0.2f, 0.4f);
+	//cube1->transform->setScale(0.06f, 0.06f, 0.3f);
+	cube1->transform->setPosition(0,0,1);
+	cube1->transform->setScale(0.16f);
 	scene->mainCam->transform->addChild(cube1->transform);
 
 
@@ -308,8 +314,9 @@ void Game::init() {
 	cube2->addComponent(new Graphics(cube2, MeshManager::getInstance()->get("models/cube_6_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png")));
 	cube2->transform->setPosition(5.75f, 0.4f, -0.3f);
 	cube2->transform->setScale(0.4f);
-	cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->transform->position);
-	scene->add(cube2);
+	//cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->transform->position);
+	//scene->add(cube2);
+	cube1->transform->addChild(cube2->transform);
 
 
 	cube3 = new GameObject("cube3");
