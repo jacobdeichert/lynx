@@ -26,9 +26,16 @@ void Transform::update() {
 	}
 
 	// Rotate each axis.
-	model = glm::rotate(model, rotation.x, glm::vec3(1, 0, 0));
-	model = glm::rotate(model, rotation.y, glm::vec3(0, 1, 0));
-	model = glm::rotate(model, rotation.z, glm::vec3(0, 0, 1));
+	if (parent != nullptr && parent->gameObject->name == "Main Camera") {
+		model = glm::rotate(model, -rotation.x, glm::vec3(1, 0, 0));
+		model = glm::rotate(model, rotation.y, glm::vec3(0, 1, 0));
+		model = glm::rotate(model, -rotation.z, glm::vec3(0, 0, 1));
+	}
+	else {
+		model = glm::rotate(model, rotation.x, glm::vec3(1, 0, 0));
+		model = glm::rotate(model, rotation.y, glm::vec3(0, 1, 0));
+		model = glm::rotate(model, rotation.z, glm::vec3(0, 0, 1));
+	}
 
 	// Scale the model.
 	model = glm::scale(model, scale);
