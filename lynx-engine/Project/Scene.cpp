@@ -6,6 +6,7 @@ using namespace lynx;
 
 Scene::Scene(glm::vec4 _clearColor, float aspectRatio) {
 	mainCam = new Camera(aspectRatio);
+	add(mainCam); // Add the default camera.
 	clearColor = _clearColor;
 	// Set the clear color.
 	glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
@@ -32,12 +33,16 @@ void Scene::add(GameObject *_gameObject) {
 
 
 void Scene::update() {
-	// Always update cameras before other objects
-	// so that the vp can be calculated.
-	mainCam->update();
-
-	// Render all the scene objects.
+	// Update all the scene objects.
 	for (auto &i : sceneObjects) {
 		i->update();
+	}
+}
+
+
+void Scene::render() {
+	// Render all the scene objects.
+	for (auto &i : sceneObjects) {
+		i->render();
 	}
 }

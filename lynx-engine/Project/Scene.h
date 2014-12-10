@@ -19,6 +19,8 @@ namespace lynx {
 
 		void add(GameObject *_gameObject);
 
+		void render();
+
 		void update();
 	private:
 		//GameObject *sphereColliderVisual = nullptr;

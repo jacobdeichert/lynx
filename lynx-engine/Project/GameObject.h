@@ -23,6 +23,7 @@ namespace lynx {
 
 
 		virtual void update();
+		virtual void render();
 
 
 		void addComponent(Component *c);

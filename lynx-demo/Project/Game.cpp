@@ -403,7 +403,7 @@ void Game::init() {
 void Game::render() {
 	if (!isPaused) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		scene->update();
+		scene->render();
 	}
 }
 
@@ -413,6 +413,7 @@ void Game::update() {
 		// TIPPPPPP: If i don't update camera first, models attached to cam will be lagging behind
 		updateInput();
 		doTest();
+		scene->update();
 	}
 }
 

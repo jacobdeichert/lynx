@@ -53,7 +53,6 @@ void GameObject::addComponent(Graphics *g) {
 
 void GameObject::update() {
 	transform->update();
-	if (graphics) graphics->update();
 
 	// Move to a Physics component?
 	// Render the collider with the mvp if there is one.
@@ -82,3 +81,12 @@ void GameObject::update() {
 }
 
 
+
+void GameObject::render() {
+	// If this has a graphics component, then render it.
+	if (graphics) graphics->update();
+	// Render any children.
+	for (auto &i : transform->children) {
+		i->gameObject->render();
+	}
+}
