@@ -24,8 +24,8 @@ void Game::updateInput() {
 	//scene->mainCam->transform->translate(scene->mainCam->transform->forward() * 0.01f);
 	//sphere2->transform->translate(sphere2->transform->left() *  0.01f);
 	//scene->mainCam->transform->translate(scene->mainCam->transform->left() * 0.01f);
-	//sphere2->transform->translate(0.01f, 0, 0);
-	//scene->mainCam->transform->translate(0.01f,0, 0);
+	sphere2->transform->translate(0, 0, 0.01f);
+	scene->mainCam->transform->translate(0, 0, 0.01f);
 	//printf("sphere: %1.2f, %1.2f, %1.2f\n", sphere2->transform->position.x, sphere2->transform->position.y, sphere2->transform->position.z);
 	//printf("cam: %1.2f, %1.2f, %1.2f\n", scene->mainCam->transform->position.x, scene->mainCam->transform->position.y, scene->mainCam->transform->position.z);
 	//======================================================================
@@ -312,7 +312,7 @@ void Game::init() {
 
 	cube2 = new GameObject("cube2");
 	cube2->addComponent(new Graphics(cube2, MeshManager::getInstance()->get("models/cube_6_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png")));
-	cube2->transform->setPosition(5.75f, 0.4f, -0.3f);
+	cube2->transform->setPosition(2.75f, 0.4f, -0.3f);
 	cube2->transform->setScale(0.4f);
 	//cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->transform->position);
 	//scene->add(cube2);
