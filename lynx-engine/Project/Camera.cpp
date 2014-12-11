@@ -1,16 +1,18 @@
 #include "Camera.h"
+#include "GameObject.h"
 #include "ShaderManager.h"
 using namespace lynx;
 
 
 
-Camera::Camera(float aspectRatio) : GameObject("Main Camera") {
+Camera::Camera(GameObject *gameObject, float aspectRatio, glm::vec4 clearColor) : Component(gameObject) {
 	fov = 60.0f;
 	near = 0.1f;
 	far = 1000.0f;
 	this->aspectRatio = aspectRatio;
-
-	transform->setPosition(0, 0, -4.0f);
+	this->clearColor = clearColor;
+	// Set the clear color.
+	glClearColor(clearColor.r, clearColor.g, clearColor.b, clearColor.a);
 }
 
 
@@ -18,21 +20,16 @@ Camera::~Camera() {}
 
 
 void Camera::update() {
-	transform->update();
-	//GameObject::update();
-	//transform->update();// GOOD
 	// Manipulate the camera just like any other (model) object.
 	// The view is just the inverse of the model.
-	view = glm::inverse(transform->model);
+	view = glm::inverse(gameObject->transform->model);
 
 	// Makes the transform act like a normal transform
 	// instead of backwards like the camera normally is.
 	// Do this after the view has been calculated.
-	transform->model = glm::scale(transform->model, glm::vec3(-transform->scale.x, transform->scale.y, -transform->scale.z));
+	gameObject->transform->model = glm::scale(gameObject->transform->model, glm::vec3(-gameObject->transform->scale.x, gameObject->transform->scale.y, -gameObject->transform->scale.z));
 
-	for (auto &i : transform->children) {
-		i->gameObject->update();
-	}
+	
 	// If the pitch and yaw angles are in degrees,
 	// they need to be converted to radians.
 	//float cosPitch = cos(glm::radians(-transform->rotation.x));

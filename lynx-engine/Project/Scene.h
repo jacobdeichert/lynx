@@ -1,19 +1,17 @@
 #pragma once
 #include <glm.hpp>
 #include <vector>
-#include "Camera.h"
+#include "GameObject.h"
 
 
 namespace lynx {
 	class Scene {
 	public:
-		Camera *mainCam;
+		GameObject *mainCam = nullptr;
 
 		std::vector<GameObject*> sceneObjects;
-
-		glm::vec4 clearColor;
-
-		Scene(glm::vec4 _clearColor, float aspectRatio);
+		
+		Scene(glm::vec4 clearColor, float aspectRatio);
 
 		virtual ~Scene();
 

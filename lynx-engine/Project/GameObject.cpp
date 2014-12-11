@@ -37,6 +37,7 @@ GameObject::~GameObject() {
 	delete collider;
 	delete transform;
 	delete graphics;
+	delete camera;
 }
 
 
@@ -51,9 +52,14 @@ void GameObject::addComponent(Graphics *g) {
 }
 
 
+void GameObject::addComponent(Camera *c) {
+	camera = c;
+}
+
+
 void GameObject::update() {
 	transform->update();
-
+	if (camera) camera->update();
 	// Move to a Physics component?
 	// Render the collider with the mvp if there is one.
 	//if (collider != nullptr && collider->isRender) {

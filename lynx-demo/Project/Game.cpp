@@ -24,8 +24,10 @@ void Game::updateInput() {
 	//scene->mainCam->transform->translate(scene->mainCam->transform->forward() * 0.01f);
 	//sphere2->transform->translate(sphere2->transform->left() *  0.01f);
 	//scene->mainCam->transform->translate(scene->mainCam->transform->left() * 0.01f);
-	sphere2->transform->translate(0, 0, 0.01f);
-	scene->mainCam->transform->translate(0, 0, 0.01f);
+	//sphere2->transform->translate(0, 0, 0.01f);
+	//scene->mainCam->transform->translate(0, 0, 0.01f);
+	//sphere2->transform->translate(0.01f, 0, 0);
+	//scene->mainCam->transform->translate(0.01f, 0, 0);
 	//printf("sphere: %1.2f, %1.2f, %1.2f\n", sphere2->transform->position.x, sphere2->transform->position.y, sphere2->transform->position.z);
 	//printf("cam: %1.2f, %1.2f, %1.2f\n", scene->mainCam->transform->position.x, scene->mainCam->transform->position.y, scene->mainCam->transform->position.z);
 	//======================================================================
@@ -141,8 +143,9 @@ void Game::updateInput() {
 	}
 
 
-	cube1->transform->rotate(1, 0, 0);
-	cube2->transform->rotate(2, 0, 0);// TODO: fix bug, rotates in opposite direction to cube1
+	cube1->transform->rotate(0, 0, 1);
+	cube2->transform->rotate(0, 0, 1);
+	cube3->transform->rotate(0, 0, 1);
 }
 
 
@@ -158,7 +161,7 @@ void Game::onClose() {
 
 void Game::onResize(int width, int height) {
 	glViewport(0, 0, width, height);
-	scene->mainCam->aspectRatio = (float)width / (float)height;
+	scene->mainCam->camera->aspectRatio = (float)width / (float)height;
 }
 
 
@@ -286,6 +289,7 @@ void  Game::onMouseButtonReleased(MouseButtonEvent mouse) {
 void Game::init() {
 	FreeImage_Initialise(true);
 	scene = new Scene(glm::vec4(0, 0, 0, 1), (float)1280/(float)720);
+	scene->mainCam->transform->setPosition(5, 0, -5);
 
 
 	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
@@ -307,6 +311,7 @@ void Game::init() {
 	//cube1->transform->setScale(0.06f, 0.06f, 0.3f);
 	cube1->transform->setPosition(0,0,1);
 	cube1->transform->setScale(0.16f);
+	//scene->add(cube1);
 	scene->mainCam->transform->addChild(cube1->transform);
 
 
@@ -323,7 +328,7 @@ void Game::init() {
 	cube3->addComponent(new Graphics(cube3, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/circle.png")));
 	cube3->transform->setPosition(5.75f, -0.4f, -0.3f);
 	cube3->transform->setScale(0.5f);
-	cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->transform->position);
+	//cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->transform->position);
 	scene->add(cube3);
 
 

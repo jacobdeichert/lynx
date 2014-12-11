@@ -4,13 +4,12 @@
 using namespace lynx;
 
 
-Scene::Scene(glm::vec4 _clearColor, float aspectRatio) {
-	mainCam = new Camera(aspectRatio);
-	add(mainCam); // Add the default camera.
-	clearColor = _clearColor;
-	// Set the clear color.
-	glClearColor(_clearColor.r, _clearColor.g, _clearColor.b, _clearColor.a);
-
+Scene::Scene(glm::vec4 clearColor, float aspectRatio) {
+	// Create and add the default camera to the scene.
+	mainCam = new GameObject("Main Camera");
+	mainCam->addComponent(new Camera(mainCam, aspectRatio, clearColor));
+	add(mainCam);
+	
 	//sphereColliderVisual = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"));
 	//sphereColliderVisual->isWireframeMode = true;
 	//boxColliderVisual = new GameObject(MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"));
