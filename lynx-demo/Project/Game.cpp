@@ -144,7 +144,7 @@ void Game::updateInput() {
 
 
 	cube1->transform->rotate(0, 0, 1);
-	cube2->transform->rotate(0, 0, 1);
+	cube2->transform->rotate(0, 0, 3);
 	cube3->transform->rotate(0, 0, 1);
 }
 

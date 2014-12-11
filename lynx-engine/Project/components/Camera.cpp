@@ -1,6 +1,6 @@
 #include "Camera.h"
-#include "GameObject.h"
-#include "ShaderManager.h"
+#include "../GameObject.h"
+#include "../ShaderManager.h"
 using namespace lynx;
 
 

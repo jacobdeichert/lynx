@@ -1,5 +1,5 @@
 #pragma once
-#include "components/Component.h"
+#include "Component.h"
 #include <gtc/matrix_transform.hpp>
 
 namespace lynx {

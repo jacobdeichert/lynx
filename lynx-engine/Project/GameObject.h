@@ -2,7 +2,7 @@
 #include "Collider.h"
 #include "components/Transform.h"
 #include "components/Graphics.h"
-#include "Camera.h"
+#include "components/Camera.h"
 
 namespace lynx {
 	class GameObject {
