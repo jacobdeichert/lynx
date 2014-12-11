@@ -24,18 +24,13 @@ void Camera::update() {
 	// The view is just the inverse of the model.
 	view = glm::inverse(gameObject->transform->model);
 
-	// Makes the transform act like a normal transform
-	// instead of backwards like the camera normally is.
-	// Do this after the view has been calculated.
-	gameObject->transform->model = glm::scale(gameObject->transform->model, glm::vec3(-gameObject->transform->scale.x, gameObject->transform->scale.y, -gameObject->transform->scale.z));
-
 	
 	// If the pitch and yaw angles are in degrees,
 	// they need to be converted to radians.
-	//float cosPitch = cos(glm::radians(-transform->rotation.x));
-	//float sinPitch = sin(glm::radians(-transform->rotation.x));
-	//float cosYaw = cos(glm::radians(transform->rotation.y));
-	//float sinYaw = sin(glm::radians(transform->rotation.y));
+	//float cosPitch = cos(glm::radians(-gameObject->transform->rotation.x));
+	//float sinPitch = sin(glm::radians(-gameObject->transform->rotation.x));
+	//float cosYaw = cos(glm::radians(gameObject->transform->rotation.y));
+	//float sinYaw = sin(glm::radians(gameObject->transform->rotation.y));
 
 	//glm::vec3 xaxis = { cosYaw, 0, -sinYaw };
 	//glm::vec3 yaxis = { sinYaw * sinPitch, cosPitch, cosYaw * sinPitch };
@@ -46,9 +41,15 @@ void Camera::update() {
 	//	xaxis.x, yaxis.x, zaxis.x, 0,
 	//	xaxis.y, yaxis.y, zaxis.y, 0,
 	//	xaxis.z, yaxis.z, zaxis.z, 0,
-	//	-glm::dot(xaxis, transform->position), -glm::dot(yaxis, transform->position), -glm::dot(zaxis, transform->position), 1
+	//	-glm::dot(xaxis, gameObject->transform->position), -glm::dot(yaxis, gameObject->transform->position), -glm::dot(zaxis, gameObject->transform->position), 1
 	//};
-	//transform->model = glm::inverse(view);
+	//gameObject->transform->model = glm::inverse(view);
+
+
+	// Makes the transform act like a normal transform
+	// instead of backwards like the camera normally is.
+	// Do this after the view has been calculated.
+	gameObject->transform->model = glm::scale(gameObject->transform->model, glm::vec3(-gameObject->transform->scale.x, gameObject->transform->scale.y, -gameObject->transform->scale.z));
 
 
 	projection = glm::perspective(
@@ -59,5 +60,4 @@ void Camera::update() {
 
 
 	ShaderManager::getInstance()->vp = projection * view;
-
 }
