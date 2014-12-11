@@ -18,12 +18,21 @@ Camera::~Camera() {}
 
 
 void Camera::update() {
-	GameObject::update();
+	transform->update();
+	//GameObject::update();
 	//transform->update();// GOOD
 	// Manipulate the camera just like any other (model) object.
 	// The view is just the inverse of the model.
 	view = glm::inverse(transform->model);
 
+	// Makes the transform act like a normal transform
+	// instead of backwards like the camera normally is.
+	// Do this after the view has been calculated.
+	transform->model = glm::scale(transform->model, glm::vec3(-transform->scale.x, transform->scale.y, -transform->scale.z));
+
+	for (auto &i : transform->children) {
+		i->gameObject->update();
+	}
 	// If the pitch and yaw angles are in degrees,
 	// they need to be converted to radians.
 	//float cosPitch = cos(glm::radians(-transform->rotation.x));
