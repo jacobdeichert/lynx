@@ -10,10 +10,14 @@ namespace lynx {
 		std::string name;
 		Collider *collider = nullptr;
 
-		// Start using components...
+
 		// Transform is always added.
 		Transform *transform = new Transform(this);
 		Graphics *graphics = nullptr;
+		/**
+		 * Cameras are simply GameObjects with a
+		 * Camera component.
+		 */
 		Camera *camera = nullptr;
 
 
@@ -24,11 +28,18 @@ namespace lynx {
 
 
 		virtual void update();
+
+
 		virtual void render();
 
 
+		// TODO: Make this method add any component later on?
 		void addComponent(Component *c);
+
+
 		void addComponent(Graphics *g);
+
+
 		void addComponent(Camera *c);
 	};
 }
