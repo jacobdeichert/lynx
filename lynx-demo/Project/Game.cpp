@@ -20,16 +20,6 @@ void Game::quit() {
 }
 
 void Game::updateInput() {
-	//sphere2->transform->translate(sphere2->transform->forward() *  0.01f);
-	//scene->mainCam->transform->translate(scene->mainCam->transform->forward() * 0.01f);
-	//sphere2->transform->translate(sphere2->transform->left() *  0.01f);
-	//scene->mainCam->transform->translate(scene->mainCam->transform->left() * 0.01f);
-	//sphere2->transform->translate(0, 0, 0.01f);
-	//scene->mainCam->transform->translate(0, 0, 0.01f);
-	//sphere2->transform->translate(0.01f, 0, 0);
-	//scene->mainCam->transform->translate(0.01f, 0, 0);
-	//printf("sphere: %1.2f, %1.2f, %1.2f\n", sphere2->transform->position.x, sphere2->transform->position.y, sphere2->transform->position.z);
-	//printf("cam: %1.2f, %1.2f, %1.2f\n", scene->mainCam->transform->position.x, scene->mainCam->transform->position.y, scene->mainCam->transform->position.z);
 	//======================================================================
 	// QUICK TESTING
 	//======================================================================
@@ -58,39 +48,20 @@ void Game::updateInput() {
 		sphere2->transform->rotate(0, 0.1f, 0);
 	}
 
-	////======================================================================
-	//// ROTATE STUFF
-	////======================================================================
-	//float r = 0;
-	//if (Keyboard::isKeyPressed(Keyboard::Key::Equal)) {
-	//	r = 3.0f;
-	//} // the minus/dash/underscore key
-	//else if (Keyboard::isKeyPressed(Keyboard::Key::Dash)) {
-	//	r = -3.0f;
-	//}
-
-	//// Rotate X
-	//if (Keyboard::isKeyPressed(Keyboard::Key::X)) {
-	//	square1->transform->rotate(r, 0, 0);
-	//	square2->transform->rotate(r, 0, 0);
-	//	cube2->transform->rotate(r, 0, 0);
-	//	sphere1->transform->rotate(r, 0, 0);
-	//}
-	//// Rotate Y
-	//if (Keyboard::isKeyPressed(Keyboard::Key::Y)) {
-	//	square1->transform->rotate(0, r, 0);
-	//	square2->transform->rotate(0, r, 0);
-	//	cube2->transform->rotate(0, r, 0);
-	//	sphere1->transform->rotate(0, r, 0);
-	//}
-	//// Rotate Z
-	//if (Keyboard::isKeyPressed(Keyboard::Key::Z)) {
-	//	square1->transform->rotate(0, 0, r);
-	//	square2->transform->rotate(0, 0, r);
-	//	cube2->transform->rotate(0, 0, r);
-	//	sphere1->transform->rotate(0, 0, r);
-	//}
-
+	//sphere2->transform->translate(sphere2->transform->forward() *  0.01f);
+	//scene->mainCam->transform->translate(scene->mainCam->transform->forward() * 0.01f);
+	//sphere2->transform->translate(sphere2->transform->left() *  0.01f);
+	//scene->mainCam->transform->translate(scene->mainCam->transform->left() * 0.01f);
+	//sphere2->transform->translate(0, 0, 0.01f);
+	//scene->mainCam->transform->translate(0, 0, 0.01f);
+	//sphere2->transform->translate(0.01f, 0, 0);
+	//scene->mainCam->transform->translate(0.01f, 0, 0);
+	//scene->mainCam->transform->translate(scene->mainCam->transform->up() * 0.01f);
+	//cube1->transform->translate(cube1->transform->up() * 0.001f);
+	//printf("cube1: %1.2f, %1.2f, %1.2f\n", cube1->transform->position.x, cube1->transform->position.y, cube1->transform->position.z);
+	//printf("sphere: %1.2f, %1.2f, %1.2f\n", sphere2->transform->position.x, sphere2->transform->position.y, sphere2->transform->position.z);
+	//printf("cam: %1.2f, %1.2f, %1.2f\n", scene->mainCam->transform->position.x, scene->mainCam->transform->position.y, scene->mainCam->transform->position.z);
+	
 
 	//======================================================================
 	// CAMERA STUFF
@@ -302,9 +273,7 @@ void Game::init() {
 
 	// Initialize objects.
 	scene->mainCam->transform->rotate(0, 180, 0);
-	//triangle1 = new GameObject(GameObject::PRIMITIVE_TRIANGLE, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png"));
-	//square1 = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/jd.png"));
-	//square2 = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/jd.png"));
+	
 	cube1 = new GameObject("cube1");
 	cube1->addComponent(new Graphics(cube1, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png")));
 	cube1->transform->setPosition(-0.3f, -0.2f, 0.4f);
@@ -363,41 +332,6 @@ void Game::init() {
 	sphere2->transform->setPosition(7.0f, -0.4f, -1.3f);
 	sphere2->collider = new SphereCollider(0.75f, &sphere2->transform->position);
 	scene->add(sphere2);
-	
-	////ground = new GameObject(GameObject::PRIMITIVE_QUAD, ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/metal.jpg"));
-	/*triangle1->transform->setPosition(0.0f, -0.2f, 0.7f);
-	triangle1->transform->setScale(8);
-	triangle1->transform->setRotation(0, 90, 0);
-
-	square1->transform->setPosition(-0.9f, 0, 2.0f);
-	square1->transform->setScale(0.4f);
-
-	square2->transform->setPosition(0.8f, 0.1f, 2.0f);
-	square2->transform->setScale(0.4f);
-	*/
-	
-	/*ground->transform->setPosition(0, -8.0f, 0);
-	ground->transform->setRotation(-90, 0, 0);
-	ground->transform->setScale(70);
-
-	*/
-	//square1->addChild(cube1);
-	//square2->transform->addChild(triangle1->transform);
-	//square1->addChild(scene->mainCam);
-
-	// Add objects to the scene.
-	/*scene->add(square1);
-	scene->add(square2);
-	scene->add(ground);*/
-
-
-
-
-	// TEMP
-	/*rayModel = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png"));
-	scene->add(rayModel);
-	rayModel->transform->setScale(0.01f);
-	plane = new Plane(glm::vec3(0, 0, -1), square1->transform->position.z);*/
 }
 
 
@@ -413,13 +347,13 @@ void Game::update() {
 	if (!isPaused) {
 		// TIPPPPPP: If i don't update camera first, models attached to cam will be lagging behind
 		updateInput();
-		doTest();
 		scene->update();
 	}
 }
 
 
 
+/*
 void Game::doTest() {
 	//scene->mainCam->position.z -= scene->mainCam->forward().z *0.02f;
 	//square2->position.x += 0.02f;
@@ -429,12 +363,12 @@ void Game::doTest() {
 	//printf("pos x: %f\n", square2->position.x);
 	//printf("cam x: %f\n", scene->mainCam->position.x);
 
-	/*Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
+	Collision col = Collision::checkCollision(cube2->collider, sphere2->collider);
 	if (col.isCollision) printf("cube2 > sphere2\n");
 	col = Collision::checkCollision(sphere1->collider, sphere2->collider);
 	if (col.isCollision) printf("sphere1 > sphere2\n");
 	col = Collision::checkCollision(cube3->collider, cube2->collider);
-	if (col.isCollision) printf("cube3 > cube2\n");*/
+	if (col.isCollision) printf("cube3 > cube2\n");
 	
 	
 	// Parametric Equation (spiral)
@@ -446,7 +380,7 @@ void Game::doTest() {
 	//=====================================================================
 	// Check which side of plane point is on.
 	//=====================================================================
-	/*if (plane->dot(scene->mainCam->position) > 0) {
+	if (plane->dot(scene->mainCam->position) > 0) {
 		printf("i'm in front of the plane\n");
 	}
 	else if (plane->dot(scene->mainCam->position) < 0) {
@@ -454,12 +388,12 @@ void Game::doTest() {
 	}
 	else {
 		printf("i'm on the plane!!\n");
-	}*/
+	}
 
 	//=====================================================================
 	// Check if Ray intersects Sphere.
 	//=====================================================================
-	/*bool didIt = false;
+	bool didIt = false;
 	float dis;
 	Ray r = Ray(scene->mainCam->position, scene->mainCam->forward());
 	didIt = r.intersects(sphere1->position, ((SphereCollider*)sphere1->collider)->radius, dis);
@@ -470,5 +404,5 @@ void Game::doTest() {
 		printf("no\n");
 	}
 	sphere1->collider->isRender = didIt;
-	rayModel->position = r.origin + r.direction;*/
-}
+	rayModel->position = r.origin + r.direction;
+}*/
