@@ -15,29 +15,21 @@ namespace lynx {
 		std::vector<Transform*> children;
 
 
-
 		Transform(GameObject *gameObject);
-
 
 
 		virtual ~Transform();
 
 
-
 		virtual void update();
-
 
 
 		void addChild(Transform *transform);
 
 
-
-		glm::vec3 forward();
-		
-
-
 		glm::vec3 left();
-
+		glm::vec3 up();
+		glm::vec3 forward();
 
 
 		void setPosition(glm::vec3 position);
@@ -46,12 +38,10 @@ namespace lynx {
 		void translate(float x, float y, float z);
 
 
-
 		void setRotation(glm::vec3 rotation);
 		void setRotation(float x, float y, float z);
 		void rotate(glm::vec3 rotation);
 		void rotate(float x, float y, float z);
-
 
 
 		void setScale(glm::vec3 scale);

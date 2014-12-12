@@ -36,13 +36,18 @@ void Transform::addChild(Transform *transform) {
 }
 
 
-glm::vec3 Transform::forward() {
-	return glm::normalize(glm::vec3(model[2][0], model[2][1], model[2][2]));
+glm::vec3 Transform::left() {
+	return glm::normalize(glm::vec3(model[0][0], model[0][1], model[0][2]));
 }
 
 
-glm::vec3 Transform::left() {
-	return glm::normalize(glm::vec3(model[0][0], model[0][1], model[0][2]));
+glm::vec3 Transform::up() {
+	return glm::normalize(glm::vec3(model[1][0], model[1][1], model[1][2]));
+}
+
+
+glm::vec3 Transform::forward() {
+	return glm::normalize(glm::vec3(model[2][0], model[2][1], model[2][2]));
 }
 
 
