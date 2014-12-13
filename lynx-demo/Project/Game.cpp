@@ -24,16 +24,20 @@ void Game::updateInput() {
 	// QUICK TESTING
 	//======================================================================
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad8)) {
-		sphere2->transform->translate(sphere2->transform->forward() * 0.01f);
+		//sphere2->transform->translate(sphere2->transform->forward() * 0.01f);
+		cube2->transform->rotate(-1, 0, 0);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad5)) {
-		sphere2->transform->translate(-sphere2->transform->forward() * 0.01f);
-	}
-	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad6)) {
-		sphere2->transform->translate(-sphere2->transform->left() * 0.01f);
+		//sphere2->transform->translate(-sphere2->transform->forward() * 0.01f);
+		cube2->transform->rotate(1, 0, 0);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad4)) {
-		sphere2->transform->translate(sphere2->transform->left() * 0.01f);
+		//sphere2->transform->translate(sphere2->transform->left() * 0.01f);
+		cube2->transform->rotate(0, 1, 0);
+	}
+	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad6)) {
+		//sphere2->transform->translate(-sphere2->transform->left() * 0.01f);
+		cube2->transform->rotate(0, -1, 0);
 	}
 	if (Keyboard::isKeyPressed(Keyboard::Key::Numpad9)) {
 		sphere2->transform->translate(glm::vec3(0, 0.01f, 0));

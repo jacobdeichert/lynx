@@ -27,6 +27,9 @@ namespace lynx {
 		void addChild(Transform *transform);
 
 
+		glm::mat4 anglesToAxes();
+
+
 		glm::vec3 left();
 		glm::vec3 up();
 		glm::vec3 forward();
