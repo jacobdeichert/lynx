@@ -20,34 +20,13 @@ Camera::~Camera() {}
 
 
 void Camera::update() {
-	// Manipulate the camera just like any other (model) object.
+	// Manipulate the camera transfrom just like any other (model) object.
 	// The view is just the inverse of the model.
 	view = glm::inverse(gameObject->transform->model);
 
-	
-	// If the pitch and yaw angles are in degrees,
-	// they need to be converted to radians.
-	//float cosPitch = cos(glm::radians(-gameObject->transform->rotation.x));
-	//float sinPitch = sin(glm::radians(-gameObject->transform->rotation.x));
-	//float cosYaw = cos(glm::radians(gameObject->transform->rotation.y));
-	//float sinYaw = sin(glm::radians(gameObject->transform->rotation.y));
 
-	//glm::vec3 xaxis = { cosYaw, 0, -sinYaw };
-	//glm::vec3 yaxis = { sinYaw * sinPitch, cosPitch, cosYaw * sinPitch };
-	//glm::vec3 zaxis = { sinYaw * cosPitch, -sinPitch, cosPitch * cosYaw };
-
-	//// Create a 4x4 view matrix from the right, up, forward and eye position vectors.
-	//view = {
-	//	xaxis.x, yaxis.x, zaxis.x, 0,
-	//	xaxis.y, yaxis.y, zaxis.y, 0,
-	//	xaxis.z, yaxis.z, zaxis.z, 0,
-	//	-glm::dot(xaxis, gameObject->transform->position), -glm::dot(yaxis, gameObject->transform->position), -glm::dot(zaxis, gameObject->transform->position), 1
-	//};
-	//gameObject->transform->model = glm::inverse(view);
-
-
-	// Makes the transform act like a normal transform
-	// instead of backwards like the camera normally is.
+	// Flip the x and z scale. Makes the transform act like a normal
+	// transform instead of backwards like the camera normally is.
 	// Do this after the view has been calculated.
 	gameObject->transform->model = glm::scale(gameObject->transform->model, glm::vec3(-gameObject->transform->scale.x, gameObject->transform->scale.y, -gameObject->transform->scale.z));
 
