@@ -1,7 +1,6 @@
 #pragma once
 #include <iostream>
 #include "Window.h"
-#include "Logger.h"
 
 namespace lynx {
 	using KeyEvent = sf::Event::KeyEvent;

@@ -17,6 +17,7 @@
     <ClCompile Include="Collision.cpp" />
     <ClCompile Include="Components\Component.cpp" />
     <ClCompile Include="Components\Transform.cpp" />
+    <ClCompile Include="Config.cpp" />
     <ClCompile Include="FileIO.cpp" />
     <ClCompile Include="components\Graphics.cpp" />
     <ClCompile Include="LynxGame.cpp" />
@@ -50,6 +51,7 @@
     <ClInclude Include="Collision.h" />
     <ClInclude Include="Components\Component.h" />
     <ClInclude Include="Components\Transform.h" />
+    <ClInclude Include="Config.h" />
     <ClInclude Include="FileIO.h" />
     <ClInclude Include="components\Graphics.h" />
     <ClInclude Include="LynxGame.h" />
@@ -101,7 +103,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Users\Jacob\stuff\vs-dev\SFML-2.1\include;C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glm;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\include;$(IncludePath)</IncludePath>
+    <IncludePath>C:\Users\Jacob\stuff\vs-dev\rapidjson-master\include;C:\Users\Jacob\stuff\vs-dev\SFML-2.1\include;C:\Users\Jacob\stuff\vs-dev\FreeImage\Dist;C:\Users\Jacob\stuff\vs-dev\glm;C:\Users\Jacob\stuff\vs-dev\glew-1.11.0\include;$(IncludePath)</IncludePath>
     <LibraryPath>$(LibraryPath)</LibraryPath>
     <TargetName>lynx</TargetName>
   </PropertyGroup>

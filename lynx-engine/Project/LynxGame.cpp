@@ -1,4 +1,6 @@
 #include "LynxGame.h"
+#include "Config.h"
+#include "Logger.h"
 using namespace lynx;
 
 
@@ -14,8 +16,9 @@ LynxGame::~LynxGame() {
 
 
 void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, std::string logFilename, bool isFullscreen) {
-	// TODO parse a settings manager
 	Log::init(logFilename);
+	Config::init();
+
 	window.init(windowWidth, windowHeight, windowName, isFullscreen);
 	Log::info("============================================================");
 	Log::info("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
