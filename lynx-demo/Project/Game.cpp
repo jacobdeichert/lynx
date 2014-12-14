@@ -1,4 +1,9 @@
 #include "Game.h"
+#include <ShaderManager.h>
+#include <Collision.h>
+#include <TextureManager.h>
+#include <Config.h>
+#include <gtc/random.hpp>
 
 
 Game::Game() {

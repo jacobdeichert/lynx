@@ -1,12 +1,8 @@
 #pragma once
 #include <LynxGame.h>
-#include <TextureManager.h>
 #include <Scene.h>
-#include <Collision.h>
-#include <gtc/random.hpp>
 //#include <Ray.h>
 //#include <Plane.h>
-#include <ShaderManager.h>
 using namespace lynx;
 
 class Game : public LynxGame {
