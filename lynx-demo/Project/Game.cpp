@@ -2,7 +2,7 @@
 
 
 Game::Game() {
-	setup(1280, 720, "OpenGL Demo", "THE_LOG");
+	setup(1280, 720, "OpenGL Demo");
 	// Check OpenGL error.
 	/*GLenum err;
 	while ((err = glGetError()) != GL_NO_ERROR) {

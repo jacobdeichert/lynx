@@ -15,8 +15,8 @@ LynxGame::~LynxGame() {
 }
 
 
-void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, std::string logFilename, bool isFullscreen) {
-	Log::init(logFilename);
+void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, bool isFullscreen) {
+	Log::init();
 	Config::init();
 
 	window.init(windowWidth, windowHeight, windowName, isFullscreen);

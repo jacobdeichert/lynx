@@ -23,11 +23,10 @@ namespace lynx {
 
 
 		/**
-		 * Set the path for the log file and the severity level of the output.
-		 * @param filename The path to the log file.
+		 * Optionally set severity level of the output.
 		 * @param level The level of severity that will define which messages are sent to the log file.
 		 */
-		void init(std::string filename, SeverityLevel level = SEV_LEVEL_INFO);
+		void init(SeverityLevel level = SEV_LEVEL_INFO);
 		
 		
 		/**

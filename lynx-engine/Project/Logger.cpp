@@ -39,7 +39,7 @@ namespace lynx {
 			/**
 			 * The path to the log file.
 			 */
-			std::string logFilePath;
+			std::string logFilePath = "lynx.log";
 
 			
 			/**
@@ -58,12 +58,11 @@ namespace lynx {
 		// Public
 		//================================================================================================
 
-		void init(std::string filename, SeverityLevel level) {
+		void init(SeverityLevel level) {
 			// Make sure to close the current log file if it's open.
 			if (io.isOutOpen()) io.closeFileOut();
 
-			// Set the settings.
-			logFilePath = filename + ".log";
+			// Set the severity level.
 			severityLevel = level;
 
 			// Open a new file for the logger.
