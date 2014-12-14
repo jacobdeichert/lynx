@@ -21,7 +21,6 @@ FileIO::~FileIO() {
 }
 
 
-
 void FileIO::openFileOut(std::string path) {
 	if (fileOperationType == FILE_NONE) {
 		fileOperationType = FILE_WRITE;
@@ -41,7 +40,6 @@ void FileIO::openFileOut(std::string path) {
 		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
-
 
 
 void FileIO::openFileIn(std::string path) {
@@ -65,7 +63,6 @@ void FileIO::openFileIn(std::string path) {
 }
 
 
-
 void FileIO::closeFileOut() {
 	if (fileOperationType == FILE_WRITE) {
 		if (isFileOut) {
@@ -81,7 +78,6 @@ void FileIO::closeFileOut() {
 		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
-
 
 
 void FileIO::closeFileIn() {
@@ -101,7 +97,6 @@ void FileIO::closeFileIn() {
 }
 
 
-
 void FileIO::write(std::string s) {
 	if (fileOperationType == FILE_WRITE) {
 		if (isFileOut) {
@@ -115,7 +110,6 @@ void FileIO::write(std::string s) {
 		Log::error("FileIO> the current file operation type doesn't support this operation");
 	}
 }
-
 
 
 void FileIO::writeLine(std::string s) {
@@ -134,37 +128,49 @@ void FileIO::writeLine(std::string s) {
 
 
 bool FileIO::readLine() {
+	// If the file operation is in read mode.
 	if (fileOperationType == FILE_READ) {
+		// If file is open.
 		if (isFileIn) {
 			// If there is a line.
 			if (std::getline(fileIn, currentLine)) {
 				currentLine += "\n";
 				return true;
-			} // If we're at the bottom of the file.
+			} // Else we're at the bottom of the file.
 			else {
 				return false;
 			}
-		} // If no file is open.
+		} // Else no file is open.
 		else {
 			Log::error("FileIO> cannot read file because no file is open");
 			return false;
 		}
-	} // If the file operation is not set to reading at the moment.
+	} // Else the file operation is not set to read mode at the moment.
 	else {
 		Log::error("FileIO> the current file operation type doesn't support this operation");
 		return false;
 	}
 }
 
+
 std::string FileIO::getLine() {
 	return currentLine;
 }
 
 
+std::string FileIO::getEntireFile() {
+	std::string fileContents = "";
+	while (readLine()) {
+		fileContents += getLine();
+	}
+	return fileContents;
+}
+
 
 bool FileIO::isOutOpen() {
 	return isFileOut;
 }
+
 
 bool FileIO::isInOpen() {
 	return isFileIn;

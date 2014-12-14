@@ -49,6 +49,7 @@ namespace lynx {
 		void writeLine(std::string s);
 		bool readLine();
 		std::string getLine();
+		std::string getEntireFile();
 		bool isOutOpen();
 		bool isInOpen();
 	};
