@@ -2,9 +2,9 @@
 #include "FileIO.h"
 
 
-/**-------------------------------------
+/**-------------------------------------------------------------------------------------------------
  * Special Global + Anonymous Namespace
- * -------------------------------------
+ * -------------------------------------------------------------------------------------------------
  * This is better than a static class layout apparently. Basically,
  * the first anonymous namespace holds global variables that no one can access except
  * the Log namespace below. This is safer than having private variables in a class
@@ -13,17 +13,20 @@
  */
 namespace lynx {
 	namespace Log {
+		//================================================================================================
+		// Private
+		//================================================================================================
 		namespace {
 			/**
-			* Strings that represent each severity level. They are defined in Logger.cpp.
-			*/
+			 * Strings that represent each severity level. They are defined in Logger.cpp.
+			 */
 			const char* SEVERITY_LEVEL_NAME[6] = { "TRACE", "DEBUG", "FATAL", "ERROR", "WARN", "INFO" };
 
 
 			/**
-			* The current level of severity used to define which log messages
-			* are sent to the log file.
-			*/
+			 * The current level of severity used to define which log messages
+			 * are sent to the log file.
+			 */
 			SeverityLevel severityLevel;
 
 
@@ -51,6 +54,9 @@ namespace lynx {
 			}
 		}
 
+		//================================================================================================
+		// Public
+		//================================================================================================
 
 		void init(std::string filename, SeverityLevel level) {
 			// Make sure to close the current log file if it's open.
