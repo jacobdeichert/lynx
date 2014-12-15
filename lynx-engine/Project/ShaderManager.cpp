@@ -76,7 +76,7 @@ void ShaderManager::compileShader(std::string shaderNameID, std::string vertexSh
 		std::vector<char> VertexShaderErrorMessage(InfoLogLength);
 		glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
 		logMessage = (char*)&VertexShaderErrorMessage[0];
-		if (logMessage != "") Log::error("ShaderManager> vertex shader error message: " + logMessage);
+		if (logMessage != "") Log::error("ShaderManager || vertex shader error message: " + logMessage);
 
 		// Compile fragment shader.
 		char const * FragmentSourcePointer = fragmentShaderCode.c_str();
@@ -89,7 +89,7 @@ void ShaderManager::compileShader(std::string shaderNameID, std::string vertexSh
 		std::vector<char> FragmentShaderErrorMessage(InfoLogLength);
 		glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
 		logMessage = (char*)&FragmentShaderErrorMessage[0];
-		if (logMessage != "") Log::error("ShaderManager> fragment shader error message: " + logMessage);
+		if (logMessage != "") Log::error("ShaderManager || fragment shader error message: " + logMessage);
 
 		// Link the program.
 		GLuint programID = glCreateProgram();
@@ -103,7 +103,7 @@ void ShaderManager::compileShader(std::string shaderNameID, std::string vertexSh
 		std::vector<char> ProgramErrorMessage(glm::max(InfoLogLength, int(1)));
 		glGetProgramInfoLog(programID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
 		logMessage = (char*)&ProgramErrorMessage[0];
-		if (logMessage != "") Log::error("ShaderManager> shader program error message: " + logMessage);
+		if (logMessage != "") Log::error("ShaderManager || shader program error message: " + logMessage);
 
 		glDeleteShader(VertexShaderID);
 		glDeleteShader(FragmentShaderID);
@@ -116,7 +116,7 @@ void ShaderManager::compileShader(std::string shaderNameID, std::string vertexSh
 
 void ShaderManager::loadShader(std::string shaderNameID, std::string vertexShaderFilePath, std::string fragmentShaderFilePath) {
 	compileShader(shaderNameID, getShaderCode(vertexShaderFilePath), getShaderCode(fragmentShaderFilePath));
-	Log::info("ShaderManager> shader loaded: " + shaderNameID + " (" + vertexShaderFilePath + "," + fragmentShaderFilePath + ")");
+	Log::info("ShaderManager || shader loaded: " + shaderNameID + " (" + vertexShaderFilePath + "," + fragmentShaderFilePath + ")");
 }
 
 

@@ -36,7 +36,7 @@ void TextureManager::load(std::string _textureFilePath) {
 	// Determine the image file type.
 	FREE_IMAGE_FORMAT format = FreeImage_GetFIFFromFilename(_textureFilePath.c_str());
 	if (format == FIF_UNKNOWN) {
-		Log::error("TextureManager> unknown file type for texture \"" + _textureFilePath + "\"");
+		Log::error("TextureManager || unknown file type for texture \"" + _textureFilePath + "\"");
 		return;
 	}
 
@@ -44,7 +44,7 @@ void TextureManager::load(std::string _textureFilePath) {
 	// Load the image.
 	FIBITMAP *bitmap = FreeImage_Load(format, _textureFilePath.c_str());
 	if (!bitmap) {
-		Log::error("TextureManager> failed to load texture \"" + _textureFilePath + "\"");
+		Log::error("TextureManager || failed to load texture \"" + _textureFilePath + "\"");
 		return;
 	}
 
@@ -132,7 +132,7 @@ void TextureManager::load(std::string _textureFilePath) {
 	loadedTextures[_textureFilePath] = new Texture(_textureFilePath, textureID);
 
 
-	Log::info("TextureManager> loaded texture: \"" + _textureFilePath + "\"");
+	Log::info("TextureManager || loaded texture: \"" + _textureFilePath + "\"");
 }
 
 

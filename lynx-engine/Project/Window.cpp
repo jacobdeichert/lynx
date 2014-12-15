@@ -58,10 +58,10 @@ void Window::init() {
 }
 
 void Window::onCreate() {
-	Log::info("window initialized");
-	Log::info("window title = " + title);
-	Log::info("window width = " + std::to_string(getSize().x));
-	Log::info("window height = " + std::to_string(getSize().y));
+	Log::info("Window || window initialized");
+	Log::info("Window || title = " + title);
+	Log::info("Window || width = " + std::to_string(getSize().x));
+	Log::info("Window || height = " + std::to_string(getSize().y));
 	/*
 	GLEW has a problem with core contexts. It calls
 	glGetString(GL_EXTENSIONS), which causes GL_INVALID_ENUM
@@ -75,14 +75,14 @@ void Window::onCreate() {
 	GLenum err = glewInit();
 	if (err != GLEW_OK) {
 		//Problem: glewInit failed, something is seriously wrong.
-		Log::fatal("glewInit() failed");
+		Log::fatal("Window || glewInit() failed");
 	}
 
 	// Enable default OpenGL stuff.
 	glEnable(GL_DEPTH_TEST);
-	Log::info("default enabled: GL_DEPTH_TEST");
+	Log::info("Window || default enabled: GL_DEPTH_TEST");
 	//glEnable(GL_CULL_FACE);
 	// Accept fragment if it's closer to the camera than the former one.
 	glDepthFunc(GL_LESS);
-	Log::info("default glDepthFunc: GL_LESS");
+	Log::info("Window || default glDepthFunc: GL_LESS");
 }

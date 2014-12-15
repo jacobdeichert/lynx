@@ -21,32 +21,30 @@ void LynxGame::setup() {
 	Config::init();
 
 	window.init();
-	Log::info("============================================================");
-	Log::info("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
-	Log::info("OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
-	Log::info("OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
-	Log::info("OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
-	Log::info("============================================================");
-	Log::info("begin initializing game");
+	Log::info("LynxGame || OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
+	Log::info("LynxGame || OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
+	Log::info("LynxGame || OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
+	Log::info("LynxGame || OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
+	Log::info("LynxGame || begin initializing game");
 	init();
 	beginLoop();
 }
 
 
 void LynxGame::beginLoop() {
-	Log::info("begin game loop");
+	Log::info("LynxGame || begin game loop");
 	while (window.isOpen()) {
 		// Check all the window's events that were triggered since the last iteration of the loop.
 		sf::Event event;
 		while (window.pollEvent(event)) {
 			switch (event.type) {
 			case sf::Event::Closed:
-				Log::info("window event: closed");
+				Log::info("LynxGame || window event: closed");
 				onClose();
 				shutdown();
 				break;
 			case sf::Event::Resized:
-				Log::info("window event: resized");
+				Log::info("LynxGame || window event: resized");
 				onResize(event.size.width, event.size.height);
 				break;
 			case sf::Event::KeyPressed:
@@ -73,15 +71,15 @@ void LynxGame::beginLoop() {
 
 
 void LynxGame::shutdown() {
-	Log::info("game loop ended");
-	Log::info("begin shutdown");
+	Log::info("LynxGame || game loop ended");
+	Log::info("LynxGame || begin shutdown");
 	if (!hasShutdown) {
 		hasShutdown = true;
 		if (window.isOpen()) {
 			window.close();
-			Log::info("window closed");
+			Log::info("LynxGame || window closed");
 		}
-		Log::info("shutdown complete");
+		Log::info("LynxGame || shutdown complete");
 		Log::deinit();
 		exit(0);
 	}
