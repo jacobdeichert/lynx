@@ -1,4 +1,7 @@
 #include "Window.h"
+#include <GL/glew.h>
+#include "Logger.h"
+#include "Config.h"
 using namespace lynx;
 
 
@@ -10,21 +13,21 @@ Window::~Window() {}
 
 
 
-void Window::init(int width, int height, std::string title, bool isFullscreen) {
-	this->isFullscreen = isFullscreen;
-	this->title = title;
+void Window::init() {
+	this->isFullscreen = false; // TODO: get fullscreen value from config
+	this->title = Config::getString("window.title");
 	/**
-	* DEFAULT SFML WINDOW SETTINGS
-	* sf::ContextSettings settings;
-	* settings.depthBits = 24;
-	* settings.stencilBits = 0;
-	* settings.antialiasingLevel = 0;
-	* settings.majorVersion = 4;
-	* settings.minorVersion = 4;
-	*/	
+	 * DEFAULT SFML WINDOW SETTINGS
+	 * sf::ContextSettings settings;
+	 * settings.depthBits = 24;
+	 * settings.stencilBits = 0;
+	 * settings.antialiasingLevel = 0;
+	 * settings.majorVersion = 4;
+	 * settings.minorVersion = 4;
+	 */	
 	GLuint style = sf::Style::Default;
 	if (isFullscreen) sf::Style::Fullscreen;
-	create(sf::VideoMode(width, height), title.c_str(), style);
+	create(sf::VideoMode(Config::getInt("window.width"), Config::getInt("window.height")), title.c_str(), style);
 	/**
 	 * Sometimes, when your application runs fast, you may notice visual
 	 * artifacts such as tearing. The reason is that your application's

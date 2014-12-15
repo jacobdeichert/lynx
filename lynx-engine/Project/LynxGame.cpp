@@ -1,4 +1,5 @@
 #include "LynxGame.h"
+#include <GL/glew.h>
 #include "Config.h"
 #include "Logger.h"
 using namespace lynx;
@@ -15,11 +16,11 @@ LynxGame::~LynxGame() {
 }
 
 
-void LynxGame::setup(int windowWidth, int windowHeight, std::string windowName, bool isFullscreen) {
+void LynxGame::setup() {
 	Log::init();
 	Config::init();
 
-	window.init(windowWidth, windowHeight, windowName, isFullscreen);
+	window.init();
 	Log::info("============================================================");
 	Log::info("OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
 	Log::info("OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));

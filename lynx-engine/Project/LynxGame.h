@@ -14,7 +14,7 @@ namespace lynx {
 		virtual ~LynxGame();
 
 
-		void setup(int windowWidth, int windowHeight, std::string windowName, bool isFullscreen = false);
+		void setup();
 		void shutdown();
 
 
