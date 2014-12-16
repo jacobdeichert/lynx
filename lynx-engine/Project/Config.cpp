@@ -8,7 +8,8 @@ using namespace lynx;
 
 /**
  * TODO
- * auto create a default config if one doesn't exist
+ * - auto create a default config if one doesn't exist
+ * - create a proper json class and use it inside of here
  */
 
 //================================================================================================
