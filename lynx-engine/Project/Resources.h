@@ -32,14 +32,13 @@ namespace lynx {
 		 * @param filepath The path to the texture file
 		 * @return Returns a pointer to the texture
 		 */
-
 		Texture* getTexture(std::string filepath);
 
 
 		Mesh* getMesh(std::string filepath);
 
 
-
+		void createMesh(std::string meshName, std::vector<GLfloat> vertices, std::vector<GLuint> elements);
 
 	}
 }
