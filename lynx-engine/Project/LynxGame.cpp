@@ -8,6 +8,8 @@ using namespace lynx;
 
 LynxGame::LynxGame() {
 	hasShutdown = false;
+	
+
 }
 
 
@@ -21,12 +23,14 @@ void LynxGame::setup() {
 	Config::init();
 
 	window.init();
+	
 	Log::info("LynxGame || OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
 	Log::info("LynxGame || OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
 	Log::info("LynxGame || OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
 	Log::info("LynxGame || OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
 	Log::info("LynxGame || begin initializing game");
 	init();
+
 	beginLoop();
 }
 
@@ -34,6 +38,11 @@ void LynxGame::setup() {
 void LynxGame::beginLoop() {
 	Log::info("LynxGame || begin game loop");
 	while (window.isOpen()) {
+		GLenum err;
+		while ((err = glGetError()) != GL_NO_ERROR) {
+			std::cout << "OpenGL error: " << err << std::endl;
+		}
+
 		// Check all the window's events that were triggered since the last iteration of the loop.
 		sf::Event event;
 		while (window.pollEvent(event)) {
@@ -61,6 +70,7 @@ void LynxGame::beginLoop() {
 				break;
 			}
 		}
+		
 		update();
 		render();
 		// End the current frame and display its contents on screen (internally swaps the front and back buffers).
