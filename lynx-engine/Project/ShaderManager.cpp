@@ -3,7 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <glm.hpp>
-#include "Logger.h"
+#include "Log.h"
 #include "Shader.h"
 using namespace lynx;
 

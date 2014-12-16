@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include "Mesh.h"
-#include "Logger.h"
+#include "Log.h"
 
 
 namespace lynx {

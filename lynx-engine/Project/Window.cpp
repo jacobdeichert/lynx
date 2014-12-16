@@ -1,6 +1,6 @@
 #include "Window.h"
 #include <GL/glew.h>
-#include "Logger.h"
+#include "Log.h"
 #include "Config.h"
 using namespace lynx;
 

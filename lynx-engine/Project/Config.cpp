@@ -3,7 +3,7 @@
 #include <rapidjson/error/en.h>
 #include <vector>
 #include "FileIO.h"
-#include "Logger.h"
+#include "Log.h"
 using namespace lynx;
 
 /**

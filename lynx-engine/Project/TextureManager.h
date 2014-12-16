@@ -4,7 +4,7 @@
 #include <map>
 #include <FreeImage.h>
 #include "Texture.h"
-#include "Logger.h"
+#include "Log.h"
 
 
 namespace lynx {
