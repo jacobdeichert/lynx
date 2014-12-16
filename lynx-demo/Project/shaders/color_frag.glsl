@@ -1,7 +1,5 @@
 #version 430 core
 
-uniform sampler2D uni_texture;
-
 // Interpolated values from the vertex shaders.
 in vec3 v2f_normal;
 in vec2 v2f_uv;
