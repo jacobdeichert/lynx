@@ -30,7 +30,7 @@ void Graphics::update() {
 		/**
 		 * Activate the shader if it isn't already the current one.
 		 *
-		 * ShaderManager::getInstance()->currentShader == shader results in true if they are the same.
+		 * (ShaderManager::getInstance()->currentShader == shader) results in true if they are the same.
 		 */
 		shader->activate(mesh, ShaderManager::getInstance()->currentShader == shader);
 
