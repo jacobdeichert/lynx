@@ -233,6 +233,7 @@ namespace {
 
 void Resources::init() {
 	FreeImage_Initialise(true);
+	// TODO: load these for use! Else, load them from ply files?
 	//createMesh("PRIMITIVE_TRIANGLE", TRIANGLE_VERTICES, TRIANGLE_ELEMENTS);
 	//createMesh("PRIMITIVE_QUAD", QUAD_VERTICES, QUAD_ELEMENTS);
 }
