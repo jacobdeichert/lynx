@@ -26,7 +26,7 @@ void Window::init() {
 	 * settings.minorVersion = 4;
 	 */	
 	GLuint style = sf::Style::Default;
-	if (isFullscreen) sf::Style::Fullscreen;
+	if (isFullscreen) style = sf::Style::Fullscreen;
 	create(sf::VideoMode(Config::getInt("window.width"), Config::getInt("window.height")), title.c_str(), style);
 	/**
 	 * Sometimes, when your application runs fast, you may notice visual
@@ -60,6 +60,7 @@ void Window::init() {
 void Window::onCreate() {
 	Log::info("Window || window initialized");
 	Log::info("Window || title = " + title);
+	Log::info("Window || fullscreen = " + std::to_string(isFullscreen));
 	Log::info("Window || width = " + std::to_string(getSize().x));
 	Log::info("Window || height = " + std::to_string(getSize().y));
 	/*
