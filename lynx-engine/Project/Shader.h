@@ -31,23 +31,23 @@ namespace lynx {
 		 * TODO: make an array of attributes that the user will set
 		 * when they create a shader.
 		 */
-		GLuint attributePosition;
-		GLuint attributeNormal;
-		GLuint attributeUV;
-		GLuint attributeColor;
+		GLint attributePosition;
+		GLint attributeNormal;
+		GLint attributeUV;
+		GLint attributeColor;
 	private:
 		std::string vertexFile;
 		std::string fragmentFile;
 		GLuint programID;
 
 		/**
-		* Location of uniforms in shader.
-		* uniformMVP: The uni_mvp (model, view, projection) matrix in the shader.
-		* uniformTexture: The uni_texture in the shader.
-		*
-		* TODO: make an array of uniforms that the user will set
-		* when they create a shader.
-		*/
+		 * Location of uniforms in shader.
+		 * uniformMVP: The uni_mvp (model, view, projection) matrix in the shader.
+		 * uniformTexture: The uni_texture in the shader.
+		 *
+		 * TODO: make an array of uniforms that the user will set
+		 * when they create a shader.
+		 */
 		GLint uniformTexture;
 		GLint uniformMVP;
 		std::string name;
