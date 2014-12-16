@@ -1,7 +1,6 @@
 #pragma once
 #include <vector>
 #include <glm.hpp>
-#include "MeshManager.h"
 
 namespace lynx {
 	class Collider {
