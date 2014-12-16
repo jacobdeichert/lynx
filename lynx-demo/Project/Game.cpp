@@ -8,21 +8,19 @@
 
 Game::Game() {
 	setup();
-	// Check OpenGL error.
-	/*GLenum err;
-	while ((err = glGetError()) != GL_NO_ERROR) {
-		std::cout << "OpenGL error: " << err << std::endl;
-	}*/
 }
+
 
 Game::~Game() {
 	quit();
 }
 
+
 void Game::quit() {
 	Log::debug("begin quit");
 	shutdown();
 }
+
 
 void Game::updateInput() {
 	//======================================================================
@@ -128,11 +126,9 @@ void Game::updateInput() {
 	//cube3->transform->rotate(0, 0, 1);
 }
 
-
-
-/*============================================================================
-Overridden methods from LynxGame
-============================================================================*/
+//============================================================================
+// Overridden methods from LynxGame
+//============================================================================
 
 void Game::onClose() {
 	quit();
@@ -273,7 +269,7 @@ void Game::init() {
 
 
 	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
-	ShaderManager::getInstance()->loadShader("color", "shaders/color_vert.glsl", "shaders/color_frag.glsl");
+	//ShaderManager::getInstance()->loadShader("color", "shaders/color_vert.glsl", "shaders/color_frag.glsl");
 	//ShaderManager::getInstance()->loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
 	//shaderManager->loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
 	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
@@ -284,14 +280,14 @@ void Game::init() {
 	scene->mainCam->transform->rotate(0, 180, 0);
 	
 	cube1 = new GameObject("cube1");
-	cube1->addComponent(new Graphics(cube1, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png")));
+	//cube1->addComponent(new Graphics(cube1, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png")));
 	cube1->transform->setPosition(-0.3f, -0.2f, 0.4f);
 	cube1->transform->setScale(0.06f, 0.06f, 0.3f);
 	scene->mainCam->transform->addChild(cube1->transform);
 
 
 	cube2 = new GameObject("cube2");
-	cube2->addComponent(new Graphics(cube2, MeshManager::getInstance()->get("models/cube_6_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png")));
+	//cube2->addComponent(new Graphics(cube2, MeshManager::getInstance()->get("models/cube_6_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/die.png")));
 	cube2->transform->setPosition(2.75f, 0.4f, -0.3f);
 	cube2->transform->setScale(0.4f);
 	//cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->transform->position);
@@ -299,7 +295,7 @@ void Game::init() {
 
 
 	cube3 = new GameObject("cube3");
-	cube3->addComponent(new Graphics(cube3, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/circle.png")));
+	//cube3->addComponent(new Graphics(cube3, MeshManager::getInstance()->get("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/circle.png")));
 	cube3->transform->setPosition(5.75f, -0.4f, -0.3f);
 	cube3->transform->setScale(0.5f);
 	//cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->transform->position);
@@ -307,30 +303,30 @@ void Game::init() {
 
 
 	castle = new GameObject("castle");
-	castle->addComponent(new Graphics(castle, MeshManager::getInstance()->get("models/castle.ply"), ShaderManager::getInstance()->getShader("color")));
+	//castle->addComponent(new Graphics(castle, MeshManager::getInstance()->get("models/castle.ply"), ShaderManager::getInstance()->getShader("texture")));
 	castle->transform->setScale(100);
 	scene->add(castle);
 
 
 	monkey = new GameObject("monkey");
-	monkey->addComponent(new Graphics(monkey, MeshManager::getInstance()->get("models/monkey.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png")));
+	//monkey->addComponent(new Graphics(monkey, MeshManager::getInstance()->get("models/monkey.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/tron.png")));
 	monkey->transform->setPosition(0, 20.0f, 0);
 	monkey->transform->setRotation(-90.0f, 0, 0);
 	scene->add(monkey);
 	
 
 	gun = new GameObject("gun");
-	gun->addComponent(new Graphics(gun, MeshManager::getInstance()->get("models/gun.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/gun-1.png")));
+	//gun->addComponent(new Graphics(gun, MeshManager::getInstance()->get("models/gun.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/gun-1.png")));
 	gun->transform->setPosition(0, 20, 0);
 	scene->add(gun);
 	// add mag to gun
 	GameObject *mag = new GameObject("mag");
-	mag->addComponent(new Graphics(mag, MeshManager::getInstance()->get("models/mag.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/mag-1.png")));
+	//mag->addComponent(new Graphics(mag, MeshManager::getInstance()->get("models/mag.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/mag-1.png")));
 	gun->transform->addChild(mag->transform);
 
 
 	sphere1 = new GameObject("sphere1");
-	sphere1->addComponent(new Graphics(sphere1, MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/purpleBall.png")));
+	//sphere1->addComponent(new Graphics(sphere1, MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), TextureManager::getInstance()->get("textures/purpleBall.png")));
 	sphere1->transform->setPosition(5.5f, -0.4f, 1.3f);
 	sphere1->collider = new SphereCollider(0.5f, &sphere1->transform->position);
 	scene->add(sphere1);
@@ -354,7 +350,6 @@ void Game::render() {
 
 void Game::update() {
 	if (!isPaused) {
-		// TIPPPPPP: If i don't update camera first, models attached to cam will be lagging behind
 		updateInput();
 		scene->update();
 	}
