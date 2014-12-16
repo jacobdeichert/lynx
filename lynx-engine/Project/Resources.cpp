@@ -232,6 +232,7 @@ namespace {
 //================================================================================================
 
 void Resources::init() {
+	FreeImage_Initialise(true);
 	//createMesh("PRIMITIVE_TRIANGLE", TRIANGLE_VERTICES, TRIANGLE_ELEMENTS);
 	//createMesh("PRIMITIVE_QUAD", QUAD_VERTICES, QUAD_ELEMENTS);
 }

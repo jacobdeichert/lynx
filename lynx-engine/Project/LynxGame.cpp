@@ -1,6 +1,7 @@
 #include "LynxGame.h"
 #include <GL/glew.h>
 #include "Config.h"
+#include "Resources.h"
 #include "Log.h"
 using namespace lynx;
 
@@ -21,6 +22,7 @@ LynxGame::~LynxGame() {
 void LynxGame::setup() {
 	Log::init();
 	Config::init();
+	Resources::init();
 
 	window.init();
 	
