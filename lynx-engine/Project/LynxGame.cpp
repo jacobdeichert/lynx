@@ -23,16 +23,9 @@ void LynxGame::setup() {
 	Log::init();
 	Config::init();
 	Resources::init();
-
 	window.init();
-	
-	Log::info("LynxGame || OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
-	Log::info("LynxGame || OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
-	Log::info("LynxGame || OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
-	Log::info("LynxGame || OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
 	Log::info("LynxGame || begin initializing game");
 	init();
-
 	beginLoop();
 }
 

@@ -56,7 +56,7 @@ namespace {
 		// Determine the image file type.
 		FREE_IMAGE_FORMAT format = FreeImage_GetFIFFromFilename(filepath.c_str());
 		if (format == FIF_UNKNOWN) {
-			Log::error("TextureManager || unknown file type for texture \"" + filepath + "\"");
+			Log::error("Resources || unknown file type for texture \"" + filepath + "\"");
 			return;
 		}
 
@@ -64,7 +64,7 @@ namespace {
 		// Load the image.
 		FIBITMAP *bitmap = FreeImage_Load(format, filepath.c_str());
 		if (!bitmap) {
-			Log::error("TextureManager || failed to load texture \"" + filepath + "\"");
+			Log::error("Resources || failed to load texture \"" + filepath + "\"");
 			return;
 		}
 
@@ -154,7 +154,7 @@ namespace {
 		loadedTextures[filepath] = new Texture(filepath, textureID);
 
 
-		Log::info("TextureManager || loaded texture: \"" + filepath + "\"");
+		Log::info("Resources || loaded texture: \"" + filepath + "\"");
 	}
 
 
@@ -222,7 +222,7 @@ namespace {
 
 		// Create and save the mesh.
 		loadedMeshes[filepath] = new Mesh(vertices, elements);
-		Log::info("MeshManager || loaded mesh: \"" + filepath + "\"");
+		Log::info("Resources || loaded mesh: \"" + filepath + "\"");
 	}
 
 }
@@ -260,7 +260,7 @@ void Resources::createMesh(std::string meshName, std::vector<GLfloat> vertices, 
 	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshName) == loadedMeshes.end()) {
 		loadedMeshes[meshName] = new Mesh(vertices, elements);
-		Log::info("MeshManager || loaded mesh: \"" + meshName + "\"");
+		Log::info("Resources || loaded mesh: \"" + meshName + "\"");
 	}
 }
 

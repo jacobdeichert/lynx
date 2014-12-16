@@ -86,4 +86,11 @@ void Window::onCreate() {
 	// Accept fragment if it's closer to the camera than the former one.
 	glDepthFunc(GL_LESS);
 	Log::info("Window || default glDepthFunc: GL_LESS");
+
+
+
+	Log::info("Window || OpenGL Vendor: " + std::string(((char*)glGetString(GL_VENDOR))));
+	Log::info("Window || OpenGL Renderer: " + std::string(((char*)glGetString(GL_RENDERER))));
+	Log::info("Window || OpenGL Version: " + std::string(((char*)glGetString(GL_VERSION))));
+	Log::info("Window || OpenGL Shading Language Version: " + std::string(((char*)glGetString(GL_SHADING_LANGUAGE_VERSION))));
 }
