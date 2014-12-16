@@ -15,7 +15,7 @@ out vec4 v2f_color;
 
 void main() {
     gl_Position = uni_mvp * vec4(in_position, 1);
-	
+
 	// The normal.
 	v2f_normal = in_normal;
 
