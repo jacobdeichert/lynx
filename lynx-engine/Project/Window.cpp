@@ -14,7 +14,7 @@ Window::~Window() {}
 
 
 void Window::init() {
-	this->isFullscreen = false; // TODO: get fullscreen value from config
+	this->isFullscreen = Config::getBool("window.fullscreen");
 	this->title = Config::getString("window.title");
 	/**
 	 * DEFAULT SFML WINDOW SETTINGS

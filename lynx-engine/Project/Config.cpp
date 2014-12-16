@@ -93,7 +93,6 @@ void Config::init() {
 }
 
 
-
 std::string Config::getString(std::string key) {
 	rapidjson::Value::MemberIterator itr;
 	
@@ -120,7 +119,29 @@ float Config::getFloat(std::string key) {
 	rapidjson::Value::MemberIterator itr;
 
 	if (getJsonValue(key, itr) && itr->value.IsDouble()) {
+		return (float)itr->value.GetDouble();
+	}
+
+	return NULL;
+}
+
+
+double Config::getDouble(std::string key) {
+	rapidjson::Value::MemberIterator itr;
+
+	if (getJsonValue(key, itr) && itr->value.IsDouble()) {
 		return itr->value.GetDouble();
+	}
+
+	return NULL;
+}
+
+
+bool Config::getBool(std::string key) {
+	rapidjson::Value::MemberIterator itr;
+
+	if (getJsonValue(key, itr) && itr->value.IsBool()) {
+		return itr->value.GetBool();
 	}
 
 	return NULL;
