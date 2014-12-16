@@ -10,6 +10,7 @@ using namespace lynx;
 
 ShaderManager* ShaderManager::instance = nullptr;
 
+
 ShaderManager::ShaderManager() {
 	std::string debugVertexGLSL = "#version 430 core \n"
 		"uniform mat4 uni_mvp; \n"
@@ -26,16 +27,16 @@ ShaderManager::ShaderManager() {
 	compileShader("LynxEngineDebugShader", debugVertexGLSL, debugFragmentGLSL);
 }
 
+
 ShaderManager::~ShaderManager() {
 	delete instance;
 }
+
 
 ShaderManager* ShaderManager::getInstance() {
 	if (instance == nullptr) instance = new ShaderManager();
 	return instance;
 }
-
-
 
 
 std::string ShaderManager::getShaderCode(std::string filePath) {
@@ -120,8 +121,6 @@ void ShaderManager::loadShader(std::string shaderNameID, std::string vertexShade
 }
 
 
-
 Shader* ShaderManager::getShader(std::string shaderNameID) {
 	return loadedShaders[shaderNameID];
 }
-
