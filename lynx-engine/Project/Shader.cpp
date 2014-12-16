@@ -7,22 +7,42 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 	vertexFile = _vertexFile;
 	fragmentFile = _fragmentFile;
 	programID = _programID;
+
+	// Use the program and get the locations of these uniforms and attributes.
+	glUseProgram(programID);
 	uniformMVP = glGetUniformLocation(programID, "uni_mvp");
 	uniformTexture = glGetUniformLocation(programID, "uni_texture");
 	attributePosition = glGetAttribLocation(programID, "in_position");
 	attributeNormal = glGetAttribLocation(programID, "in_normal");
 	attributeUV = glGetAttribLocation(programID, "in_uv");
 	attributeColor = glGetAttribLocation(programID, "in_color");
-
+	if (uniformMVP < 0) {
+		printf("shader: %s, error: uniformMVP = %u\n", name.c_str(), uniformMVP);
+	}
+	if (uniformTexture < 0) {
+		printf("shader: %s, error: uniformTexture = %u\n", name.c_str(), uniformTexture);
+	}
+	if (attributePosition < 0) {
+		printf("shader: %s, error: attributePosition = %u\n", name.c_str(), attributePosition);
+	}
+	if (attributeNormal < 0) {
+		printf("shader: %s, error: attributeNormal = %u\n", name.c_str(), attributeNormal);
+	}
+	if (attributeUV < 0) {
+		printf("shader: %s, error: attributeUV = %u\n", name.c_str(), attributeUV);
+	}
+	if (attributeColor < 0) {
+		printf("shader: %s, error: attributeColor = %u\n", name.c_str(), attributeColor);
+	}
 
 	/**
-	* Now bind the uniform samplers to the corresponding texture units.
-	* Note that we must bind the uniform samplers to the texture unit,
-	* not the texture object ID!
-	*
-	* This so far only needs to be called once...
-	* TODO: move somewhere else???!?!? Not sure???
-	*/
+	 * Now bind the uniform samplers to the corresponding texture units.
+	 * Note that we must bind the uniform samplers to the texture unit,
+	 * not the texture object ID!
+	 *
+	 * This so far only needs to be called once...
+	 * TODO: move somewhere else???!?!? Not sure???
+	 */
 	glActiveTexture(GL_TEXTURE0);	// Set the active texture unit.
 	glUniform1i(uniformTexture, 0);	// Bind the first sampler to texture unit 0.
 	//glUniform1i(uniformTex1, 1);	// Bind the second sampler to texture unit 1.
@@ -44,9 +64,9 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 	}
 
 	/**
-	* Activate the attributes of the VBO if the mesh hasn't already
-	* had them activated for their shader.
-	*/
+	 * Activate the attributes of the VBO if the mesh hasn't already
+	 * had them activated for their shader.
+	 */
 	if (_mesh->activeShaderID != programID) {
 		_mesh->activeShaderID = programID;
 
