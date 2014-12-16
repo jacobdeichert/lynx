@@ -1,7 +1,7 @@
 #pragma once
 #include <map>
 #include <glm.hpp>
-#include "components\Graphics.h"
+#include "Shader.h"
 
 
 namespace lynx {
