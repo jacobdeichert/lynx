@@ -3,9 +3,14 @@
 
 namespace lynx {
 	/**
-	 * The Logger allows the application to write messages to a specified log
-	 * file. It can be configured to print messages greater than or equal to a specific
-	 * severity level.
+	 * Logger allows the application to write messages to a specified log file. It can be configured to
+	 * print messages greater than or equal to a specific severity level.
+	 *
+	 * This is a special global + anonymous namespace. This is better than a static class layout
+	 * apparently. Basically, the first anonymous namespace holds global variables that no one can
+	 * access except the Log namespace below. This is safer than having private variables in a class
+	 * full of static methods I guess.
+	 * http://stackoverflow.com/questions/9321/how-do-you-create-a-static-class-in-c
 	 */
 	namespace Log {
 		/**
