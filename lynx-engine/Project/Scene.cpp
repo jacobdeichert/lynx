@@ -1,5 +1,4 @@
 #include "Scene.h"
-#include "ShaderManager.h"
 #include "BoxCollider.h"
 using namespace lynx;
 

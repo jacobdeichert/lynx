@@ -1,5 +1,4 @@
 #include "GameObject.h"
-#include "ShaderManager.h"
 using namespace lynx;
 
 

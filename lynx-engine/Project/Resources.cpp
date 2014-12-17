@@ -11,37 +11,30 @@ using namespace lynx;
 
 namespace {
 
-	const std::vector<GLfloat> TRIANGLE_VERTICES {
-		// TODO: load this properly. guessed the normals for this
-		-0.0693f, -0.04f,0,		0, 1, 0,	1, 0,		1, 0, 0,
-		0.0693f, -0.04f, 0,		0, 1, 0,	0, 0,		0, 1, 0,
-		0, 0.08f, 0,			0, 1, 0,	0.5f, 1,	0, 0, 1
-	};
-
-
-	const std::vector<GLuint> TRIANGLE_ELEMENTS {
-		0, 1, 2
-	};
-
-
-	const std::vector<GLfloat> QUAD_VERTICES {
-		// TODO: load this properly. guessed the normals for this
-		-1, 1, 0,		0, 1, 0,		0, 1,		1, 1, 1,	// top left
-		1, 1, 0,		0, 1, 0,		1, 1,		1, 1, 1,	// top right
-		1, -1, 0,		0, 1, 0,		1, 0,		1, 1, 1,	// bottom right
-		-1, -1, 0,		0, 1, 0,		0, 0,		1, 1, 1		// bottom left
-	};
-
-
-	const std::vector<GLuint> QUAD_ELEMENTS {
-		0, 1, 2, 3
-	};
+	//const std::vector<GLfloat> TRIANGLE_VERTICES {
+	//	// TODO: load this properly. guessed the normals for this
+	//	-0.0693f, -0.04f,0,		0, 1, 0,	1, 0,		1, 0, 0,
+	//	0.0693f, -0.04f, 0,		0, 1, 0,	0, 0,		0, 1, 0,
+	//	0, 0.08f, 0,			0, 1, 0,	0.5f, 1,	0, 0, 1
+	//};
+	//const std::vector<GLuint> TRIANGLE_ELEMENTS {
+	//	0, 1, 2
+	//};
+	//const std::vector<GLfloat> QUAD_VERTICES {
+	//	// TODO: load this properly. guessed the normals for this
+	//	-1, 1, 0,		0, 1, 0,		0, 1,		1, 1, 1,	// top left
+	//	1, 1, 0,		0, 1, 0,		1, 1,		1, 1, 1,	// top right
+	//	1, -1, 0,		0, 1, 0,		1, 0,		1, 1, 1,	// bottom right
+	//	-1, -1, 0,		0, 1, 0,		0, 0,		1, 1, 1		// bottom left
+	//};
+	//const std::vector<GLuint> QUAD_ELEMENTS {
+	//	0, 1, 2, 3
+	//};
 
 
 	std::map<std::string, Texture*> loadedTextures;
-
-
 	std::map<std::string, Mesh*> loadedMeshes;
+	std::map<std::string, Shader*> loadedShaders;
 	
 
 	void loadTexture(std::string filepath) {
@@ -225,6 +218,82 @@ namespace {
 		Log::info("Resources || loaded mesh: \"" + filepath + "\"");
 	}
 
+
+	void compileShader(std::string shaderName, std::string vertexFilepath, std::string fragmentFilepath) {
+		std::string vertexCode = "";
+		std::string fragmentCode = "";
+		FileIO io;
+		// Get vertex code.
+		io.openFileIn(vertexFilepath);
+		vertexCode = io.getEntireFile();
+		io.closeFileIn();
+		// Get fragment code.
+		io.openFileIn(fragmentFilepath);
+		fragmentCode = io.getEntireFile();
+		io.closeFileIn();
+
+
+		// Ensure the shader hasn't already been loaded.
+		if (loadedShaders.find(shaderName) == loadedShaders.end()) {
+			std::string logMessage = "";
+
+			// Create the shaders
+			GLuint VertexShaderID = glCreateShader(GL_VERTEX_SHADER);
+			GLuint FragmentShaderID = glCreateShader(GL_FRAGMENT_SHADER);
+
+
+			GLint Result = GL_FALSE;
+			int InfoLogLength;
+
+			// Compile vertex shader.
+			char const * VertexSourcePointer = vertexCode.c_str();
+			glShaderSource(VertexShaderID, 1, &VertexSourcePointer, NULL);
+			glCompileShader(VertexShaderID);
+
+			// Check vertex shader.
+			glGetShaderiv(VertexShaderID, GL_COMPILE_STATUS, &Result);
+			glGetShaderiv(VertexShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+			std::vector<char> VertexShaderErrorMessage(InfoLogLength);
+			glGetShaderInfoLog(VertexShaderID, InfoLogLength, NULL, &VertexShaderErrorMessage[0]);
+			logMessage = (char*)&VertexShaderErrorMessage[0];
+			if (logMessage != "") Log::error("Resources || vertex shader error message: " + logMessage);
+
+			// Compile fragment shader.
+			char const * FragmentSourcePointer = fragmentCode.c_str();
+			glShaderSource(FragmentShaderID, 1, &FragmentSourcePointer, NULL);
+			glCompileShader(FragmentShaderID);
+
+			// Check fragment shader.
+			glGetShaderiv(FragmentShaderID, GL_COMPILE_STATUS, &Result);
+			glGetShaderiv(FragmentShaderID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+			std::vector<char> FragmentShaderErrorMessage(InfoLogLength);
+			glGetShaderInfoLog(FragmentShaderID, InfoLogLength, NULL, &FragmentShaderErrorMessage[0]);
+			logMessage = (char*)&FragmentShaderErrorMessage[0];
+			if (logMessage != "") Log::error("Resources || fragment shader error message: " + logMessage);
+
+			// Link the program.
+			GLuint programID = glCreateProgram();
+			glAttachShader(programID, VertexShaderID);
+			glAttachShader(programID, FragmentShaderID);
+			glLinkProgram(programID);
+
+			// Check the program.
+			glGetProgramiv(programID, GL_LINK_STATUS, &Result);
+			glGetProgramiv(programID, GL_INFO_LOG_LENGTH, &InfoLogLength);
+			std::vector<char> ProgramErrorMessage(glm::max(InfoLogLength, int(1)));
+			glGetProgramInfoLog(programID, InfoLogLength, NULL, &ProgramErrorMessage[0]);
+			logMessage = (char*)&ProgramErrorMessage[0];
+			if (logMessage != "") Log::error("Resources || shader program error message: " + logMessage);
+
+			glDeleteShader(VertexShaderID);
+			glDeleteShader(FragmentShaderID);
+
+			// Add the shader to the loadedShaders list.
+			loadedShaders[shaderName] = new Shader(shaderName, vertexFilepath, fragmentFilepath, programID);
+			Log::info("Resources || loaded shader: " + shaderName + " (" + vertexFilepath + "," + fragmentFilepath + ")");
+		}
+	}
+
 }
 
 //================================================================================================
@@ -232,10 +301,17 @@ namespace {
 //================================================================================================
 
 void Resources::init() {
+	// Initialize FreeImage.
 	FreeImage_Initialise(true);
+	Log::info("Resources || initializing resources");
+
+	// Create a default debug shader.
+	loadShader("LynxEngineDebugShader", "LynxEngine/shaders/debug_vert.glsl", "LynxEngine/shaders/debug_frag.glsl");
+
 	// TODO: load these for use! Else, load them from ply files?
 	//createMesh("PRIMITIVE_TRIANGLE", TRIANGLE_VERTICES, TRIANGLE_ELEMENTS);
 	//createMesh("PRIMITIVE_QUAD", QUAD_VERTICES, QUAD_ELEMENTS);
+	Log::info("Resources || resource initialization complete");
 }
 
 
@@ -256,6 +332,11 @@ Mesh* Resources::getMesh(std::string filepath) {
 }
 
 
+Shader* Resources::getShader(std::string shaderName) {
+	return loadedShaders[shaderName];
+}
+
+
 void Resources::createMesh(std::string meshName, std::vector<GLfloat> vertices, std::vector<GLuint> elements) {
 	// Ensure the mesh hasn't already been loaded.
 	if (loadedMeshes.find(meshName) == loadedMeshes.end()) {
@@ -264,3 +345,10 @@ void Resources::createMesh(std::string meshName, std::vector<GLfloat> vertices, 
 	}
 }
 
+
+void Resources::loadShader(std::string shaderName, std::string vertexFilepath, std::string fragmentFilepath) {
+	// Ensure the shader hasn't already been loaded.
+	if (loadedShaders.find(shaderName) == loadedShaders.end()) {
+		compileShader(shaderName, vertexFilepath, fragmentFilepath);
+	}
+}

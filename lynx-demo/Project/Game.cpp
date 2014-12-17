@@ -1,5 +1,4 @@
 #include "Game.h"
-#include <ShaderManager.h>
 #include <Collision.h>
 #include <Resources.h>
 #include <Config.h>
@@ -182,7 +181,7 @@ void Game::onKeyReleased(KeyEvent key) {
 	//Spawn new cubes.
 	/*if (glfwGetKey(window, GLFW_KEY_SPACE) && !isSpaceKeyDown) {
 	isSpaceKeyDown = true;
-	GameObject *newCube = new GameObject(GameObject::PRIMITIVE_CUBE, shaderManager->getShader("texture"), circleTexture);
+	GameObject *newCube = new GameObject(GameObject::PRIMITIVE_CUBE, Resources::getShader("texture"), circleTexture);
 	newCube->position = scene->mainCam->position + glm::vec3(0, 0, -1);
 	newCube->scale = glm::vec3(0.03f);
 	scene->add(newCube);
@@ -268,11 +267,11 @@ void Game::init() {
 	scene->mainCam->transform->setPosition(5, 0, -5);
 
 
-	ShaderManager::getInstance()->loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
-	ShaderManager::getInstance()->loadShader("color", "shaders/color_vert.glsl", "shaders/color_frag.glsl");
-	//ShaderManager::getInstance()->loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
-	//shaderManager->loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
-	//shaderManager->loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
+	Resources::loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
+	Resources::loadShader("color", "shaders/color_vert.glsl", "shaders/color_frag.glsl");
+	//Resources::loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
+	//Resources::loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
+	//Resources::loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
 
 
@@ -280,14 +279,14 @@ void Game::init() {
 	scene->mainCam->transform->rotate(0, 180, 0);
 	
 	cube1 = new GameObject("cube1");
-	cube1->addComponent(new Graphics(cube1, Resources::getMesh("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/tron.png")));
+	cube1->addComponent(new Graphics(cube1, Resources::getMesh("models/cube_1_face.ply"), Resources::getShader("texture"), Resources::getTexture("textures/tron.png")));
 	cube1->transform->setPosition(-0.3f, -0.2f, 0.4f);
 	cube1->transform->setScale(0.06f, 0.06f, 0.3f);
 	scene->mainCam->transform->addChild(cube1->transform);
 
 
 	cube2 = new GameObject("cube2");
-	cube2->addComponent(new Graphics(cube2, Resources::getMesh("models/cube_6_face.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/die.png")));
+	cube2->addComponent(new Graphics(cube2, Resources::getMesh("models/cube_6_face.ply"), Resources::getShader("texture"), Resources::getTexture("textures/die.png")));
 	cube2->transform->setPosition(2.75f, 0.4f, -0.3f);
 	cube2->transform->setScale(0.4f);
 	//cube2->collider = new BoxCollider(glm::vec3(0.5f), &cube2->transform->position);
@@ -295,7 +294,7 @@ void Game::init() {
 
 
 	cube3 = new GameObject("cube3");
-	cube3->addComponent(new Graphics(cube3, Resources::getMesh("models/cube_1_face.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/circle.png")));
+	cube3->addComponent(new Graphics(cube3, Resources::getMesh("models/cube_1_face.ply"), Resources::getShader("texture"), Resources::getTexture("textures/circle.png")));
 	cube3->transform->setPosition(5.75f, -0.4f, -0.3f);
 	cube3->transform->setScale(0.5f);
 	//cube3->collider = new BoxCollider(glm::vec3(0.5f), &cube3->transform->position);
@@ -303,37 +302,37 @@ void Game::init() {
 
 
 	castle = new GameObject("castle");
-	castle->addComponent(new Graphics(castle, Resources::getMesh("models/castle.ply"), ShaderManager::getInstance()->getShader("color")));
+	castle->addComponent(new Graphics(castle, Resources::getMesh("models/castle.ply"), Resources::getShader("color")));
 	castle->transform->setScale(100);
 	scene->add(castle);
 
 
 	monkey = new GameObject("monkey");
-	monkey->addComponent(new Graphics(monkey, Resources::getMesh("models/monkey.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/tron.png")));
+	monkey->addComponent(new Graphics(monkey, Resources::getMesh("models/monkey.ply"), Resources::getShader("texture"), Resources::getTexture("textures/tron.png")));
 	monkey->transform->setPosition(0, 20.0f, 0);
 	monkey->transform->setRotation(-90.0f, 0, 0);
 	scene->add(monkey);
 	
 
 	gun = new GameObject("gun");
-	gun->addComponent(new Graphics(gun, Resources::getMesh("models/gun.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/gun-1.png")));
+	gun->addComponent(new Graphics(gun, Resources::getMesh("models/gun.ply"), Resources::getShader("texture"), Resources::getTexture("textures/gun-1.png")));
 	gun->transform->setPosition(0, 20, 0);
 	scene->add(gun);
 	// add mag to gun
 	GameObject *mag = new GameObject("mag");
-	mag->addComponent(new Graphics(mag, Resources::getMesh("models/mag.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/mag-1.png")));
+	mag->addComponent(new Graphics(mag, Resources::getMesh("models/mag.ply"), Resources::getShader("texture"), Resources::getTexture("textures/mag-1.png")));
 	gun->transform->addChild(mag->transform);
 
 
 	sphere1 = new GameObject("sphere1");
-	sphere1->addComponent(new Graphics(sphere1, Resources::getMesh("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/purpleBall.png")));
+	sphere1->addComponent(new Graphics(sphere1, Resources::getMesh("models/sphere.ply"), Resources::getShader("texture"), Resources::getTexture("textures/purpleBall.png")));
 	sphere1->transform->setPosition(5.5f, -0.4f, 1.3f);
 	sphere1->collider = new SphereCollider(0.5f, &sphere1->transform->position);
 	scene->add(sphere1);
 
 
 	sphere2 = new GameObject("sphere2");
-	sphere2->addComponent(new Graphics(sphere2, Resources::getMesh("models/sphere.ply"), ShaderManager::getInstance()->getShader("texture"), Resources::getTexture("textures/tron.png")));
+	sphere2->addComponent(new Graphics(sphere2, Resources::getMesh("models/sphere.ply"), Resources::getShader("texture"), Resources::getTexture("textures/tron.png")));
 	sphere2->transform->setPosition(7.0f, -0.4f, -1.3f);
 	sphere2->collider = new SphereCollider(0.75f, &sphere2->transform->position);
 	scene->add(sphere2);

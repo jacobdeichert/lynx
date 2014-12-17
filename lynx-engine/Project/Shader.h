@@ -9,6 +9,11 @@
 namespace lynx {
 	class Shader {
 	public:
+		std::string name;
+		std::string vertexFile;
+		std::string fragmentFile;
+
+
 		Shader(std::string _name, std::string _vertexFile, std::string _fragmentFile, GLuint _programID);
 		~Shader();
 		void activate(Mesh *_mesh, bool isCurrentShader);
@@ -36,8 +41,6 @@ namespace lynx {
 		GLint attributeUV;
 		GLint attributeColor;
 	private:
-		std::string vertexFile;
-		std::string fragmentFile;
 		GLuint programID;
 
 		/**
@@ -50,7 +53,6 @@ namespace lynx {
 		 */
 		GLint uniformTexture;
 		GLint uniformMVP;
-		std::string name;
 	};
 }
 

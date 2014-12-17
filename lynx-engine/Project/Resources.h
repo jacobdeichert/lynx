@@ -2,6 +2,7 @@
 #include <string>
 #include "Texture.h"
 #include "Mesh.h"
+#include "Shader.h"
 
 namespace lynx {
 	/**
@@ -15,16 +16,10 @@ namespace lynx {
 	 */
 	namespace Resources {
 
-
-
 		/**
 		 * Initialize Resources. Should be initialized as soon as possible.
 		 */
 		void init();
-
-		
-
-
 
 
 		/**
@@ -38,7 +33,14 @@ namespace lynx {
 		Mesh* getMesh(std::string filepath);
 
 
+		Shader* getShader(std::string shaderName);
+
+
 		void createMesh(std::string meshName, std::vector<GLfloat> vertices, std::vector<GLuint> elements);
+
+
+		void loadShader(std::string shaderName, std::string vertexFilepath, std::string fragmentFilepath);
+
 
 	}
 }

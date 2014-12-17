@@ -22,8 +22,8 @@ LynxGame::~LynxGame() {
 void LynxGame::setup() {
 	Log::init();
 	Config::init();
-	Resources::init();
 	window.init();
+	Resources::init();
 	Log::info("LynxGame || begin initializing game");
 	init();
 	beginLoop();
