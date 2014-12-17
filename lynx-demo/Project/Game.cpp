@@ -7,7 +7,7 @@
 
 
 Game::Game() {
-	setup();
+	startup();
 }
 
 

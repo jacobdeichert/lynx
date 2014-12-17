@@ -7,11 +7,7 @@ using namespace lynx;
 
 
 
-LynxGame::LynxGame() {
-	hasShutdown = false;
-	
-
-}
+LynxGame::LynxGame() {}
 
 
 LynxGame::~LynxGame() {
@@ -19,7 +15,7 @@ LynxGame::~LynxGame() {
 }
 
 
-void LynxGame::setup() {
+void LynxGame::startup() {
 	Log::init();
 	Config::init();
 	window.init();

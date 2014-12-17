@@ -14,7 +14,7 @@ namespace lynx {
 		virtual ~LynxGame();
 
 
-		void setup();
+		void startup();
 		void shutdown();
 
 
@@ -42,7 +42,7 @@ namespace lynx {
 		virtual void onJoystickDisconnected() {}									///< A joystick was disconnected (data in event.joystickConnect)
 	private:
 		Window window;
-		bool hasShutdown;
+		bool hasShutdown = false;
 		void beginLoop();
 	};
 }
