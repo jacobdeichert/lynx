@@ -21,15 +21,9 @@ namespace {
 
 
 	/**
-	 * FileIO is used to write to a log file based on logFilePath.
+	 * FileIO is used to write to a log file.
 	 */
 	FileIO io;
-
-
-	/**
-	 * The path to the log file.
-	 */
-	std::string logFilePath = "lynx.log";
 
 			
 	/**
@@ -56,7 +50,7 @@ void Log::init(SeverityLevel level) {
 	severityLevel = level;
 
 	// Open a new file for the logger.
-	io.openFileOut(logFilePath);
+	io.openFileOut("LynxEngine/lynx.log");
 
 	Log::info("Log || logger initialized");
 }

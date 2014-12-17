@@ -80,7 +80,7 @@ namespace {
 
 void Config::init() {
 	FileIO io;
-	io.openFileIn("lynx.config");
+	io.openFileIn("LynxEngine/lynx.config");
 	std::string json = io.getEntireFile();
 	io.closeFileIn();
 
