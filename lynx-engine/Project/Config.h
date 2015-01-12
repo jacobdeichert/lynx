@@ -29,21 +29,27 @@ namespace lynx {
 
 
 		/**
-		 * Get the value of the specified key as an integer.
+		 * Get the value of the specified key as an integer. Only works if the value
+		 * in json does not have a .0 at the end. 
+		 * Example: 600
 		 * @param key The key to search for based on this pattern: <Object.*>.key
 		 */
 		int getInt(std::string key);
 
 
 		/**
-		 * Get the value of the specified key as a float.
+		 * Get the value of the specified key as a float. Only works if the value
+		 * in json has a .0 on the end. 
+		 * Example: 1200.0
 		 * @param key The key to search for based on this pattern: <Object.*>.key
 		 */
 		float getFloat(std::string key);
 
 
 		/**
-		 * Get the value of the specified key as a double.
+		 * Get the value of the specified key as a double. Only works if the value
+		 * in json has a .0 on the end. 
+		 * Example: 1200.0
 		 * @param key The key to search for based on this pattern: <Object.*>.key
 		 */
 		double getDouble(std::string key);

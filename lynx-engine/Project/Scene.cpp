@@ -1,12 +1,13 @@
 #include "Scene.h"
 #include "BoxCollider.h"
+#include "Config.h"
 using namespace lynx;
 
 
-Scene::Scene(glm::vec4 clearColor, float aspectRatio) {
+Scene::Scene() {
 	// Create and add the default camera to the scene.
 	mainCam = new GameObject("Main Camera");
-	mainCam->addComponent(new Camera(mainCam, aspectRatio, clearColor));
+	mainCam->addComponent(new Camera(mainCam, (float)Config::getInt("window.width") / (float)Config::getInt("window.height"), glm::vec4(Config::getFloat("window.clear_color.r"), Config::getFloat("window.clear_color.g"), Config::getFloat("window.clear_color.b"), Config::getFloat("window.clear_color.a"))));
 	add(mainCam);
 	
 	//sphereColliderVisual = new GameObject(MeshManager::getInstance()->get("models/sphere.ply"), ShaderManager::getInstance()->getShader("LynxEngineDebugShader"));

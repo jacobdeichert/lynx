@@ -11,7 +11,7 @@ namespace lynx {
 
 		std::vector<GameObject*> sceneObjects;
 		
-		Scene(glm::vec4 clearColor, float aspectRatio);
+		Scene();
 
 		virtual ~Scene();
 

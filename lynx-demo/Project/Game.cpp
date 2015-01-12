@@ -257,13 +257,11 @@ void  Game::onMouseButtonPressed(MouseButtonEvent mouse) {
 }
 
 
-void  Game::onMouseButtonReleased(MouseButtonEvent mouse) {
-
-}
+void  Game::onMouseButtonReleased(MouseButtonEvent mouse) {}
 
 
 void Game::init() {
-	scene = new Scene(glm::vec4(0, 0, 0, 1), (float)1280/(float)720);
+	scene = new Scene();
 	scene->mainCam->transform->setPosition(5, 0, -5);
 
 
