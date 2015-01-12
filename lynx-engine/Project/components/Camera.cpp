@@ -20,7 +20,7 @@ Camera::~Camera() {}
 
 
 void Camera::update() {
-	// Manipulate the camera transfrom just like any other (model) object.
+	// Manipulate the camera transform just like any other (model) object.
 	// The view is just the inverse of the model.
 	view = glm::inverse(gameObject->transform->model);
 

@@ -269,7 +269,6 @@ void Game::init() {
 	Resources::loadShader("color", "shaders/color_vert.glsl", "shaders/color_frag.glsl");
 	//Resources::loadShader("normal", "shaders/normal_vert.glsl", "shaders/normal_frag.glsl");
 	//Resources::loadShader("simple", "shaders/SimpleVertexShader.glsl", "shaders/SimpleFragmentShader.glsl");
-	//Resources::loadShader("ali", "shaders/AliVertexShader.glsl", "shaders/AliFragmentShader.glsl");
 
 
 
