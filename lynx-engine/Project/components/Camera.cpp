@@ -37,6 +37,6 @@ void Camera::update() {
 		near,			// Near clipping plane. Keep as big as possible, or you'll get precision issues.
 		far);			// Far clipping plane. Keep as little as possible.
 
-
-	ShaderManager::getInstance()->vp = projection * view;
+	ShaderManager::getInstance()->projection = projection;
+	ShaderManager::getInstance()->view = view;
 }

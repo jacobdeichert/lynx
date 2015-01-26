@@ -24,7 +24,7 @@ namespace lynx {
 		 *
 		 * For now, it just takes in the MVP.
 		 */
-		void updateUniforms(glm::mat4 _mvp);
+		void updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model);
 
 		/**
 		 * Location of attributes in the shader.
@@ -52,7 +52,10 @@ namespace lynx {
 		 * when they create a shader.
 		 */
 		GLint uniformTexture;
-		GLint uniformMVP;
+		GLint uniformModel;
+		GLint uniformModelNormals;
+		GLint uniformView;
+		GLint uniformProjection;
 	};
 }
 

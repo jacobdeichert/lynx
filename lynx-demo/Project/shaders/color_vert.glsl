@@ -1,6 +1,9 @@
 #version 430 core
 
-uniform mat4 uni_mvp;
+uniform mat4 uni_model;
+uniform mat3 uni_model_normals;
+uniform mat4 uni_view;
+uniform mat4 uni_projection;
 layout(location = 0) in vec3 in_position;
 layout(location = 1) in vec3 in_normal;
 layout(location = 2) in vec2 in_uv;
@@ -14,8 +17,8 @@ out vec4 v2f_color;
 
 
 void main() {
-    gl_Position = uni_mvp * vec4(in_position, 1);
-
+    gl_Position = uni_projection * uni_view * uni_model * vec4(in_position, 1);
+    
 	// The normal.
 	v2f_normal = in_normal;
 

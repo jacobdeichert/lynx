@@ -8,9 +8,10 @@ namespace lynx {
 	class ShaderManager {
 	public:
 		Shader* currentShader = nullptr;
-		// The camera projection * view.
+		// The camera projection and view.
 		// TODO: move this somewhere better??
-		glm::mat4 vp; 
+		glm::mat4 view;
+		glm::mat4 projection;
 
 
 		static ShaderManager* getInstance();

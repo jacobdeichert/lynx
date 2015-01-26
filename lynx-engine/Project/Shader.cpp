@@ -10,14 +10,26 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 
 	// Use the program and get the locations of these uniforms and attributes.
 	glUseProgram(programID);
-	uniformMVP = glGetUniformLocation(programID, "uni_mvp");
+	uniformModel = glGetUniformLocation(programID, "uni_model");
+	uniformModelNormals = glGetUniformLocation(programID, "uni_model_normals");
+	uniformView = glGetUniformLocation(programID, "uni_view");
+	uniformProjection = glGetUniformLocation(programID, "uni_projection");
 	uniformTexture = glGetUniformLocation(programID, "uni_texture");
 	attributePosition = glGetAttribLocation(programID, "in_position");
 	attributeNormal = glGetAttribLocation(programID, "in_normal");
 	attributeUV = glGetAttribLocation(programID, "in_uv");
 	attributeColor = glGetAttribLocation(programID, "in_color");
-	if (uniformMVP < 0) {
-		printf("shader: %s, error: uniformMVP = %u\n", name.c_str(), uniformMVP);
+	if (uniformModel < 0) {
+		printf("shader: %s, error: uniformModel = %u\n", name.c_str(), uniformModel);
+	}
+	if (uniformModelNormals < 0) {
+		printf("shader: %s, error: uniformModelNormals = %u\n", name.c_str(), uniformModelNormals);
+	}
+	if (uniformView < 0) {
+		printf("shader: %s, error: uniformView = %u\n", name.c_str(), uniformView);
+	}
+	if (uniformProjection < 0) {
+		printf("shader: %s, error: uniformProjection = %u\n", name.c_str(), uniformProjection);
 	}
 	if (uniformTexture < 0) {
 		printf("shader: %s, error: uniformTexture = %u\n", name.c_str(), uniformTexture);
@@ -95,7 +107,11 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 }
 
 
-void Shader::updateUniforms(glm::mat4 _mvp) {
+void Shader::updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model) {
 	// Send uniforms to the shader.
-	glUniformMatrix4fv(uniformMVP, 1, GL_FALSE, glm::value_ptr(_mvp));
+	glm::mat3 modelNormals = glm::mat3(glm::inverse(glm::transpose(model)));
+	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
+	glUniformMatrix3fv(uniformModelNormals, 1, GL_FALSE, glm::value_ptr(modelNormals));
+	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 }
