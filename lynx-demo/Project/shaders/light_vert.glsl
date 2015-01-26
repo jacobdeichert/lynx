@@ -31,7 +31,7 @@ void main() {
     // Calculate the light normals per vertex, instead of per fragment.
     v2f_light_normals = uni_model_normals * in_normal;
 
-
+    // proj * view * model * in_position
     gl_Position = uni_projection * uni_view * v2f_position;
 
 
