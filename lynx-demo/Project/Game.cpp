@@ -97,10 +97,10 @@ void Game::updateInput() {
 	}
 
 	// move the camera up and down
-	if (Keyboard::isKeyPressed(Keyboard::Key::Add)) {
+	if (Keyboard::isKeyPressed(Keyboard::Key::E)) {
 		scene->mainCam->transform->translate(0, camSpeed, 0);
 	}
-	else if (Keyboard::isKeyPressed(Keyboard::Key::Subtract)) {
+	else if (Keyboard::isKeyPressed(Keyboard::Key::Q)) {
 		scene->mainCam->transform->translate(0, -camSpeed, 0);
 	}
 
