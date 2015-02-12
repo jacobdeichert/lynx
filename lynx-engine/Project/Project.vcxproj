@@ -23,6 +23,11 @@
     <ClCompile Include="LynxGame.cpp" />
     <ClCompile Include="GameObject.cpp" />
     <ClCompile Include="Log.cpp" />
+    <ClCompile Include="other\Clock.cpp" />
+    <ClCompile Include="other\LinkedList.cpp" />
+    <ClCompile Include="other\main_test.cpp" />
+    <ClCompile Include="other\MathUtils.cpp" />
+    <ClCompile Include="other\StringUtils.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Resources.cpp" />
@@ -56,6 +61,10 @@
     <ClInclude Include="LynxGame.h" />
     <ClInclude Include="GameObject.h" />
     <ClInclude Include="Log.h" />
+    <ClInclude Include="other\Clock.h" />
+    <ClInclude Include="other\LinkedList.h" />
+    <ClInclude Include="other\MathUtils.h" />
+    <ClInclude Include="other\StringUtils.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Resources.h" />
