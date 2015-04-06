@@ -14,10 +14,10 @@ namespace lynx {
 		 * Creates a particle system with a single color.
 		 * @param name The name of the game object as well as its mesh ID.
 		 * @param numParticles The number of particles that will be generated.
-		 * @param color The color of every particle in RGB (0-1). The default value is white.
 		 * @param isRandom Determines whether random colors should be used for each particle. 
-		 *		The default value is false. If the value is true, the specified color is ignored.
+		 *		The default value is false. If the value is true, any specified color is ignored.
+		 * @param color The color of every particle in RGB (0-1). The default value is white.
 		 */
-		GameObject* create(std::string name, int numParticles, glm::vec3 color = glm::vec3(1, 1, 1), bool isRandom = false);
+		GameObject* create(std::string name, int numParticles, bool isRandom = false, glm::vec3 color = glm::vec3(1, 1, 1));
 	}
 }

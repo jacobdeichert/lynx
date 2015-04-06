@@ -8,7 +8,7 @@ using namespace lynx;
 // Public
 //================================================================================================
 
-GameObject* ParticleSystemFactory::create(std::string name, int numParticles, glm::vec3 color, bool isRandom) {
+GameObject* ParticleSystemFactory::create(std::string name, int numParticles, bool isRandom, glm::vec3 color) {
 	std::vector<GLfloat> vertices;
 	std::vector<GLuint> elements;
 
