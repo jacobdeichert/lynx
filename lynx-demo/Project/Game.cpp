@@ -349,6 +349,7 @@ void Game::render() {
 
 void Game::update() {
 	if (!isPaused) {
+		//printf("time: %f \n", clock.getElapsedTime().asSeconds());
 		updateInput();
 		scene->update();
 	}
