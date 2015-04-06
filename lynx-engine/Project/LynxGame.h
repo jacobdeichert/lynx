@@ -8,6 +8,9 @@ namespace lynx {
 	using Keyboard = sf::Keyboard;
 	class LynxGame {
 	public:
+		sf::Clock clock;
+
+
 		LynxGame();
 
 
