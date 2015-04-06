@@ -21,9 +21,15 @@
     <ClCompile Include="LightShaderWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ParticleSystemWorld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="LightShaderWorld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ParticleSystemWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
