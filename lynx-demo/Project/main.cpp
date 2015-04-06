@@ -1,7 +1,7 @@
-#include "Game.h"
+#include "LightShaderWorld.h"
 
 int main() {
-	Game *g = new Game();
-	delete g;
+	LightShaderWorld *world = new LightShaderWorld();
+	delete world;
 	//std::cin.ignore();
 }

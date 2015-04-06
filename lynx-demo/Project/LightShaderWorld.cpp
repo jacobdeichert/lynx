@@ -1,4 +1,4 @@
-#include "Game.h"
+#include "LightShaderWorld.h"
 #include <Collision.h>
 #include <Resources.h>
 #include <Config.h>
@@ -6,23 +6,23 @@
 #include <gtc/random.hpp>
 
 
-Game::Game() {
+LightShaderWorld::LightShaderWorld() {
 	startup();
 }
 
 
-Game::~Game() {
+LightShaderWorld::~LightShaderWorld() {
 	quit();
 }
 
 
-void Game::quit() {
+void LightShaderWorld::quit() {
 	Log::debug("begin quit");
 	shutdown();
 }
 
 
-void Game::updateInput() {
+void LightShaderWorld::updateInput() {
 	//======================================================================
 	// QUICK TESTING
 	//======================================================================
@@ -130,21 +130,21 @@ void Game::updateInput() {
 // Overridden methods from LynxGame
 //============================================================================
 
-void Game::onClose() {
+void LightShaderWorld::onClose() {
 	quit();
 }
 
 
-void Game::onResize(int width, int height) {
+void LightShaderWorld::onResize(int width, int height) {
 	glViewport(0, 0, width, height);
 	scene->mainCam->camera->aspectRatio = (float)width / (float)height;
 }
 
 
-void Game::onKeyPressed(KeyEvent key) {}
+void LightShaderWorld::onKeyPressed(KeyEvent key) {}
 
 
-void Game::onKeyReleased(KeyEvent key) {
+void LightShaderWorld::onKeyReleased(KeyEvent key) {
 	/**
 	 * Apparently, I should only use this event type of 
 	 * key checking for gui types of stuff. For gameplay input,
@@ -192,7 +192,7 @@ void Game::onKeyReleased(KeyEvent key) {
 }
 
 
-void  Game::onMouseButtonPressed(MouseButtonEvent mouse) {
+void  LightShaderWorld::onMouseButtonPressed(MouseButtonEvent mouse) {
 
 	// ENTIRE METHOD IS TEMPPPPP
 	//printf("screen x: %u\n", mouse.x);
@@ -257,10 +257,10 @@ void  Game::onMouseButtonPressed(MouseButtonEvent mouse) {
 }
 
 
-void  Game::onMouseButtonReleased(MouseButtonEvent mouse) {}
+void  LightShaderWorld::onMouseButtonReleased(MouseButtonEvent mouse) {}
 
 
-void Game::init() {
+void LightShaderWorld::init() {
 	scene = new Scene();
 	scene->mainCam->transform->setPosition(5, 0, -5);
 
@@ -339,7 +339,7 @@ void Game::init() {
 }
 
 
-void Game::render() {
+void LightShaderWorld::render() {
 	if (!isPaused) {
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 		scene->render();
@@ -347,7 +347,7 @@ void Game::render() {
 }
 
 
-void Game::update() {
+void LightShaderWorld::update() {
 	if (!isPaused) {
 		//printf("time: %f \n", clock.getElapsedTime().asSeconds());
 		updateInput();

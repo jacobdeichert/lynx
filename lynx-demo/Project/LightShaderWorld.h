@@ -5,7 +5,7 @@
 //#include <Plane.h>
 using namespace lynx;
 
-class Game : public LynxGame {
+class LightShaderWorld : public LynxGame {
 public:
 	Scene *scene;
 	GameObject *cube1;
@@ -20,9 +20,9 @@ public:
 	bool isDebugMode = false;
 
 
-	Game();
+	LightShaderWorld();
 
-	virtual ~Game();
+	virtual ~LightShaderWorld();
 
 	void quit();
 
@@ -131,7 +131,7 @@ void doTest();
 
 
 /*
-void Game::doTest() {
+void LightShaderWorld::doTest() {
 //scene->mainCam->position.z -= scene->mainCam->forward().z *0.02f;
 //square2->position.x += 0.02f;
 //square2->position.x += 0.02f;

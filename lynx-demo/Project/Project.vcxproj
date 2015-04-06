@@ -70,10 +70,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Game.cpp" />
+    <ClCompile Include="LightShaderWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Game.h" />
+    <ClInclude Include="LightShaderWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
