@@ -70,11 +70,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="LightShaderWorld.cpp" />
+    <ClCompile Include="TestWorld.cpp" />
     <ClCompile Include="ParticleSystemWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LightShaderWorld.h" />
+    <ClInclude Include="TestWorld.h" />
     <ClInclude Include="ParticleSystemWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

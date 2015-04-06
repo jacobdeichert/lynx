@@ -18,18 +18,18 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LightShaderWorld.cpp">
+    <ClCompile Include="ParticleSystemWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleSystemWorld.cpp">
+    <ClCompile Include="TestWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LightShaderWorld.h">
+    <ClInclude Include="ParticleSystemWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleSystemWorld.h">
+    <ClInclude Include="TestWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

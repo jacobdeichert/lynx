@@ -1,8 +1,8 @@
-//#include "LightShaderWorld.h"
+//#include "TestWorld.h"
 #include "ParticleSystemWorld.h"
 
 int main() {
-	//LightShaderWorld *world = new LightShaderWorld();
+	//TestWorld *world = new TestWorld();
 	ParticleSystemWorld *world = new ParticleSystemWorld();
 	delete world;
 }
