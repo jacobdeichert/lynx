@@ -28,6 +28,7 @@
     <ClCompile Include="other\main_test.cpp" />
     <ClCompile Include="other\MathUtils.cpp" />
     <ClCompile Include="other\StringUtils.cpp" />
+    <ClCompile Include="ParticleSystemFactory.cpp" />
     <ClCompile Include="Plane.cpp" />
     <ClCompile Include="Ray.cpp" />
     <ClCompile Include="Resources.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="other\LinkedList.h" />
     <ClInclude Include="other\MathUtils.h" />
     <ClInclude Include="other\StringUtils.h" />
+    <ClInclude Include="ParticleSystemFactory.h" />
     <ClInclude Include="Plane.h" />
     <ClInclude Include="Ray.h" />
     <ClInclude Include="Resources.h" />
