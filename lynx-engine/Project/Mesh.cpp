@@ -3,6 +3,9 @@ using namespace lynx;
 
 
 Mesh::Mesh(std::vector<GLfloat> vertices, std::vector<GLuint> elements) {
+	this->vertices = vertices;
+	this->elements = elements;
+
 	activeShaderID = NULL;
 
 	// Vertex array object (holds vbos).
@@ -33,3 +36,13 @@ Mesh::Mesh(std::vector<GLfloat> vertices, std::vector<GLuint> elements) {
 
 
 Mesh::~Mesh() {}
+
+
+std::vector<GLfloat> Mesh::getVertices() {
+	return vertices;
+}
+
+
+std::vector<GLuint> Mesh::getElements() {
+	return elements;
+}

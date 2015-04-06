@@ -11,10 +11,19 @@ namespace lynx {
 		GLuint vbo;
 		GLuint ebo;
 		GLuint activeShaderID;
+		std::vector<GLfloat> vertices;
+		std::vector<GLuint> elements;
 
 
 		Mesh(std::vector<GLfloat> vertices, std::vector<GLuint> elements);
 		~Mesh();
+
+
+		std::vector<GLfloat> getVertices();
+
+
+		std::vector<GLuint> getElements();
+
 	};
 }
 
