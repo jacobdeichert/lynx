@@ -70,12 +70,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="TestWorld.cpp" />
-    <ClCompile Include="ParticleSystemWorld.cpp" />
+    <ClCompile Include="worlds\maze\MazeTile.cpp" />
+    <ClCompile Include="worlds\maze\MazeWorld.cpp" />
+    <ClCompile Include="worlds\particle-system\ParticleSystemWorld.cpp" />
+    <ClCompile Include="worlds\test\TestWorld.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="TestWorld.h" />
-    <ClInclude Include="ParticleSystemWorld.h" />
+    <ClInclude Include="worlds\maze\MazeTile.h" />
+    <ClInclude Include="worlds\maze\MazeWorld.h" />
+    <ClInclude Include="worlds\particle-system\ParticleSystemWorld.h" />
+    <ClInclude Include="worlds\test\TestWorld.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

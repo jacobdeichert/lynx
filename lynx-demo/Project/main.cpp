@@ -1,5 +1,5 @@
-//#include "TestWorld.h"
-#include "ParticleSystemWorld.h"
+//#include "worlds/test/TestWorld.h"
+#include "worlds/particle-system/ParticleSystemWorld.h"
 
 int main() {
 	//TestWorld *world = new TestWorld();

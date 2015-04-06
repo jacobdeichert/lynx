@@ -18,18 +18,30 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleSystemWorld.cpp">
+    <ClCompile Include="worlds\test\TestWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="TestWorld.cpp">
+    <ClCompile Include="worlds\particle-system\ParticleSystemWorld.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="worlds\maze\MazeTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="worlds\maze\MazeWorld.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="ParticleSystemWorld.h">
+    <ClInclude Include="worlds\test\TestWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="TestWorld.h">
+    <ClInclude Include="worlds\particle-system\ParticleSystemWorld.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="worlds\maze\MazeTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="worlds\maze\MazeWorld.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
