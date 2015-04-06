@@ -2,6 +2,7 @@
 #include <GL/glew.h>
 #include "Config.h"
 #include "Resources.h"
+#include "ShaderManager.h"
 #include "Log.h"
 using namespace lynx;
 
@@ -61,7 +62,9 @@ void LynxGame::beginLoop() {
 				break;
 			}
 		}
-		
+
+		// Update the shader time value
+		ShaderManager::getInstance()->elapsedTime = clock.getElapsedTime().asSeconds();
 		update();
 		render();
 		// End the current frame and display its contents on screen (internally swaps the front and back buffers).

@@ -13,6 +13,11 @@ namespace lynx {
 		glm::mat4 view;
 		glm::mat4 projection;
 
+		// The elapsed game time.
+		// For now, this is set manually 
+		// by LynxGame in the beginLoop method.
+		float elapsedTime;
+
 
 		static ShaderManager* getInstance();
 

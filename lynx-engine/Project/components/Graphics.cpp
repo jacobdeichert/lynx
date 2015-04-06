@@ -40,7 +40,7 @@ void Graphics::update() {
 		// Update all uniforms in the shader.
 		shader->updateUniforms(ShaderManager::getInstance()->projection,
 			ShaderManager::getInstance()->view,
-			gameObject->transform->model);
+			gameObject->transform->model, ShaderManager::getInstance()->elapsedTime);
 
 		// Bind the VAO.
 		// TODO: make a currentVAO and check if it's already bound.

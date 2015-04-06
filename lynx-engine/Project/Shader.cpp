@@ -10,6 +10,7 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 
 	// Use the program and get the locations of these uniforms and attributes.
 	glUseProgram(programID);
+	uniformTime = glGetUniformLocation(programID, "uni_time");
 	uniformModel = glGetUniformLocation(programID, "uni_model");
 	uniformModelNormals = glGetUniformLocation(programID, "uni_model_normals");
 	uniformView = glGetUniformLocation(programID, "uni_view");
@@ -19,6 +20,9 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 	attributeNormal = glGetAttribLocation(programID, "in_normal");
 	attributeUV = glGetAttribLocation(programID, "in_uv");
 	attributeColor = glGetAttribLocation(programID, "in_color");
+	if (uniformTime < 0) {
+		printf("shader: %s, error: uniformTime = %u\n", name.c_str(), uniformTime);
+	}
 	if (uniformModel < 0) {
 		printf("shader: %s, error: uniformModel = %u\n", name.c_str(), uniformModel);
 	}
@@ -107,9 +111,10 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 }
 
 
-void Shader::updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model) {
+void Shader::updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model, float time) {
 	// Send uniforms to the shader.
 	glm::mat3 modelNormals = glm::mat3(glm::inverse(glm::transpose(model)));
+	glUniform1f(uniformTime, time);
 	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 	glUniformMatrix3fv(uniformModelNormals, 1, GL_FALSE, glm::value_ptr(modelNormals));
 	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(view));
