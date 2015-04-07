@@ -54,8 +54,8 @@ void Window::init() {
 	 *
 	 * Example: setFramerateLimit(60);
 	 */
-	//setVerticalSyncEnabled(true); // This results in high CPU usage and is very smooth
-	setFramerateLimit(60); // This results in <1% CPU usage, but is not as smooth as above
+	setVerticalSyncEnabled(true); // This results in high CPU usage and is very smooth
+	//setFramerateLimit(60); // This results in <1% CPU usage, but is not as smooth as above
 }
 
 void Window::onCreate() {
