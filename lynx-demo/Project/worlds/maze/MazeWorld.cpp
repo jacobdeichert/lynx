@@ -189,7 +189,6 @@ void MazeWorld::init() {
 	scene->mainCam->transform->setPosition(2, 2, 0);
 	scene->mainCam->transform->setRotation(0, 180, 0);
 	scene->mainCam->collider = new BoxCollider(glm::vec3(0.3f, 3, 0.3f), &scene->mainCam->transform->position);
-	scene->add(scene->mainCam);
 
 	sky = new GameObject("sky");
 	sky->addComponent(new Graphics(sky, Resources::getMesh("models/cube_6_face.ply"), Resources::getShader("texture"), Resources::getTexture("textures/galaxy-skybox.jpg")));
