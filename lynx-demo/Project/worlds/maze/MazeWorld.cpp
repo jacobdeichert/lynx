@@ -186,7 +186,7 @@ void MazeWorld::init() {
 	/**
 	 * NOTE: CPU is around 18% with full maze. When sidelength inside
 	 * initMaze is 5, it's closer to 2% CPU which is much better.
-	 * However, in my old build from Dec 2nd, the cpu is around 1%
+	 * However, in my old build from Dec 2nd, the cpu is around 13%
 	 * when the full maze is rendered. This means, since Dec 2nd,
 	 * something I have added to the code is taking longer. Most
 	 * likely the component system I have implemented which means
