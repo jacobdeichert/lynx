@@ -1,7 +1,6 @@
 #include "MazeWorld.h"
 #include <Log.h>
 #include <Collision.h>
-#include <ParticleSystemFactory.h>
 
 const int MazeWorld::MAZE_LAYOUT[] = {
 	0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -282,8 +281,10 @@ void MazeWorld::update() {
 				clock.restart();
 				// Set the size of GL_POINTS for the particles.
 				glPointSize(5.5f);
-				GameObject* particleSystem = ParticleSystemFactory::create("particleSystem", 20000, true);
+				GameObject* particleSystem = new GameObject("particle_system");
+				particleSystem->addComponent(new ParticleSystem(particleSystem, 20000, true));
 				particleSystem->transform->setPosition(endDoor->transform->position);
+
 				scene->add(particleSystem);
 			}
 		}

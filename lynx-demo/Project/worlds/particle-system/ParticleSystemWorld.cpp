@@ -2,7 +2,6 @@
 #include <Resources.h>
 #include <Config.h>
 #include <Log.h>
-#include <ParticleSystemFactory.h>
 #include <gtc/random.hpp>
 
 
@@ -139,8 +138,8 @@ void ParticleSystemWorld::init() {
 	// Set the size of GL_POINTS for the particles.
 	glPointSize(2.5f);
 	// Create a particle system.
-	particleSystem = ParticleSystemFactory::create("particles1", 500, true);
-	particleSystem->transform->setPosition(0, 0, 0);
+	particleSystem = new GameObject("particle_system");
+	particleSystem->addComponent(new ParticleSystem(particleSystem, 2000, true));
 	scene->add(particleSystem);
 }
 

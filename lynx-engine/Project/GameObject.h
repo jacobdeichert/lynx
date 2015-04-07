@@ -3,6 +3,7 @@
 #include "components/Transform.h"
 #include "components/Graphics.h"
 #include "components/Camera.h"
+#include "components/ParticleSystem.h"
 
 namespace lynx {
 	class GameObject {
@@ -14,6 +15,7 @@ namespace lynx {
 		// Transform is always added.
 		Transform *transform = new Transform(this);
 		Graphics *graphics = nullptr;
+		ParticleSystem *particleSystem = nullptr;
 		/**
 		 * Cameras are simply GameObjects with a
 		 * Camera component.
@@ -41,5 +43,8 @@ namespace lynx {
 
 
 		void addComponent(Camera *c);
+
+
+		void addComponent(ParticleSystem *p);
 	};
 }

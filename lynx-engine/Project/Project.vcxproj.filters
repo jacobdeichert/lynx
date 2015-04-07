@@ -96,7 +96,7 @@
     <ClCompile Include="other\StringUtils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ParticleSystemFactory.cpp">
+    <ClCompile Include="components\ParticleSystem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -202,7 +202,7 @@
     <ClInclude Include="other\StringUtils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="ParticleSystemFactory.h">
+    <ClInclude Include="components\ParticleSystem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

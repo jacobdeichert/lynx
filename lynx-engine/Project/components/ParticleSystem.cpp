@@ -1,14 +1,11 @@
-#include "ParticleSystemFactory.h"
-#include "Resources.h"
+#include "ParticleSystem.h"
+#include "../GameObject.h"
+#include "../Resources.h"
 #include <gtc/random.hpp>
 using namespace lynx;
 
 
-//================================================================================================
-// Public
-//================================================================================================
-
-GameObject* ParticleSystemFactory::create(std::string name, int numParticles, bool isRandom, glm::vec3 color) {
+ParticleSystem::ParticleSystem(GameObject *gameObject, int numParticles, bool isRandom, glm::vec3 color) : Component(gameObject) {
 	std::vector<GLfloat> vertices;
 	std::vector<GLuint> elements;
 
@@ -56,12 +53,16 @@ GameObject* ParticleSystemFactory::create(std::string name, int numParticles, bo
 	}
 
 	// Create the mesh.
-	Resources::createMesh(name, vertices, elements);
+	Resources::createMesh(gameObject->name, vertices, elements);
 
 	// Create the game object.
-	GameObject *particles = new GameObject(name);
-	particles->addComponent(new Graphics(particles, Resources::getMesh(name), Resources::getShader("particle"), nullptr, GL_POINTS));
-
-	return particles;
+	gameObject->addComponent(new Graphics(gameObject, Resources::getMesh(gameObject->name), Resources::getShader("particle"), nullptr, GL_POINTS));
 }
 
+
+ParticleSystem::~ParticleSystem() {}
+
+
+void ParticleSystem::update() {
+
+}

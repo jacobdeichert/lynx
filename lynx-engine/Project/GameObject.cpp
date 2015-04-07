@@ -46,7 +46,6 @@ void GameObject::addComponent(Component *c) {
 
 
 void GameObject::addComponent(Graphics *g) {
-	//printf("%s", typename(c));
 	graphics = g;
 }
 
@@ -56,8 +55,15 @@ void GameObject::addComponent(Camera *c) {
 }
 
 
+void GameObject::addComponent(ParticleSystem *p) {
+	particleSystem = p;
+}
+
+
+
 void GameObject::update() {
 	transform->update();
+	//if (particleSystem) particleSystem->update(); // particle system doesn't need anything in update right now
 	if (camera) camera->update();
 	// Move to a Physics component?
 	// Render the collider with the mvp if there is one.
