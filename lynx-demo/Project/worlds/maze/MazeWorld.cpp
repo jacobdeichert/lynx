@@ -2,7 +2,6 @@
 #include <Log.h>
 #include <Collision.h>
 #include <ParticleSystemFactory.h>
-//using namespace glm;
 
 const int MazeWorld::MAZE_LAYOUT[] = {
 	0, 9, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
@@ -183,6 +182,16 @@ void MazeWorld::init() {
 	scene = new Scene();
 	Resources::loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
 
+
+	/**
+	 * NOTE: CPU is around 18% with full maze. When sidelength inside
+	 * initMaze is 5, it's closer to 2% CPU which is much better.
+	 * However, in my old build from Dec 2nd, the cpu is around 1%
+	 * when the full maze is rendered. This means, since Dec 2nd,
+	 * something I have added to the code is taking longer. Most
+	 * likely the component system I have implemented which means
+	 * more and longer method calls... so thats
+	 */
 	initMaze();
 
 	// Initialize objects.
