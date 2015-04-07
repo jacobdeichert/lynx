@@ -30,10 +30,11 @@ void LynxGame::startup() {
 void LynxGame::beginLoop() {
 	Log::info("LynxGame || begin game loop");
 	while (window.isOpen()) {
+		/* This raises the cpu to ~18%
 		GLenum err;
 		while ((err = glGetError()) != GL_NO_ERROR) {
 			std::cout << "OpenGL error: " << err << std::endl;
-		}
+		}*/
 
 		// Check all the window's events that were triggered since the last iteration of the loop.
 		sf::Event event;
