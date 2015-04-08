@@ -17,7 +17,7 @@ MazeTile::MazeTile(TileType tileType, glm::vec3 position) : GameObject("tile") {
 		break;
 	}
 
-	addComponent(new Graphics(this, Resources::getMesh("models/cube_1_face.ply"), Resources::getShader("texture"), Resources::getTexture(textureName)));
+	addComponent(new Graphics(this, Resources::getMesh("models/cube_1_face.ply"), Resources::getShader("light"), Resources::getTexture(textureName)));
 }
 
 

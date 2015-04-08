@@ -112,8 +112,18 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 
 
 void Shader::updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model, float time) {
+	/**
+	* NOTE: Calculating this normal matrix makes the cpu % go way up. 
+	* CPU is around 18% with full maze world. When sidelength inside
+	* initMaze is 5, it's closer to 2% CPU which is much better.
+	* However, in my old engine build from Dec 2nd, the cpu is around 13%
+	* when the full maze is rendered. This is because now I have a lighting
+	* shader that depends on this normalMatrix. It's not recommended to 
+	* calculate this on the GPU, better to do it here.
+	*/
+	// Calculate the normal matrix for lighting shaders.
+	glm::mat3 normalMatrix = glm::mat3(glm::inverse(glm::transpose(model)));
 	// Send uniforms to the shader.
-	glm::mat3 normalMatrix = glm::mat3(glm::inverse(glm::transpose(model))); // calc the normal matrix for lighting shaders
 	glUniform1f(uniformTime, time);
 	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 	glUniformMatrix3fv(uniformNormal, 1, GL_FALSE, glm::value_ptr(normalMatrix));

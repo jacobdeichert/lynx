@@ -180,17 +180,9 @@ void MazeWorld::onKeyReleased(KeyEvent key) {
 void MazeWorld::init() {
 	scene = new Scene();
 	Resources::loadShader("texture", "shaders/texture_vert.glsl", "shaders/texture_frag.glsl");
+	Resources::loadShader("light", "shaders/light_vert.glsl", "shaders/light_frag.glsl");
 
 
-	/**
-	 * NOTE: CPU is around 18% with full maze. When sidelength inside
-	 * initMaze is 5, it's closer to 2% CPU which is much better.
-	 * However, in my old build from Dec 2nd, the cpu is around 13%
-	 * when the full maze is rendered. This means, since Dec 2nd,
-	 * something I have added to the code is taking longer. Most
-	 * likely the component system I have implemented which means
-	 * more and longer method calls... so thats
-	 */
 	initMaze();
 
 	// Initialize objects.
@@ -206,7 +198,7 @@ void MazeWorld::init() {
 	scene->add(sky);
 
 	endDoor = new GameObject("end_door");
-	endDoor->addComponent(new Graphics(endDoor, Resources::getMesh("models/cube_1_face.ply"), Resources::getShader("texture"), Resources::getTexture("textures/tile-blue.jpg")));
+	endDoor->addComponent(new Graphics(endDoor, Resources::getMesh("models/cube_1_face.ply"), Resources::getShader("light"), Resources::getTexture("textures/tile-blue.jpg")));
 	endDoor->transform->setPosition(mazeTiles[398]->transform->position);
 	endDoor->transform->position.y = 2.0f;
 	endDoor->transform->position.z += 2.0f;
@@ -215,7 +207,7 @@ void MazeWorld::init() {
 	scene->add(endDoor);
 
 	key = new GameObject("key");
-	key->addComponent(new Graphics(key, Resources::getMesh("models/torus.ply"), Resources::getShader("texture"), Resources::getTexture("textures/purpleTorus.png")));
+	key->addComponent(new Graphics(key, Resources::getMesh("models/torus.ply"), Resources::getShader("light"), Resources::getTexture("textures/purpleTorus.png")));
 	key->transform->setScale(0.7f);
 	key->transform->setPosition(mazeTiles[170]->transform->position);
 	key->transform->setRotation(0, 0, 90);
@@ -223,13 +215,13 @@ void MazeWorld::init() {
 	scene->add(key);
 	
 	gun = new GameObject("gun");
-	gun->addComponent(new Graphics(gun, Resources::getMesh("models/gun.ply"), Resources::getShader("texture"), Resources::getTexture("textures/gun-1.png")));
+	gun->addComponent(new Graphics(gun, Resources::getMesh("models/gun.ply"), Resources::getShader("light"), Resources::getTexture("textures/gun-1.png")));
 	gun->transform->setScale(0.1f);
 	gun->transform->setPosition(mazeTiles[61]->transform->position + glm::vec3(0, collectableHeightOffset, 0));
 	gun->collider = new SphereCollider(0.2f, &gun->transform->position);
 	// Add mag to gun.
 	GameObject *mag = new GameObject("mag");
-	mag->addComponent(new Graphics(mag, Resources::getMesh("models/mag.ply"), Resources::getShader("texture"), Resources::getTexture("textures/mag-1.png")));
+	mag->addComponent(new Graphics(mag, Resources::getMesh("models/mag.ply"), Resources::getShader("light"), Resources::getTexture("textures/mag-1.png")));
 	gun->transform->addChild(mag->transform);
 	scene->add(gun);
 }
