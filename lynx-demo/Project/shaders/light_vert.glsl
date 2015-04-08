@@ -1,7 +1,7 @@
 #version 430 core
 
 uniform mat4 uni_model;
-uniform mat3 uni_normal;
+//uniform mat3 uni_normal;
 uniform mat4 uni_view;
 uniform mat4 uni_projection;
 layout(location = 0) in vec3 in_position;
@@ -29,8 +29,8 @@ void main() {
     v2f_position = uni_model * vec4(in_position, 1);
     v2f_inverse_view = inverse(uni_view);
     // Calculate the light normals per vertex, instead of per fragment.
-    //v2f_light_normals = mat3(inverse(transpose(uni_model))) * in_normal;
-    v2f_light_normals = uni_normal * in_normal;
+    v2f_light_normals = mat3(inverse(transpose(uni_model))) * in_normal;
+    //v2f_light_normals = uni_normal * in_normal;
 
     // proj * view * model * in_position
     gl_Position = uni_projection * uni_view * v2f_position;

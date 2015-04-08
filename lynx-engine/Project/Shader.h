@@ -54,7 +54,7 @@ namespace lynx {
 		GLint uniformTime;
 		GLint uniformTexture;
 		GLint uniformModel;
-		GLint uniformNormal;
+		//GLint uniformNormal;
 		GLint uniformView;
 		GLint uniformProjection;
 	};
