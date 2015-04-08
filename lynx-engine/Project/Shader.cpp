@@ -12,7 +12,7 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 	glUseProgram(programID);
 	uniformTime = glGetUniformLocation(programID, "uni_time");
 	uniformModel = glGetUniformLocation(programID, "uni_model");
-	uniformModelNormals = glGetUniformLocation(programID, "uni_model_normals");
+	uniformNormal = glGetUniformLocation(programID, "uni_normal");
 	uniformView = glGetUniformLocation(programID, "uni_view");
 	uniformProjection = glGetUniformLocation(programID, "uni_projection");
 	uniformTexture = glGetUniformLocation(programID, "uni_texture");
@@ -26,8 +26,8 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 	if (uniformModel < 0) {
 		printf("shader: %s, error: uniformModel = %u\n", name.c_str(), uniformModel);
 	}
-	if (uniformModelNormals < 0) {
-		printf("shader: %s, error: uniformModelNormals = %u\n", name.c_str(), uniformModelNormals);
+	if (uniformNormal < 0) {
+		printf("shader: %s, error: uniformNormal = %u\n", name.c_str(), uniformNormal);
 	}
 	if (uniformView < 0) {
 		printf("shader: %s, error: uniformView = %u\n", name.c_str(), uniformView);
@@ -113,10 +113,10 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 
 void Shader::updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model, float time) {
 	// Send uniforms to the shader.
-	glm::mat3 modelNormals = glm::mat3(glm::inverse(glm::transpose(model)));
+	glm::mat3 normalMatrix = glm::mat3(glm::inverse(glm::transpose(model))); // calc the normal matrix for lighting shaders
 	glUniform1f(uniformTime, time);
 	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
-	glUniformMatrix3fv(uniformModelNormals, 1, GL_FALSE, glm::value_ptr(modelNormals));
+	glUniformMatrix3fv(uniformNormal, 1, GL_FALSE, glm::value_ptr(normalMatrix));
 	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(view));
 	glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
 }
