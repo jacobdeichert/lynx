@@ -1,4 +1,5 @@
 #include "Shader.h"
+#include "ShaderManager.h"
 using namespace lynx;
 
 
@@ -11,6 +12,7 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 	// Use the program and get the locations of these uniforms and attributes.
 	glUseProgram(programID);
 	uniformTime = glGetUniformLocation(programID, "uni_time");
+	uniformCameraPosition = glGetUniformLocation(programID, "uni_camera_position");
 	uniformModel = glGetUniformLocation(programID, "uni_model");
 	//uniformNormal = glGetUniformLocation(programID, "uni_normal");
 	uniformView = glGetUniformLocation(programID, "uni_view");
@@ -22,6 +24,9 @@ Shader::Shader(std::string _name, std::string _vertexFile, std::string _fragment
 	attributeColor = glGetAttribLocation(programID, "in_color");
 	if (uniformTime < 0) {
 		printf("shader: %s, error: uniformTime = %u\n", name.c_str(), uniformTime);
+	}
+	if (uniformCameraPosition < 0) {
+		printf("shader: %s, error: uniformCameraPosition = %u\n", name.c_str(), uniformCameraPosition);
 	}
 	if (uniformModel < 0) {
 		printf("shader: %s, error: uniformModel = %u\n", name.c_str(), uniformModel);
@@ -111,7 +116,7 @@ void Shader::activate(Mesh *_mesh, bool isCurrentShader) {
 }
 
 
-void Shader::updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model, float time) {
+void Shader::updateUniforms(glm::mat4 model) {
 	/**
 	* NOTE: Calculating this normal matrix makes the cpu % go way up. 
 	* CPU is around 18% with full maze world. When sidelength inside
@@ -127,9 +132,11 @@ void Shader::updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 mode
 	// Calculate the normal matrix for lighting shaders.
 	//glm::mat3 normalMatrix = glm::mat3(glm::inverse(glm::transpose(model)));
 	// Send uniforms to the shader.
-	glUniform1f(uniformTime, time);
+	glUniform1f(uniformTime, ShaderManager::getInstance()->elapsedTime);
+	glm::vec3 camPos = ShaderManager::getInstance()->cameraPosition;
+	glUniform3f(uniformCameraPosition, camPos.x, camPos.y, camPos.z);
 	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 	//glUniformMatrix3fv(uniformNormal, 1, GL_FALSE, glm::value_ptr(normalMatrix));
-	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(view));
-	glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(ShaderManager::getInstance()->view));
+	glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(ShaderManager::getInstance()->projection));
 }

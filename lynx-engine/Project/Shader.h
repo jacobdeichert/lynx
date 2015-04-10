@@ -22,9 +22,9 @@ namespace lynx {
 		 * TODO: make this update all uniforms that will be
 		 * stored in an array in the future.
 		 *
-		 * For now, it just takes in the MVP.
+		 * For now, it just takes in the model.
 		 */
-		void updateUniforms(glm::mat4 projection, glm::mat4 view, glm::mat4 model, float time);
+		void updateUniforms(glm::mat4 model);
 
 		/**
 		 * Location of attributes in the shader.
@@ -52,6 +52,7 @@ namespace lynx {
 		 * when they create a shader.
 		 */
 		GLint uniformTime;
+		GLint uniformCameraPosition;
 		GLint uniformTexture;
 		GLint uniformModel;
 		//GLint uniformNormal;

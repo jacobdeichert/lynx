@@ -12,6 +12,7 @@ namespace lynx {
 		// TODO: move this somewhere better??
 		glm::mat4 view;
 		glm::mat4 projection;
+		glm::vec3 cameraPosition;
 
 		// The elapsed game time.
 		// For now, this is set manually 

@@ -39,4 +39,5 @@ void Camera::update() {
 
 	ShaderManager::getInstance()->projection = projection;
 	ShaderManager::getInstance()->view = view;
+	ShaderManager::getInstance()->cameraPosition = gameObject->transform->position;
 }
