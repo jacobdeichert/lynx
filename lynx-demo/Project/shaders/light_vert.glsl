@@ -20,24 +20,20 @@ layout(location = 3) in vec3 in_color;
 out vec3 v2f_normal;
 out vec2 v2f_uv;
 out vec4 v2f_color;
-out vec3 v2f_light_normals;
-out mat4 v2f_inverse_view;
-out vec4 v2f_position;
+out vec3 v2f_fragment_position;
 
 
 void main() {
-    v2f_position = uni_model * vec4(in_position, 1);
-    v2f_inverse_view = inverse(uni_view);
-    // Calculate the light normals per vertex, instead of per fragment.
-    v2f_light_normals = mat3(inverse(transpose(uni_model))) * in_normal;
-    //v2f_light_normals = uni_normal * in_normal;
+    v2f_fragment_position = vec3(uni_model * vec4(in_position, 1));
 
     // proj * view * model * in_position
-    gl_Position = uni_projection * uni_view * v2f_position;
+    gl_Position = uni_projection * uni_view * uni_model * vec4(in_position, 1);
 
 
-	// The normal.
-	v2f_normal = in_normal;
+	// The normal in world space.
+    // Should do this on the CPU though. For now, faster on GPU for small worlds.
+    // test this instead: mat3(inverse(transpose(uni_model))) * in_normal
+	v2f_normal = mat3(transpose(inverse(uni_model))) * in_normal;
 
 	// UV of the vertex.
     v2f_uv = in_uv;
