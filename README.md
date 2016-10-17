@@ -1,7 +1,7 @@
 lynx
 ====
 
-An OpenGL game engine.
+A C++ OpenGL 4.5 game engine.
 
 ## lynx-demo
 
